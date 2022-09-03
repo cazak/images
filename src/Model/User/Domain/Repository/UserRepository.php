@@ -12,4 +12,8 @@ interface UserRepository
     public function add(User $entity, bool $flush = true): void;
 
     public function remove(User $entity, bool $flush = true): void;
+
+    public function findByEmail(string $email): ?User;
+
+    public function findByConfirmToken(string $token): ?User;
 }

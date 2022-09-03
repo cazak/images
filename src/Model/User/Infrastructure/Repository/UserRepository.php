@@ -34,6 +34,16 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
         }
     }
 
+    public function findByEmail(string $email): ?User
+    {
+        return $this->findOneBy(['email' => $email]);
+    }
+
+    public function findByConfirmToken(string $token): ?User
+    {
+        return $this->findOneBy(['confirmToken' => $token]);
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

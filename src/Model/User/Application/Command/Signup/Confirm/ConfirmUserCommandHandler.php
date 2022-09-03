@@ -6,29 +6,26 @@ namespace App\Model\User\Application\Command\Signup\Confirm;
 
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 final class ConfirmUserCommandHandler
 {
     public function __construct(
-        private readonly VerifyEmailHelperInterface $verifyEmailHelper,
-        private readonly UserRepository             $repository
+        private readonly UserRepository $repository
     )
     {
     }
 
-    /**
-     * @throws VerifyEmailExceptionInterface
-     */
-    public function handle(ConfirmUserCommand $command): void
+    public function handle(ConfirmUserCommand $command): User
     {
-        /** @var User $user */
-        $user = $command->user;
-        $this->verifyEmailHelper->validateEmailConfirmation($command->uri, $user->getId()->getValue(), $user->getEmail()->getValue());
+        $user = $this->repository->findByConfirmToken($command->token);
 
-        $user->setIsVerified(true);
+        if (!$user) {
+            throw new \DomainException('User is not registered.');
+        }
+        $user->confirmSignUp();
 
         $this->repository->add($user);
+
+        return $user;
     }
 }

@@ -24,9 +24,13 @@ final class CreateUserCommandHandler
      */
     public function handle(CreateUserCommand $command): void
     {
-        $user = $this->factory->create($command->name, $command->email, $command->password);
+        if ($this->repository->findByEmail($command->email)) {
+            throw new \DomainException('This email is already in use.');
+        }
+
+        $user = $this->factory->registerUser($command->name, $command->email, $command->password);
         $this->repository->add($user);
 
-        $this->sender->send($user);
+        $this->sender->send($command->email, $user->getConfirmToken());
     }
 }

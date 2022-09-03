@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Auth;
 
-use App\Form\RegistrationFormType;
 use App\Model\User\Application\Command\Signup\Confirm\ConfirmUserCommand;
 use App\Model\User\Application\Command\Signup\Confirm\ConfirmUserCommandHandler;
 use App\Model\User\Application\Command\Signup\Request\CreateUserCommand;
 use App\Model\User\Application\Command\Signup\Request\CreateUserCommandHandler;
+use App\Model\User\Application\Command\Signup\Request\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use App\Service\ErrorHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,29 +49,18 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, ConfirmUserCommandHandler $handler): Response
+    #[Route('/verify/email/{token}', name: 'app_verify_email')]
+    public function verifyUserEmail(string $token, Request $request, TranslatorInterface $translator, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, ConfirmUserCommandHandler $handler): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        // validate email confirmation link, sets User::isVerified=true and persists
         try {
-            $command = new ConfirmUserCommand();
-            $command->uri = $request->getUri();
-            $command->user = $this->getUser();
-            $handler->handle($command);
+            $command = new ConfirmUserCommand($token);
+            $user = $handler->handle($command);
 
             return $userAuthenticator->authenticateUser(
-                $this->getUser(),
+                $user,
                 $authenticator,
                 $request
             );
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
-            $this->errorHandler->handle($exception);
-
-            return $this->redirectToRoute('app_register');
         } catch (\Exception $exception) {
             $this->addFlash('error', $exception->getMessage());
 

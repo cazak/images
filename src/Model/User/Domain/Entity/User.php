@@ -16,8 +16,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
+    const STATUS_WAIT = 1;
+    const STATUS_ACTIVE = 2;
 
     const ROLE_USER = 'ROLE_USER';
 
@@ -37,8 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private string $password;
 
+    #[ORM\Column(name: 'confirm_token', type: 'string', length: 255, nullable: true)]
+    private ?string $confirmToken;
+
     #[ORM\Column(type: 'integer')]
-    private ?int $status = null;
+    private ?int $status;
 
     #[ORM\Column(type: 'user_user_email', nullable: true)]
     private Email $email;
@@ -49,11 +52,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
-    public function setId(Id $id): self
+    public function __construct(Id $id, Email $email, DateTimeImmutable $date, string $name)
     {
         $this->id = $id;
-
-        return $this;
+        $this->email = $email;
+        $this->date = $date;
+        $this->name = $name;
+        $this->isVerified = false;
+        $this->status = self::STATUS_WAIT;
     }
 
     public function getId(): Id
@@ -133,14 +139,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getConfirmToken(): string
+    {
+        return $this->confirmToken;
+    }
+
+    public function setConfirmToken(string $token): self
+    {
+        $this->confirmToken = $token;
+
+        return $this;
+    }
+
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
-    public function setIsVerified(bool $isVerified): self
+    public function confirmSignUp(): self
     {
-        $this->isVerified = $isVerified;
+        $this->confirmToken = null;
+        $this->isVerified = true;
+        $this->status = self::STATUS_ACTIVE;
 
         return $this;
     }
