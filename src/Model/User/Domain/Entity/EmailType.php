@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Model\User\Domain\Entity;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
 
-final class EmailType extends GuidType
+final class EmailType extends StringType
 {
     public const NAME = 'user_user_email';
 

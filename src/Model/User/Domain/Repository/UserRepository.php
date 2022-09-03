@@ -9,7 +9,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 interface UserRepository
 {
-    public function add(User $entity, bool $flush = false): void;
+    public function add(User $entity, bool $flush = true): void;
 
-    public function remove(User $entity, bool $flush = false): void;
+    public function remove(User $entity, bool $flush = true): void;
 }

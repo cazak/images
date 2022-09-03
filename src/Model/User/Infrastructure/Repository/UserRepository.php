@@ -16,7 +16,7 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
         parent::__construct($registry, User::class);
     }
 
-    public function add(User $entity, bool $flush = false): void
+    public function add(User $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -25,7 +25,7 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
         }
     }
 
-    public function remove(User $entity, bool $flush = false): void
+    public function remove(User $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 
