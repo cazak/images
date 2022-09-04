@@ -28,3 +28,7 @@ services:
         arguments:
             $from: '%from%'
             $name: '%name%'
+
+#    App\Model\User\Test\Unit\Domain\Factory\FactoryTest:
+#        arguments:
+#            factory: ['@App\Model\User\Domain\Factory\UserFactory']
