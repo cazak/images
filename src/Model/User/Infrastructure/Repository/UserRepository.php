@@ -8,6 +8,7 @@ use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository as UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {
@@ -42,6 +43,14 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
     public function findByConfirmToken(string $token): ?User
     {
         return $this->findOneBy(['confirmToken' => $token]);
+    }
+
+    public function loadUserByIdentifier(string $identifier): ?UserInterface
+    {
+        return $this->findOneBy([
+            'email' => $identifier,
+            'isVerified' => true
+        ]);
     }
 
 //    /**
