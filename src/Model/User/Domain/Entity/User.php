@@ -16,10 +16,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    const STATUS_WAIT = 1;
-    const STATUS_ACTIVE = 2;
+    public const STATUS_WAIT = 1;
+    public const STATUS_ACTIVE = 2;
 
-    const ROLE_USER = 'ROLE_USER';
+    public const ROLE_USER = 'ROLE_USER';
 
     #[ORM\Id]
     #[ORM\Column(type: 'user_user_id')]

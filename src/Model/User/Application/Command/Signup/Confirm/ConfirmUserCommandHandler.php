@@ -11,8 +11,7 @@ final class ConfirmUserCommandHandler
 {
     public function __construct(
         private readonly UserRepository $repository
-    )
-    {
+    ) {
     }
 
     public function handle(ConfirmUserCommand $command): User

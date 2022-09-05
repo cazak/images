@@ -19,7 +19,7 @@ final class FactoryTest extends KernelTestCase
         $this->passwordHasher = static::getContainer()->get(UserPasswordHasher::class);
     }
 
-    public function testSuccess(): void
+    public function test_success(): void
     {
         $name = 'name';
         $email = 'email@email.com';

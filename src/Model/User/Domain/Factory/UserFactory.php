@@ -14,9 +14,8 @@ final class UserFactory
 {
     public function __construct(
         private readonly ConfirmTokenGenerator $generator,
-        private readonly UserPasswordHasher    $passwordHasher
-    )
-    {
+        private readonly UserPasswordHasher $passwordHasher
+    ) {
     }
 
     public function registerUser(string $name, string $email, string $password): User

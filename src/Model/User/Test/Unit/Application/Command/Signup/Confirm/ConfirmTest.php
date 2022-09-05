@@ -16,7 +16,7 @@ final class ConfirmTest extends KernelTestCase
         $this->factory = static::getContainer()->get(UserFactory::class);
     }
 
-    public function testSuccess(): void
+    public function test_success(): void
     {
         $user = $this->factory->registerUser('name', 'test@test.test', 'password');
 

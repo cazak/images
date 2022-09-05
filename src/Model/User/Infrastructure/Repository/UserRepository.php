@@ -49,7 +49,7 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
     {
         return $this->findOneBy([
             'email' => $identifier,
-            'isVerified' => true
+            'isVerified' => true,
         ]);
     }
 

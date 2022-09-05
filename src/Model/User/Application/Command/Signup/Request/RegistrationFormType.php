@@ -24,7 +24,7 @@ final class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => CreateUserCommand::class
+            'data_class' => CreateUserCommand::class,
         ]);
     }
 }

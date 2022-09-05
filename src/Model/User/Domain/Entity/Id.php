@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\User\Domain\Entity;
 
-use Webmozart\Assert\Assert;
 use Ramsey\Uuid\Uuid;
+use Webmozart\Assert\Assert;
 
 class Id
 {

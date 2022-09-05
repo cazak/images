@@ -11,7 +11,6 @@ final class ConfirmUserCommand
     public function __construct(
         #[Assert\NotBlank]
         public readonly string $token
-    )
-    {
+    ) {
     }
 }

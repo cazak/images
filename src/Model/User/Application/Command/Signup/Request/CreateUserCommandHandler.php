@@ -12,11 +12,10 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 final class CreateUserCommandHandler
 {
     public function __construct(
-        private readonly SignupSender   $sender,
-        private readonly UserFactory    $factory,
+        private readonly SignupSender $sender,
+        private readonly UserFactory $factory,
         private readonly UserRepository $repository
-    )
-    {
+    ) {
     }
 
     /**

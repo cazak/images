@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -37,6 +36,7 @@ class RegistrationController extends AbstractController
                 $handler->handle($command);
 
                 $this->addFlash('success', 'Check your email.');
+
                 return $this->redirect('/');
             } catch (\Exception $exception) {
                 $this->errorHandler->handle($exception);
