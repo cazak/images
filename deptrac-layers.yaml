@@ -1,0 +1,26 @@
+parameters:
+    paths:
+        - ./src/Model
+    layers:
+        - name: Domain
+          collectors:
+              - type: directory
+                regex: /src/Model/\w+/Domain/.*
+
+        - name: Application
+          collectors:
+              - type: directory
+                regex: /src/Model/\w+/Application/.*
+
+        - name: Infrastructure
+          collectors:
+              - type: directory
+                regex: /src/Model/\w+/Infrastructure/.*
+
+    ruleset:
+        Domain:
+        Application:
+            - Domain
+        Infrastructure:
+            - Domain
+            - Application
