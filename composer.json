@@ -94,6 +94,9 @@
         "check": [
             "vendor/bin/php-cs-fixer fix --dry-run --diff",
             "vendor/bin/deptrac analyse --config-file=deptrac-layers.yaml"
+        ],
+        "test": [
+            "php bin/phpunit"
         ]
     },
     "conflict": {
