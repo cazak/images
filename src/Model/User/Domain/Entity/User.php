@@ -28,10 +28,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $date;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $name;
+    #[ORM\Embedded(class: Name::class)]
+    private Name $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]
     private ?string $nickname = null;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -52,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified;
 
-    public function __construct(Id $id, Email $email, DateTimeImmutable $date, string $name)
+    public function __construct(Id $id, Email $email, DateTimeImmutable $date, Name $name)
     {
         $this->id = $id;
         $this->email = $email;
@@ -67,12 +67,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): Name
     {
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(Name $name): self
     {
         $this->name = $name;
 

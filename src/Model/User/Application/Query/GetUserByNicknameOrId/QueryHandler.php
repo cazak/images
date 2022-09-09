@@ -21,7 +21,7 @@ final class QueryHandler
         if (preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/', $query->nicknameOrId)) {
             $result = $this->connection->createQueryBuilder()
                 ->from('user_users')
-                ->select(['nickname', 'id', 'name'])
+                ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
                 ->where('id = :id')
                 ->andWhere('is_verified = TRUE')
                 ->setParameter('id', $query->nicknameOrId)
@@ -31,8 +31,8 @@ final class QueryHandler
         } else {
             $result = $this->connection->createQueryBuilder()
                 ->from('user_users')
-                ->select(['nickname', 'id', 'name'])
-                ->where('name = :nickname')
+                ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
+                ->where('nickname = :nickname')
                 ->andWhere('is_verified = TRUE')
                 ->setParameter('nickname', $query->nicknameOrId)
                 ->executeQuery();

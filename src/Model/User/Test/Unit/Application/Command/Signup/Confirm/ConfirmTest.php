@@ -18,7 +18,7 @@ final class ConfirmTest extends KernelTestCase
 
     public function test_success(): void
     {
-        $user = $this->factory->registerUser('name', 'test@test.test', 'password');
+        $user = $this->factory->registerUser('name', 'surname', 'test@test.test', 'password');
 
         self::assertFalse($user->isVerified());
         self::assertEquals(User::STATUS_WAIT, $user->getStatus());

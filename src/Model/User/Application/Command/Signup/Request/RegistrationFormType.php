@@ -18,7 +18,8 @@ final class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
-            ->add('name', TextType::class);
+            ->add('name', TextType::class)
+            ->add('surname', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

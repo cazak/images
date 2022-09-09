@@ -11,6 +11,8 @@ final class CreateUserCommand
     #[Assert\NotBlank]
     public string $name;
 
+    public ?string $surname;
+
     #[Assert\NotBlank]
     #[Assert\Email]
     public string $email;

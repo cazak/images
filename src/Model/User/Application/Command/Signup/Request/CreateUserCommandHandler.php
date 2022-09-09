@@ -27,7 +27,7 @@ final class CreateUserCommandHandler
             throw new \DomainException('This email is already in use.');
         }
 
-        $user = $this->factory->registerUser($command->name, $command->email, $command->password);
+        $user = $this->factory->registerUser($command->name, $command->surname, $command->email, $command->password);
         $this->repository->add($user);
 
         $this->sender->send($command->email, $user->getConfirmToken());

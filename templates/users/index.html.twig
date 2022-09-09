@@ -3,6 +3,7 @@
     {% for user in users %}
         <p>ID: <a href="{{ path('app_users_show', {'nicknameOrId': user.id}) }}">{{ user.id }}</a></p>
         <p>Name: {{ user.name }}</p>
+        <p>Surname: {{ user.surname }}</p>
         <p>Nickname: {{ user.nickname }}</p>
     {% endfor %}
 {% endblock %}

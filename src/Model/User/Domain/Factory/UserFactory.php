@@ -6,6 +6,7 @@ namespace App\Model\User\Domain\Factory;
 
 use App\Model\User\Domain\Entity\Email;
 use App\Model\User\Domain\Entity\Id;
+use App\Model\User\Domain\Entity\Name;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Service\ConfirmTokenGenerator;
 use App\Model\User\Domain\Service\UserPasswordHasher;
@@ -18,9 +19,9 @@ final class UserFactory
     ) {
     }
 
-    public function registerUser(string $name, string $email, string $password): User
+    public function registerUser(string $name, ?string $surname, string $email, string $password): User
     {
-        $user = new User(Id::next(), new Email($email), new \DateTimeImmutable(), $name);
+        $user = new User(Id::next(), new Email($email), new \DateTimeImmutable(), new Name($name, $surname));
         $passwordHash = $this->passwordHasher->hash($user, $password);
         $user
             ->setPassword($passwordHash)

@@ -22,7 +22,7 @@ final class QueryHandler
     {
         $result = $this->connection->createQueryBuilder()
             ->from('user_users')
-            ->select(['name', 'nickname', 'id'])
+            ->select(['name_name AS name', 'name_surname AS surname', 'nickname', 'id'])
             ->where('is_verified = TRUE')
             ->executeQuery();
 
