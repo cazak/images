@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $role = null;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isVerified = false;
+    private bool $isVerified;
 
     public function __construct(Id $id, Email $email, DateTimeImmutable $date, string $name)
     {
