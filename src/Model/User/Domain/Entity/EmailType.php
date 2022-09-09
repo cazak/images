@@ -11,14 +11,14 @@ final class EmailType extends StringType
 {
     public const NAME = 'user_user_email';
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Email ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Email
     {
-        return !empty($value) ? new Email($value) : null;
+        return !empty($value) ? new Email((string)$value) : null;
     }
 
     public function getName(): string

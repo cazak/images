@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Users;
 
-use App\Model\User\Application\Query\FindUserByNicknameOrId\Query;
-use App\Model\User\Application\Query\FindUserByNicknameOrId\QueryHandler;
+use App\Model\User\Application\Query\GetUserByNicknameOrId\Query;
+use App\Model\User\Application\Query\GetUserByNicknameOrId\QueryHandler;
 use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
