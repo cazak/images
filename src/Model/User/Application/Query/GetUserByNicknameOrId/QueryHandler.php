@@ -18,7 +18,7 @@ final class QueryHandler
      */
     public function fetch(Query $query): DTO
     {
-        if (preg_match("/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/", $query->nicknameOrId)) {
+        if (preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/', $query->nicknameOrId)) {
             $result = $this->connection->createQueryBuilder()
                 ->from('user_users')
                 ->select(['nickname', 'id', 'name'])
@@ -40,7 +40,7 @@ final class QueryHandler
             $row = $result->fetchAssociative();
         }
 
-        if ($row !== false) {
+        if (false !== $row) {
             return DTO::fromUser($row);
         }
 

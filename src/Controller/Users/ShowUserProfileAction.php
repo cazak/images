@@ -23,7 +23,7 @@ final class ShowUserProfileAction extends AbstractController
     {
         try {
             return $this->render('users/show.html.twig', [
-                'user' => $this->queryHandler->fetch(new Query($nicknameOrId))
+                'user' => $this->queryHandler->fetch(new Query($nicknameOrId)),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

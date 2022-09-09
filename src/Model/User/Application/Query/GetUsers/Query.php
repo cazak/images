@@ -6,5 +6,4 @@ namespace App\Model\User\Application\Query\GetUsers;
 
 final class Query
 {
-
 }

@@ -24,7 +24,7 @@ final class GetUsersAction extends AbstractController
     {
         try {
             return $this->render('users/index.html.twig', [
-                'users' => $this->queryHandler->fetch(new Query())
+                'users' => $this->queryHandler->fetch(new Query()),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

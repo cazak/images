@@ -15,6 +15,7 @@ final class QueryHandler
 
     /**
      * @return DTO[]
+     *
      * @throws Exception
      */
     public function fetch(): array
