@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Model\User\Application\Query\GetUsers;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 final class QueryHandler
 {
-    public function __construct(private readonly Connection $connection)
+    public function __construct(private readonly Connection $connection, private readonly PaginatorInterface $paginator)
     {
     }
 
     /**
-     * @return DTO[]
-     *
-     * @throws Exception
+     * @param Filter $filter
+     * @return PaginationInterface
      */
-    public function fetch(Filter $filter): array
+    public function fetch(Filter $filter): PaginationInterface
     {
         $qb = $this->connection->createQueryBuilder()
             ->from('user_users')
@@ -55,17 +55,8 @@ final class QueryHandler
             $qb->setParameter('id', $filter->id);
         }
 
-        $result = $qb->executeQuery();
+        $qb->orderBy($filter->getSort(), $filter->getOrder());
 
-        $rows = $result->fetchAllAssociative();
-
-        $userDTOs = [];
-        if (!empty($rows)) {
-            foreach ($rows as $row) {
-                $userDTOs[] = DTO::fromUser($row);
-            }
-        }
-
-        return $userDTOs;
+        return $this->paginator->paginate($qb, $filter->page, $filter->size);
     }
 }
