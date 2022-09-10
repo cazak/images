@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Users;
 
-use App\Model\User\Application\Query\GetUsers\Query;
+use App\Model\User\Application\Query\GetUsers\Filter;
+use App\Model\User\Application\Query\GetUsers\Form;
 use App\Model\User\Application\Query\GetUsers\QueryHandler;
 use App\Service\ErrorHandler;
 use Exception;
@@ -19,12 +20,18 @@ final class GetUsersAction extends AbstractController
     {
     }
 
-    #[Route('/users', name: 'app_users_list')]
+    #[Route('/users', name: 'app_users_list', methods: ['GET'])]
     public function index(Request $request): Response
     {
         try {
+            $filter = new Filter();
+            $form = $this->createForm(Form::class, $filter);
+
+            $form->handleRequest($request);
+
             return $this->render('users/index.html.twig', [
-                'users' => $this->queryHandler->fetch(new Query()),
+                'users' => $this->queryHandler->fetch($filter),
+                'form' => $form->createView(),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);
