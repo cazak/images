@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\User\Infrastructure\Fixtures;
+namespace App\Model\User\Infrastructure\Fixture;
 
 use App\Model\Shared\Infrastructure\Tools\FakerTools;
 use App\Model\User\Domain\Factory\UserFactory;

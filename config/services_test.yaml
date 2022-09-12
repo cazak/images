@@ -2,7 +2,7 @@ services:
     _defaults:
         autowire: true
 
-    App\Model\User\Infrastructure\Fixtures\:
-        resource: '%kernel.project_dir%/src/Model/User/Infrastructure/Fixtures/*'
+    App\Model\User\Infrastructure\Fixture\:
+        resource: '%kernel.project_dir%/src/Model/User/Infrastructure/Fixture/*'
         tags:
             - {"name": "doctrine.orm.fixture"}
