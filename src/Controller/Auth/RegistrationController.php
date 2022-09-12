@@ -11,12 +11,13 @@ use App\Model\User\Application\Command\Signup\Request\CreateUserCommandHandler;
 use App\Model\User\Application\Command\Signup\Request\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use App\Service\ErrorHandler;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -38,9 +39,11 @@ class RegistrationController extends AbstractController
                 $this->addFlash('success', 'Check your email.');
 
                 return $this->redirect('/');
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 $this->errorHandler->handle($exception);
                 $this->addFlash('error', $exception->getMessage());
+            } catch (TransportExceptionInterface $e) {
+                $this->errorHandler->handle($e);
             }
         }
 
@@ -50,7 +53,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/email/{token}', name: 'app_verify_email')]
-    public function verifyUserEmail(string $token, Request $request, TranslatorInterface $translator, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, ConfirmUserCommandHandler $handler): Response
+    public function verifyUserEmail(string $token, Request $request, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, ConfirmUserCommandHandler $handler): Response
     {
         try {
             $command = new ConfirmUserCommand($token);
@@ -61,7 +64,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->addFlash('error', $exception->getMessage());
 
             $this->errorHandler->handle($exception);
