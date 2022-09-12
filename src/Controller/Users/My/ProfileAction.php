@@ -27,8 +27,9 @@ final class ProfileAction extends AbstractController
         try {
             /** @var User $user */
             $user = $this->getUser();
+
             return $this->render('my/profile.html.twig', [
-                'user' => $this->queryHandler->fetch(new Query($user->getId()->getValue()))
+                'user' => $this->queryHandler->fetch(new Query($user->getId()->getValue())),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

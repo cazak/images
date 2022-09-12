@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class GetUsersAction extends AbstractController
 {
-    const ITEMS_PER_PAGE = 2;
+    public const ITEMS_PER_PAGE = 2;
 
     public function __construct(private readonly QueryHandler $queryHandler, private readonly ErrorHandler $errorHandler)
     {

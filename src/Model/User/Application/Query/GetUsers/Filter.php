@@ -32,11 +32,12 @@ final class Filter
         if (!in_array($this->sort, ['id', 'name', 'nickname', 'status'], true)) {
             throw new UnexpectedValueException('Cannot sort by ' . $this->sort);
         }
+
         return $this->sort;
     }
 
     public function getOrder(): string
     {
-        return $this->order === 'desc' ? 'desc' : 'asc';
+        return 'desc' === $this->order ? 'desc' : 'asc';
     }
 }

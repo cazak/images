@@ -14,10 +14,6 @@ final class QueryHandler
     {
     }
 
-    /**
-     * @param Filter $filter
-     * @return PaginationInterface
-     */
     public function fetch(Filter $filter): PaginationInterface
     {
         $qb = $this->connection->createQueryBuilder()
@@ -32,22 +28,22 @@ final class QueryHandler
 
         if ($filter->name) {
             $qb->andWhere($qb->expr()->like('LOWER(CONCAT(name_name, \' \', name_surname))', ':name'));
-            $qb->setParameter('name', '%'.mb_strtolower($filter->name).'%');
+            $qb->setParameter('name', '%' . mb_strtolower($filter->name) . '%');
         }
 
         if ($filter->nickname) {
             $qb->andWhere($qb->expr()->like('LOWER(nickname)', ':nickname'));
-            $qb->setParameter('nickname', '%'.mb_strtolower($filter->nickname).'%');
+            $qb->setParameter('nickname', '%' . mb_strtolower($filter->nickname) . '%');
         }
 
         if ($filter->email) {
             $qb->andWhere($qb->expr()->like('LOWER(email)', ':email'));
-            $qb->setParameter('email', '%'.mb_strtolower($filter->email).'%');
+            $qb->setParameter('email', '%' . mb_strtolower($filter->email) . '%');
         }
 
         if ($filter->role) {
             $qb->andWhere($qb->expr()->like('LOWER(role)', ':role'));
-            $qb->setParameter('role', '%'.mb_strtolower($filter->role).'%');
+            $qb->setParameter('role', '%' . mb_strtolower($filter->role) . '%');
         }
 
         if ($filter->id) {
