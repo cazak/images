@@ -23,18 +23,12 @@ final class GetFollowers
      */
     public function fetch(string $userId): array
     {
-        $followers = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->from('user_users')
             ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
             ->where('id IN (:ids)')
             ->setParameter('ids', $this->redisUserRepository->getFollowers($userId), Connection::PARAM_STR_ARRAY)
             ->executeQuery()
             ->fetchAllAssociative();
-
-        if (!$followers) {
-            return [];
-        }
-
-        return $followers;
     }
 }
