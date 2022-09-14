@@ -11,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class CheckDoctrineAction extends AbstractController
 {
-    #[Route('/doctrine-check', name: 'doctrine_check', methods: ['GET'])]
-    public function check(EntityManagerInterface $em)
+    #[Route('/check/doctrine', name: 'app_doctrine_check', methods: ['GET'])]
+    public function check(EntityManagerInterface $em): Response
     {
         $em->getConnection()->connect();
         $connected = $em->getConnection()->isConnected();

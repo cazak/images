@@ -7,6 +7,9 @@ namespace App\Model\User\Infrastructure\Repository;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository as UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -51,6 +54,19 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
             'email' => $identifier,
             'isVerified' => true,
         ]);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function checkUsersExistForSubscribe(string $firstUserId, string $secondUserId): bool
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.id IN (:ids)')
+            ->setParameter('ids', [$firstUserId, $secondUserId], Connection::PARAM_STR_ARRAY)
+            ->getQuery()->getSingleScalarResult() >= 2;
     }
 
 //    /**

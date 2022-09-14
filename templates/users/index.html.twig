@@ -25,7 +25,7 @@
             <tbody>
                 {% for user in pagination %}
                     <tr>
-                        <td><p><a href="{{ path('app_users_show', {'nicknameOrId': user.id}) }}">{{ user.id }}</a></p></td>
+                        <td><p><a href="{{ path('app_users_show', {'nicknameOrId': user.nickname ?: user.id}) }}">{{ user.id }}</a></p></td>
                         <td>{{ user.name }}</td>
                         <td>{{ user.nickname }}</td>
                         <td>{{ user.status }}</td>

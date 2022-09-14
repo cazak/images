@@ -16,4 +16,6 @@ interface UserRepository extends UserLoaderInterface
     public function findByEmail(string $email): ?User;
 
     public function findByConfirmToken(string $token): ?User;
+
+    public function checkUsersExistForSubscribe(string $firstUserId, string $secondUserId): bool;
 }
