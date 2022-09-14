@@ -4,4 +4,16 @@
     <p>Name: {{ user.name }}</p>
     <p>Name: {{ user.surname }}</p>
     <p>Nickname: {{ user.nickname }}</p>
+    <h3>Subscriptions {{ user.subscriptionsCount }}</h3>
+    {% for subscription in user.subscriptions %}
+        <p>name: {{ subscription.name }}</p>
+        <p>Nickname: {{ subscription.nickname }}</p>
+        <hr>
+    {% endfor %}
+    <h3>Followers {{ user.followersCount }}</h3>
+    {% for follower in user.followers %}
+        <p>Nickname: {{ follower.nickname }}</p>
+        <p>name: {{ follower.name }}</p>
+        <hr>
+    {% endfor %}
 {% endblock %}
