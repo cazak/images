@@ -69,7 +69,7 @@ final class Form extends AbstractType
         $stmt = $this->connection->createQueryBuilder()
             ->select([
                 'id',
-                'TRIM(CONCAT(name_name, \' \', name_surname)) AS name',
+                'TRIM(CONCAT(name, \' \', surname)) AS name',
             ])
             ->from('user_users')
             ->orderBy('name', 'DESC')

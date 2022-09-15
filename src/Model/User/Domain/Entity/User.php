@@ -29,7 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $date;
 
-    #[ORM\Embedded(class: Name::class)]
+    #[ORM\Embedded(class: Name::class, columnPrefix: false)]
     private Name $name;
 
     #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]

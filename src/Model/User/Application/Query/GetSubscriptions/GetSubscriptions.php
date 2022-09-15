@@ -27,7 +27,7 @@ final class GetSubscriptions
 
         return $this->connection->createQueryBuilder()
             ->from('user_users')
-            ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
+            ->select(['nickname', 'id', 'name', 'surname'])
             ->where('id IN (:ids)')
             ->setParameter('ids', $subscriptionIds, Connection::PARAM_STR_ARRAY)
             ->executeQuery()

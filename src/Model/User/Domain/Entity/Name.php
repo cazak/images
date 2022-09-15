@@ -13,7 +13,7 @@ final class Name
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $surname;
 
     public function __construct(string $name, ?string $surname)

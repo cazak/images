@@ -19,7 +19,7 @@ final class QueryHandler
         $qb = $this->connection->createQueryBuilder()
             ->from('user_users')
             ->select([
-                'TRIM(CONCAT(name_name, \' \', name_surname)) AS name',
+                'TRIM(CONCAT(name, \' \', surname)) AS name',
                 'nickname',
                 'id',
                 'status',
@@ -27,7 +27,7 @@ final class QueryHandler
             ->where('is_verified = TRUE');
 
         if ($filter->name) {
-            $qb->andWhere($qb->expr()->like('LOWER(CONCAT(name_name, \' \', name_surname))', ':name'));
+            $qb->andWhere($qb->expr()->like('LOWER(CONCAT(name, \' \', surname))', ':name'));
             $qb->setParameter('name', '%' . mb_strtolower($filter->name) . '%');
         }
 

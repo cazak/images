@@ -27,7 +27,7 @@ final class GetMutualFriends
 
         return $this->connection->createQueryBuilder()
             ->from('user_users')
-            ->select(['id', 'nickname', 'name_name AS name'])
+            ->select(['id', 'nickname', 'name'])
             ->where('id IN (:ids)')
             ->setParameter('ids', $mutualFiendIds, Connection::PARAM_STR_ARRAY)
             ->executeQuery()
