@@ -23,11 +23,13 @@ final class GetSubscriptions
      */
     public function fetch(string $userId): array
     {
+        $subscriptionIds = $this->redisUserRepository->getSubscriptions($userId);
+
         return $this->connection->createQueryBuilder()
             ->from('user_users')
             ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
             ->where('id IN (:ids)')
-            ->setParameter('ids', $this->redisUserRepository->getSubscriptions($userId), Connection::PARAM_STR_ARRAY)
+            ->setParameter('ids', $subscriptionIds, Connection::PARAM_STR_ARRAY)
             ->executeQuery()
             ->fetchAllAssociative();
     }

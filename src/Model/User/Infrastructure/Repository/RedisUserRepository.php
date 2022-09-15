@@ -44,6 +44,17 @@ final class RedisUserRepository
     /**
      * @throws RedisException
      */
+    public function getMutualFriends(string $currentUserId, string $forUserId): bool|array|Redis
+    {
+        return $this->redis->sInter(
+            self::ENTITY_KEY . ':' . $currentUserId . ':' . self::SUBSCRIBE_KEY,
+            self::ENTITY_KEY . ':' . $forUserId . ':' . self::FOLLOW_KEY
+        );
+    }
+
+    /**
+     * @throws RedisException
+     */
     public function getSubscriptions($userId): Redis|array
     {
         return $this->redis->sMembers(self::ENTITY_KEY . ':' . $userId . ':' . self::SUBSCRIBE_KEY);

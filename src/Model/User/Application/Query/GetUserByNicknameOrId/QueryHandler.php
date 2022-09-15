@@ -32,6 +32,7 @@ final class QueryHandler
     public function fetch(Query $query): DTO
     {
         $row = $this->getUser($query);
+
         $row['subscriptions'] = $this->getSubscriptions->fetch($row['id']);
         $row['followers'] = $this->getFollowers->fetch($row['id']);
         $row['followersCount'] = (int)$this->userRepository->getFollowersCount($row['id']);

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Users;
 
-use App\Model\User\Application\Query\GetUserByNicknameOrId\Query;
-use App\Model\User\Application\Query\GetUserByNicknameOrId\QueryHandler;
+use App\Model\User\Application\Query\ShowUserProfile\Query;
+use App\Model\User\Application\Query\ShowUserProfile\QueryHandler;
 use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +23,7 @@ final class ShowUserProfileAction extends AbstractController
     {
         try {
             return $this->render('users/show.html.twig', [
-                'user' => $this->queryHandler->fetch(new Query($nicknameOrId)),
+                'user' => $this->queryHandler->fetch(new Query($nicknameOrId, $this->getUser()->getId()->getValue())),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

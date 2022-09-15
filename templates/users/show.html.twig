@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <p><a href="{{ path('app_subscribe', {'id': user.id}) }}">Subscribe</a></p>
-    <p>ID: {{ user.id }}</p>
-    <p>Name: {{ user.name }}</p>
-    <p>Name: {{ user.surname }}</p>
-    <p>Nickname: {{ user.nickname }}</p>
-    <h3>Subscriptions {{ user.subscriptionsCount }}</h3>
-    {% for subscription in user.subscriptions %}
+    <p><a href="{{ path('app_subscribe', {'id': user.user.id}) }}">Subscribe</a></p>
+    <p>ID: {{ user.user.id }}</p>
+    <p>Name: {{ user.user.name }}</p>
+    <p>Name: {{ user.user.surname }}</p>
+    <p>Nickname: {{ user.user.nickname }}</p>
+    <h3>Subscriptions {{ user.user.subscriptionsCount }}</h3>
+    {% for subscription in user.user.subscriptions %}
         <p>name: {{ subscription.name }}</p>
         <p>Nickname: {{ subscription.nickname }}</p>
         <hr>
     {% endfor %}
-    <h3>Followers {{ user.followersCount }}</h3>
-    {% for follower in user.followers %}
-        <p>Nickname: {{ follower.nickname }}</p>
+    <h3>Followers {{ user.user.followersCount }}</h3>
+    {% for follower in user.user.followers %}
         <p>name: {{ follower.name }}</p>
+        <p>Nickname: {{ follower.nickname }}</p>
         <hr>
+    {% endfor %}
+    <h3>Friends, who are also subscribed to this user:</h3>
+    {% for mutualFriends in user.mutualFriends %}
+        <p>Name: {{ mutualFriends.name }}</p>
+        <p>Nickname: {{ mutualFriends.nickname }}</p>
     {% endfor %}
 {% endblock %}

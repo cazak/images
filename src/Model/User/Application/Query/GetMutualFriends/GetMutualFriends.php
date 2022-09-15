@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\User\Application\Query\GetFollowers;
+namespace App\Model\User\Application\Query\GetMutualFriends;
 
 use App\Model\User\Infrastructure\Repository\RedisUserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use RedisException;
 
-final class GetFollowers
+final class GetMutualFriends
 {
     public function __construct(
         private readonly Connection $connection,
@@ -21,15 +21,15 @@ final class GetFollowers
      * @throws RedisException
      * @throws Exception
      */
-    public function fetch(string $userId): array
+    public function fetch(string $currentUserId, string $forUserId): array
     {
-        $followerIds = $this->redisUserRepository->getFollowers($userId);
+        $mutualFiendIds = $this->redisUserRepository->getMutualFriends($currentUserId, $forUserId);
 
         return $this->connection->createQueryBuilder()
             ->from('user_users')
-            ->select(['nickname', 'id', 'name_name AS name', 'name_surname AS surname'])
+            ->select(['id', 'nickname', 'name_name AS name'])
             ->where('id IN (:ids)')
-            ->setParameter('ids', $followerIds, Connection::PARAM_STR_ARRAY)
+            ->setParameter('ids', $mutualFiendIds, Connection::PARAM_STR_ARRAY)
             ->executeQuery()
             ->fetchAllAssociative();
     }
