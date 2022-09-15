@@ -20,7 +20,7 @@ final class UserFactory
     ) {
     }
 
-    public function registerUser(string $name, ?string $surname, string $email, string $password): User
+    public function registerUser(string $name, string $surname, string $email, string $password): User
     {
         $user = new User(Id::next(), new Email($email), new DateTimeImmutable(), new Name($name, $surname));
         $passwordHash = $this->passwordHasher->hash($user, $password);

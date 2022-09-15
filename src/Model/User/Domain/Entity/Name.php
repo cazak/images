@@ -14,9 +14,9 @@ final class Name
     private string $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $surname;
+    private string $surname;
 
-    public function __construct(string $name, ?string $surname)
+    public function __construct(string $name, string $surname)
     {
         Assert::notEmpty($name);
         Assert::notEmpty($surname);
@@ -30,7 +30,7 @@ final class Name
         return $this->name;
     }
 
-    public function getSurname(): ?string
+    public function getSurname(): string
     {
         return $this->surname;
     }
