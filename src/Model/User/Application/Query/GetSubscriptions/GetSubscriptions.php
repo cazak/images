@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\User\Application\Query\GetSubscriptions;
 
-use RedisException;
 use App\Model\User\Infrastructure\Repository\RedisUserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use RedisException;
 
 final class GetSubscriptions
 {
