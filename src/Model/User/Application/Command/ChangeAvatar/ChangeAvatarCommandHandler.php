@@ -21,7 +21,10 @@ final class ChangeAvatarCommandHandler
             $this->fileUploader->remove($user->getAvatar());
         }
 
-        $file = $this->fileUploader->upload($command->avatar);
+        $file = null;
+        if ($command->avatar) {
+            $file = $this->fileUploader->upload($command->avatar);
+        }
 
         $user->setAvatar($file);
 

@@ -19,5 +19,5 @@ final class ChangeAvatarCommand
         ],
         mimeTypesMessage: 'Please upload a valid JPG document'
     )]
-    public UploadedFile $avatar;
+    public ?UploadedFile $avatar;
 }
