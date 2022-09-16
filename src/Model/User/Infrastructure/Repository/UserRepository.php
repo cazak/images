@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\User\Infrastructure\Repository;
 
+use App\Model\Shared\Exceptions\EntityNotFoundException;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository as UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -36,6 +37,20 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @throws EntityNotFoundException
+     */
+    public function get(string $id): User
+    {
+        $user = $this->findOneBy(['id' => $id]);
+
+        if (!$user) {
+            throw new EntityNotFoundException();
+        }
+
+        return $user;
     }
 
     public function findByEmail(string $email): ?User

@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $role = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $avatar = null;
+
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified;
 
@@ -61,6 +64,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->name = $name;
         $this->isVerified = false;
         $this->status = self::STATUS_WAIT;
+    }
+
+    public function confirmSignUp(): self
+    {
+        $this->confirmToken = null;
+        $this->isVerified = true;
+        $this->status = self::STATUS_ACTIVE;
+
+        return $this;
     }
 
     public function getId(): Id
@@ -152,18 +164,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
     public function isVerified(): bool
     {
         return $this->isVerified;
-    }
-
-    public function confirmSignUp(): self
-    {
-        $this->confirmToken = null;
-        $this->isVerified = true;
-        $this->status = self::STATUS_ACTIVE;
-
-        return $this;
     }
 
     public function getPassword(): ?string

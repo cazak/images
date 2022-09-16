@@ -7,6 +7,8 @@ parameters:
     from: '%env(MAILER_FROM)%'
     name: '%env(MAILER_NAME)%'
 
+    user_image_directory: '%kernel.project_dir%/public/uploads/user'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -39,6 +41,19 @@ services:
         arguments:
             $from: '%from%'
             $name: '%name%'
+
+    user_file_uploader:
+        class: App\Model\Shared\Infrastructure\Service\FileUploader
+        autowire: false
+        arguments:
+            $directory: '%user_image_directory%'
+            $slugger: '@slugger'
+            $filesystem: '@filesystem'
+
+    App\Model\User\Application\Command\ChangeAvatar\ChangeAvatarCommandHandler:
+        arguments:
+            $fileUploader: '@user_file_uploader'
+
 
 #    App\Model\User\Test\Unit\Domain\Factory\FactoryTest:
 #        arguments:

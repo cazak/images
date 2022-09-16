@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <p><a href="{{ path('app_subscribe', {'id': user.user.id}) }}">Subscribe</a></p>
+    {% if user.user.avatar %}
+        <p>Avatar: <img src="{{ user_image_directory ~ user.user.avatar }}" width="100px;"></p>
+    {% endif %}
     <p>ID: {{ user.user.id }}</p>
     <p>Name: {{ user.user.name }}</p>
     <p>Name: {{ user.user.surname }}</p>

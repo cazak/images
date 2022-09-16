@@ -53,7 +53,7 @@ final class QueryHandler
         if ($this->uuidValidator->validate($query->nicknameOrId)) {
             $result = $this->connection->createQueryBuilder()
                 ->from('user_users')
-                ->select(['nickname', 'id', 'name', 'surname'])
+                ->select(['nickname', 'id', 'name', 'surname', 'avatar'])
                 ->where('id = :id')
                 ->andWhere('is_verified = TRUE')
                 ->setParameter('id', $query->nicknameOrId)
@@ -61,7 +61,7 @@ final class QueryHandler
         } else {
             $result = $this->connection->createQueryBuilder()
                 ->from('user_users')
-                ->select(['nickname', 'id', 'name', 'surname'])
+                ->select(['nickname', 'id', 'name', 'surname', 'avatar'])
                 ->where('nickname = :nickname')
                 ->andWhere('is_verified = TRUE')
                 ->setParameter('nickname', $query->nicknameOrId)

@@ -13,6 +13,8 @@ interface UserRepository extends UserLoaderInterface
 
     public function remove(User $entity, bool $flush = true): void;
 
+    public function get(string $id): User;
+
     public function findByEmail(string $email): ?User;
 
     public function findByConfirmToken(string $token): ?User;
