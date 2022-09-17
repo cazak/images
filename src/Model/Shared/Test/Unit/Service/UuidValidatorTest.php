@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Shared\Test\Service;
+namespace App\Model\Shared\Test\Unit\Service;
 
 use App\Model\Shared\Service\UuidValidator;
 use Ramsey\Uuid\Uuid;
