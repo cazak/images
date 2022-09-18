@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\User\Domain\Factory;
 
+use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\User\Domain\Entity\Email;
-use App\Model\User\Domain\Entity\Id;
 use App\Model\User\Domain\Entity\Name;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Service\ConfirmTokenGenerator;

@@ -7,7 +7,7 @@ doctrine:
         #server_version: '13'
 
         types:
-            user_user_id: 'App\Model\User\Domain\Entity\IdType'
+            uuid_id: 'App\Model\Shared\Domain\Entity\ValueObject\IdType'
             user_user_email: 'App\Model\User\Domain\Entity\EmailType'
 
     orm:

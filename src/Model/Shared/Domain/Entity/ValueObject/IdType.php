@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\User\Domain\Entity;
+namespace App\Model\Shared\Domain\Entity\ValueObject;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
 
 final class IdType extends GuidType
 {
-    public const NAME = 'user_user_id';
+    public const NAME = 'uuid_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\User\Domain\Entity;
 
+use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\User\Infrastructure\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     #[ORM\Id]
-    #[ORM\Column(type: 'user_user_id')]
+    #[ORM\Column(type: 'uuid_id')]
     private Id $id;
 
     #[ORM\Column(type: 'datetime_immutable')]
