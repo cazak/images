@@ -33,9 +33,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Embedded(class: Name::class, columnPrefix: false)]
     private Name $name;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true, nullable: true)]
-    private ?string $nickname = null;
-
     #[ORM\Column(type: 'string', length: 255)]
     private string $password;
 
@@ -51,8 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $role = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $avatar = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified;
@@ -89,18 +84,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(Name $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getNickname(): ?string
-    {
-        return $this->nickname;
-    }
-
-    public function setNickname(?string $nickname): self
-    {
-        $this->nickname = $nickname;
 
         return $this;
     }
@@ -163,18 +146,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->confirmToken = $token;
 
         return $this;
-    }
-
-    public function setAvatar(?string $avatar): self
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
     }
 
     public function isVerified(): bool

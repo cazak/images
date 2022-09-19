@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Profile!{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.nickname) }}
+    <button class="btn btn-lg btn-primary" type="submit">
+        Create
+    </button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p><a href="{{ path('app_subscribe', {'id': author.author.id}) }}">Subscribe</a></p>
+    {% if author.author.avatar %}
+        <p>Avatar: <img src="{{ author_image_directory ~ author.author.avatar }}" width="100px;"></p>
+    {% endif %}
+    <p>ID: {{ author.author.id }}</p>
+    <p>Name: {{ author.author.name }}</p>
+    <p>Name: {{ author.author.surname }}</p>
+    <p>Nickname: {{ author.author.nickname }}</p>
+    <h3>Subscriptions {{ author.author.subscriptionsCount }}</h3>
+    {% for subscription in author.author.subscriptions %}
+        <p>name: {{ subscription.name }}</p>
+        <p>Nickname: {{ subscription.nickname }}</p>
+        <hr>
+    {% endfor %}
+    <h3>Followers {{ author.author.followersCount }}</h3>
+    {% for follower in author.author.followers %}
+        <p>name: {{ follower.name }}</p>
+        <p>Nickname: {{ follower.nickname }}</p>
+        <hr>
+    {% endfor %}
+    <h3>Friends, who are also subscribed to this author:</h3>
+    {% for mutualFriends in author.mutualFriends %}
+        <p>Name: {{ mutualFriends.name }}</p>
+        <p>Nickname: {{ mutualFriends.nickname }}</p>
+    {% endfor %}
+{% endblock %}

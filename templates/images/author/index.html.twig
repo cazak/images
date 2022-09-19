@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div>
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.nickname, {'attr': {'onchange': 'this.form.submit()'}}) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.id) }}
+
+            <button type="submit" class="btn">Filter</button>
+            <a href="{{ path('app_authors_list') }}" type="submit" class="btn">Reset</a>
+        {{ form_end(form) }}
+    </div>
+    <div class="box">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Name', 'name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Status', 'status') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Nickname', 'nickname') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for author in pagination %}
+                    <tr>
+                        <td><p><a href="{{ path('app_authors_show', {'nicknameOrId': author.nickname ?: author.id}) }}">{{ author.id }}</a></p></td>
+                        <td>{{ author.name }}</td>
+                        <td>{{ author.nickname }}</td>
+                        <td>{{ author.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

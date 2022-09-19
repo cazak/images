@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <a href="{{ path('app_author_create') }}">Create Profile</a>
+    <p>Name: {{ user.name.name }}</p>
+    <p>Surname: {{ user.name.surname }}</p>
+{% endblock %}

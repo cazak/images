@@ -9,6 +9,7 @@ doctrine:
         types:
             uuid_id: 'App\Model\Shared\Domain\Entity\ValueObject\IdType'
             user_user_email: 'App\Model\User\Domain\Entity\EmailType'
+            images_author_status: 'App\Model\Images\Domain\Entity\Author\StatusType'
 
     orm:
         auto_generate_proxy_classes: true
@@ -20,6 +21,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/User/Domain/Entity'
                 prefix: 'App\Model\User\Domain\Entity'
                 alias: User
+            Images:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Model/Images/Domain/Entity'
+                prefix: 'App\Model\Images\Domain\Entity'
+                alias: Images
 
 when@test:
     doctrine:

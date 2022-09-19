@@ -22,6 +22,7 @@
         <testsuite name="unit">
             <directory>src/Model/User/Test</directory>
             <directory>src/Model/Shared/Test</directory>
+            <directory>src/Model/Images/Test</directory>
         </testsuite>
     </testsuites>
 
