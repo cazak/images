@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class CreateAuthor extends AbstractController
+final class CreateAuthorAction extends AbstractController
 {
     public function __construct(private readonly ErrorHandler $errorHandler)
     {

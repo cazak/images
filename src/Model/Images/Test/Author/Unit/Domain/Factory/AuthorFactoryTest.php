@@ -19,7 +19,7 @@ final class AuthorFactoryTest extends KernelTestCase
         $this->factory = static::getContainer()->get(AuthorFactory::class);
     }
 
-    public function testSuccess(): void
+    public function test_success(): void
     {
         $id = Uuid::uuid4()->toString();
         $name = 'name';

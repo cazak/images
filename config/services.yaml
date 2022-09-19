@@ -63,6 +63,10 @@ services:
         arguments:
             $fileUploader: '@images_author_file_uploader'
 
+    App\Model\Images\Application\Post\Command\Create\CreatePostCommandHandler:
+        arguments:
+            $fileUploader: '@images_post_file_uploader'
+
     App\Twig\Extension\Images\Author\StoragePathExtension:
         arguments:
             $uploader: '@images_author_file_uploader'

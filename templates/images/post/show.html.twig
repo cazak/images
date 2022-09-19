@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post {{ post.id }}{% endblock %}
+
+{% block body %}
+    Image: <img src="{{ post_path(post.avatar) }}" width="150px;">
+    <p>Id: {{ post.id }}</p>
+    <p>Post's description: {{ post.description }}</p>
+    <p>Author's nickname: {{ post.nickname }}</p>
+{% endblock %}

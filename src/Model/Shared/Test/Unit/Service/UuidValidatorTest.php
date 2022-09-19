@@ -16,13 +16,13 @@ final class UuidValidatorTest extends KernelTestCase
         $this->validator = static::getContainer()->get(UuidValidator::class);
     }
 
-    public function testSuccess(): void
+    public function test_success(): void
     {
         $uuid = Uuid::uuid4()->toString();
         self::assertTrue($this->validator->validate($uuid));
     }
 
-    public function testIncorrect(): void
+    public function test_incorrect(): void
     {
         $uuid = 'incorrect-uuid';
         self::assertFalse($this->validator->validate($uuid));
