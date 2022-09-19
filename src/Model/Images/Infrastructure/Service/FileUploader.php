@@ -36,4 +36,9 @@ final class FileUploader
     {
         $this->filesystem->remove($this->directory . '/' . $file);
     }
+
+    public function getPath(string $avatar): string
+    {
+        return '/' . $this->directory . '/' . $avatar;
+    }
 }

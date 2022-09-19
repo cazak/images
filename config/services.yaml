@@ -7,7 +7,8 @@ parameters:
     from: '%env(MAILER_FROM)%'
     name: '%env(MAILER_NAME)%'
 
-    author_image_directory: '%kernel.project_dir%/public/uploads/author'
+    author_image_directory: 'uploads/author'
+    post_image_directory: 'uploads/post'
 
 services:
     # default configuration for services in *this* file
@@ -42,7 +43,7 @@ services:
             $from: '%from%'
             $name: '%name%'
 
-    images_file_uploader:
+    images_author_file_uploader:
         class: App\Model\Images\Infrastructure\Service\FileUploader
         autowire: false
         arguments:
@@ -50,9 +51,25 @@ services:
             $slugger: '@slugger'
             $filesystem: '@filesystem'
 
+    images_post_file_uploader:
+        class: App\Model\Images\Infrastructure\Service\FileUploader
+        autowire: false
+        arguments:
+            $directory: '%post_image_directory%'
+            $slugger: '@slugger'
+            $filesystem: '@filesystem'
+
     App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommandHandler:
         arguments:
-            $fileUploader: '@images_file_uploader'
+            $fileUploader: '@images_author_file_uploader'
+
+    App\Twig\Extension\Images\Author\StoragePathExtension:
+        arguments:
+            $uploader: '@images_author_file_uploader'
+
+    App\Twig\Extension\Images\Post\StoragePathExtension:
+        arguments:
+            $uploader: '@images_post_file_uploader'
 
 #    App\Model\User\Test\Unit\Domain\Factory\FactoryTest:
 #        arguments:

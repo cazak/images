@@ -6,7 +6,7 @@
     {{ form_end(form) }}
     {% if author.avatar %}
         <p><a href="{{ path('app_remove_avatar') }}">Delete avatar</a></p>
-        <p>Avatar: <img src="{{ author_image_directory ~ author.avatar }}" width="100px;"></p>
+        <p>Avatar: <img src="{{ author_path(author.avatar) }}" width="100px;"></p>
     {% endif %}
     <p>ID: {{ author.id }}</p>
     <p>Name: {{ author.name }}</p>
