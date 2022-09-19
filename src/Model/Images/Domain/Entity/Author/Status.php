@@ -10,14 +10,14 @@ final class Status
 {
     private string $value;
 
-    const ACTIVE = 'active';
-    const BLOCKED = 'blocked';
+    public const ACTIVE = 'active';
+    public const BLOCKED = 'blocked';
 
     public function __construct(string $value)
     {
         Assert::oneOf($value, [
             self::ACTIVE,
-            self::BLOCKED
+            self::BLOCKED,
         ]);
         $this->value = $value;
     }
@@ -34,12 +34,12 @@ final class Status
 
     public function isActive(): bool
     {
-        return $this->value === self::ACTIVE;
+        return self::ACTIVE === $this->value;
     }
 
     public function isBlocked(): bool
     {
-        return $this->value === self::BLOCKED;
+        return self::BLOCKED === $this->value;
     }
 
     public function isEqual(self $status): bool

@@ -32,11 +32,11 @@ final class ProfileAction extends AbstractController
             $command = new ChangeAvatarCommand();
             $form = $this->createForm(ChangeAvatarForm::class, $command);
 
-            /** @var User $user */
+            /* @var User $user */
 
             return $this->render('images/author/my/profile.html.twig', [
                 'author' => $this->queryHandler->fetch(new Query($user->getId()->getValue())),
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

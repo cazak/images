@@ -15,7 +15,7 @@ final class ChangeAvatarCommand
     #[Assert\File(
         maxSize: '1024k',
         mimeTypes: [
-            'image/*'
+            'image/*',
         ],
         mimeTypesMessage: 'Please upload a valid JPG document'
     )]

@@ -17,7 +17,7 @@ final class StoragePathExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('post_path', [$this, 'path'])
+            new TwigFunction('post_path', [$this, 'path']),
         ];
     }
 

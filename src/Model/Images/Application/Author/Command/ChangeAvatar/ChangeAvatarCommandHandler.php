@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Author\Command\ChangeAvatar;
 
-use App\Model\Images\Infrastructure\Service\FileUploader;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Infrastructure\Service\FileUploader;
 
 final class ChangeAvatarCommandHandler
 {

@@ -6,7 +6,6 @@ namespace App\Controller\Images\Post;
 
 use App\Model\Images\Application\Post\Query\GetPostById\Query;
 use App\Model\Images\Application\Post\Query\GetPostById\QueryHandler;
-use App\Model\Images\Domain\Entity\Post\Post;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,11 +23,12 @@ final class ShowPostAction extends AbstractController
     {
         try {
             return $this->render('images/post/show.html.twig', [
-                'post' => $this->queryHandler->fetch(new Query($id))
+                'post' => $this->queryHandler->fetch(new Query($id)),
             ]);
         } catch (Exception $e) {
             $this->errorHandler->handle($e);
             $this->addFlash('error', $e->getMessage());
+
             return $this->redirectToRoute('app_my_profile');
         }
     }

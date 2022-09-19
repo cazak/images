@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Author\Query\ShowAuthorProfile;
 
-use App\Model\Shared\Exceptions\EntityNotFoundException;
-use App\Model\Images\Application\Author\Query\GetMutualFriends\GetMutualFriends;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\Query as AuthorQuery;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\QueryHandler as AuthorQueryHandler;
+use App\Model\Images\Application\Author\Query\GetMutualFriends\GetMutualFriends;
+use App\Model\Shared\Exceptions\EntityNotFoundException;
 use Doctrine\DBAL\Exception;
 use RedisException;
 

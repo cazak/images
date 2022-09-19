@@ -7,9 +7,9 @@ namespace App\Controller\Images\Post;
 use App\Model\Images\Application\Post\Command\Create\CreatePostCommand;
 use App\Model\Images\Application\Post\Command\Create\CreatePostCommandHandler;
 use App\Model\Images\Application\Post\Command\Create\CreatePostForm;
-use Exception;
 use App\Model\User\Domain\Entity\User;
 use App\Service\ErrorHandler;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,10 +37,12 @@ final class CreatePostAction extends AbstractController
             try {
                 $postId = $handler->handle($command);
                 $this->addFlash('success', 'Post successfully created.');
+
                 return $this->redirectToRoute('app_show_post', ['id' => $postId]);
             } catch (Exception $e) {
                 $this->errorHandler->handle($e);
                 $this->addFlash('error', $e->getMessage());
+
                 return $this->redirectToRoute('app_me');
             }
         }

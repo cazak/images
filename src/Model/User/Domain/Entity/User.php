@@ -48,7 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $role = null;
 
-
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified;
 

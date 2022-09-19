@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
-use App\Model\Shared\Service\UuidValidator;
 use App\Model\Images\Application\Author\Command\Subscribe\SubscribeCommand;
 use App\Model\Images\Application\Author\Command\Subscribe\SubscribeCommandHandler;
 use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommand;
 use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommandHandler;
+use App\Model\Shared\Service\UuidValidator;
+use App\Model\User\Domain\Entity\User;
 use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Model\User\Domain\Entity\User;
 
 final class SubscribeAction extends AbstractController
 {

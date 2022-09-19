@@ -40,16 +40,18 @@ final class CreateAuthorAction extends AbstractController
             try {
                 $handler->handle($command);
                 $this->addFlash('success', 'Author successfully created.');
+
                 return $this->redirectToRoute('app_my_profile');
             } catch (NicknameIsAlreadyInUse $e) {
                 $this->errorHandler->handle($e);
                 $this->addFlash('error', 'This nickname is already in use.');
+
                 return $this->redirectToRoute('app_me');
             }
         }
 
         return $this->render('images/author/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

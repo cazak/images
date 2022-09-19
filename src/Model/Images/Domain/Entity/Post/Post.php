@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Domain\Entity\Post;
 
-use App\Model\Images\Infrastructure\Repository\Post\PostRepository;
-use Doctrine\ORM\Mapping as ORM;
 use App\Model\Images\Domain\Entity\Author\Author;
+use App\Model\Images\Infrastructure\Repository\Post\PostRepository;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: '`images_posts`')]

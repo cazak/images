@@ -14,7 +14,7 @@ final class MeAction extends AbstractController
     public function me(): Response
     {
         return $this->render('users/me.html.twig', [
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
         ]);
     }
 }
