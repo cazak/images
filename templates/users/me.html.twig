@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <a href="{{ path('app_author_create') }}">Create Profile</a>
+    {% if author %}
+        <a href="{{ path('app_my_profile') }}">Show profile</a>
+    {% else %}
+        <a href="{{ path('app_author_create') }}">Create Profile</a>
+    {% endif %}
     <p>Name: {{ user.name.name }}</p>
     <p>Surname: {{ user.name.surname }}</p>
 {% endblock %}
