@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <p><a href="{{ path('app_subscribe', {'id': author.author.id}) }}">Subscribe</a></p>
+    {% if author.isSubscribed == false %}
+        <p><a href="{{ path('app_subscribe', {'id': author.author.id}) }}">Subscribe</a></p>
+    {% else %}
+        <p><a href="{{ path('app_unsubscribe', {'id': author.author.id}) }}">Unsubscribe</a></p>
+    {% endif %}
     {% if author.author.avatar %}
-        <p>Avatar: <img src="{{ author_image_directory ~ author.author.avatar }}" width="100px;"></p>
+        <p>Avatar: <img src="{{ author_path(author.author.avatar) }}" width="100px;"></p>
     {% endif %}
     <p>ID: {{ author.author.id }}</p>
     <p>Name: {{ author.author.name }}</p>
@@ -10,14 +14,22 @@
     <p>Nickname: {{ author.author.nickname }}</p>
     <h3>Subscriptions {{ author.author.subscriptionsCount }}</h3>
     {% for subscription in author.author.subscriptions %}
-        <p>name: {{ subscription.name }}</p>
-        <p>Nickname: {{ subscription.nickname }}</p>
+        {% if subscription.nickname == currentAuthor.nickname %}
+            <p><a href="{{ path('app_my_profile') }}">You</a></p>
+        {% else %}
+            <p>name: {{ subscription.name }}</p>
+            <p>Nickname: {{ subscription.nickname }}</p>
+        {% endif %}
         <hr>
     {% endfor %}
     <h3>Followers {{ author.author.followersCount }}</h3>
     {% for follower in author.author.followers %}
-        <p>name: {{ follower.name }}</p>
-        <p>Nickname: {{ follower.nickname }}</p>
+        {% if follower.nickname == currentAuthor.nickname %}
+            <p><a href="{{ path('app_my_profile') }}">You</a></p>
+        {% else %}
+            <p>name: {{ follower.name }}</p>
+            <p>Nickname: {{ follower.nickname }}</p>
+        {% endif %}
         <hr>
     {% endfor %}
     <h3>Friends, who are also subscribed to this author:</h3>

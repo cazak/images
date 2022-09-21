@@ -83,4 +83,12 @@ final class RedisAuthorRepository
     {
         return $this->redis->sCard(self::ENTITY_KEY . ':' . $authorId . ':' . self::FOLLOW_KEY);
     }
+
+    /**
+     * @throws RedisException
+     */
+    public function isSubscribed(string $currentAuthorId, string $forAuthorId): bool
+    {
+        return $this->redis->sIsMember(self::ENTITY_KEY . ':' . $currentAuthorId . ':' . self::SUBSCRIBE_KEY, $forAuthorId);
+    }
 }

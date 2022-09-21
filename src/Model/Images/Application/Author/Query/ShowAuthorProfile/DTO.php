@@ -8,7 +8,10 @@ use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\DTO as Aut
 
 final class DTO
 {
-    public function __construct(public readonly AuthorDTO $author, public readonly array $mutualFriends)
-    {
+    public function __construct(
+        public readonly AuthorDTO $author,
+        public readonly array $mutualFriends,
+        public readonly bool $isSubscribed,
+    ) {
     }
 }
