@@ -15,4 +15,6 @@ interface AuthorRepository
     public function checkAuthorsExistForSubscribe(string $firstAuthorId, string $secondAuthorId): bool;
 
     public function existByNickname(string $nickname): bool;
+
+    public function hasById(string $id): bool;
 }

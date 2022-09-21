@@ -6,8 +6,14 @@ namespace App\Model\Images\Application\Post\Query\GetPostById;
 
 final class DTO
 {
-    public function __construct(public string $id, public string $avatar, public string $description, public string $nickname)
-    {
+    public function __construct(
+        public string $id,
+        public string $avatar,
+        public string $description,
+        public string $nickname,
+        public int $likesCount,
+        public bool $isLiked,
+    ) {
     }
 
     public static function fromPost(array $post): self
@@ -17,6 +23,8 @@ final class DTO
             $post['avatar'],
             $post['description'],
             $post['nickname'],
+            $post['likesCount'],
+            $post['isLiked'],
         );
     }
 }

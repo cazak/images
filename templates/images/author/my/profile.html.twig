@@ -1,27 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {{ form_start(form, {'action': path('app_change_avatar'), 'method': 'POST'}) }}
-    {{ form_row(form.avatar) }}
-        <button type="submit" class="btn">Change</button>
-    {{ form_end(form) }}
-    {% if author.avatar %}
-        <p><a href="{{ path('app_remove_avatar') }}">Delete avatar</a></p>
-        <p>Avatar: <img src="{{ author_path(author.avatar) }}" width="100px;"></p>
-    {% endif %}
-    <p>ID: {{ author.id }}</p>
-    <p>Name: {{ author.name }}</p>
-    <p>Name: {{ author.surname }}</p>
-    <p>Nickname: {{ author.nickname }}</p>
-    <h3>Subscriptions {{ author.subscriptionsCount }}</h3>
-    {% for subscription in author.subscriptions %}
-        <p>name: {{ subscription.name }}</p>
-        <p>Nickname: {{ subscription.nickname }}</p>
-        <hr>
-    {% endfor %}
-    <h3>Followers {{ author.followersCount }}</h3>
-    {% for follower in author.followers %}
-        <p>Nickname: {{ follower.nickname }}</p>
-        <p>name: {{ follower.name }}</p>
-        <hr>
-    {% endfor %}
+    <div class="container">
+        <div class="col-12">
+            {{ form_start(form, {'action': path('app_change_avatar'), 'method': 'POST'}) }}
+            {{ form_row(form.avatar) }}
+            <button type="submit" class="btn">Change</button>
+            {{ form_end(form) }}
+            {% if author.avatar %}
+                <p><a href="{{ path('app_remove_avatar') }}">Delete avatar</a></p>
+                <p>Avatar: <img src="{{ author_path(author.avatar) }}" width="100px;"></p>
+            {% endif %}
+            <p>ID: {{ author.id }}</p>
+            <p>Name: {{ author.name }}</p>
+            <p>Name: {{ author.surname }}</p>
+            <p>Nickname: {{ author.nickname }}</p>
+            <h3>Subscriptions {{ author.subscriptionsCount }}</h3>
+            {% for subscription in author.subscriptions %}
+                <p>name: {{ subscription.name }}</p>
+                <p>Nickname: {{ subscription.nickname }}</p>
+                <hr>
+            {% endfor %}
+            <h3>Followers {{ author.followersCount }}</h3>
+            {% for follower in author.followers %}
+                <p>Nickname: {{ follower.nickname }}</p>
+                <p>name: {{ follower.name }}</p>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

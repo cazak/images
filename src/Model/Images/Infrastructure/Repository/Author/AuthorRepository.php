@@ -77,9 +77,24 @@ final class AuthorRepository extends ServiceEntityRepository implements AuthorRe
     public function existByNickname(string $nickname): bool
     {
         return $this->createQueryBuilder('u')
-                ->select('COUNT(u.id)')
-                ->where('u.nickname = :nickname')
-                ->setParameter('nickname', $nickname)
-                ->getQuery()->getSingleScalarResult() >= 1;
+            ->select('COUNT(u.id)')
+            ->where('u.nickname = :nickname')
+            ->setParameter('nickname', $nickname)
+            ->getQuery()
+            ->getSingleScalarResult() >= 1;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function hasById(string $id): bool
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleScalarResult() >= 1;
     }
 }

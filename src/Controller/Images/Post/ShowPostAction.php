@@ -23,7 +23,7 @@ final class ShowPostAction extends AbstractController
     {
         try {
             return $this->render('images/post/show.html.twig', [
-                'post' => $this->queryHandler->fetch(new Query($id)),
+                'post' => $this->queryHandler->fetch(new Query($id, $this->getUser()->getId()->getValue())),
             ]);
         } catch (Exception $e) {
             $this->errorHandler->handle($e);

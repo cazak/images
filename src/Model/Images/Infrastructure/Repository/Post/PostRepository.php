@@ -8,6 +8,8 @@ use App\Model\Images\Domain\Entity\Post\Post;
 use App\Model\Images\Domain\Repository\Post\PostRepository as PostRepositoryInterface;
 use App\Model\Shared\Exceptions\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class PostRepository extends ServiceEntityRepository implements PostRepositoryInterface
@@ -47,5 +49,19 @@ final class PostRepository extends ServiceEntityRepository implements PostReposi
         }
 
         return $author;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function hasById(string $id): bool
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p.id)')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleScalarResult() >= 1;
     }
 }

@@ -11,4 +11,6 @@ interface PostRepository
     public function remove(Post $entity, bool $flush = true): void;
 
     public function get(string $id): Post;
+
+    public function hasById(string $id): bool;
 }
