@@ -10,6 +10,9 @@ parameters:
     author_image_directory: 'uploads/author'
     post_image_directory: 'uploads/post'
 
+    image_width: '1024'
+    image_height: '768'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -35,6 +38,14 @@ services:
                 arguments:
                     - '%env(REDIS_HOST)%'
                     - '%env(int:REDIS_PORT)%'
+
+
+    image_manager:
+        class: Intervention\Image\ImageManager
+        arguments:
+            - { driver: imagick }
+
+
             # uncomment the following if your Redis server requires a password
             # - password: '%env(REDIS_PASSWORD)%'
 
@@ -43,10 +54,17 @@ services:
             $from: '%from%'
             $name: '%name%'
 
+    App\Model\Images\Infrastructure\Service\ImageSizeNormalizer:
+        arguments:
+            $imageManager: '@image_manager'
+            $width: '%image_width%'
+            $height: '%image_height%'
+
     images_author_file_uploader:
         class: App\Model\Images\Infrastructure\Service\FileUploader
         autowire: false
         arguments:
+            $imageSizeNormalizer: '@App\Model\Images\Infrastructure\Service\ImageSizeNormalizer'
             $directory: '%author_image_directory%'
             $slugger: '@slugger'
             $filesystem: '@filesystem'
@@ -55,6 +73,7 @@ services:
         class: App\Model\Images\Infrastructure\Service\FileUploader
         autowire: false
         arguments:
+            $imageSizeNormalizer: '@App\Model\Images\Infrastructure\Service\ImageSizeNormalizer'
             $directory: '%post_image_directory%'
             $slugger: '@slugger'
             $filesystem: '@filesystem'

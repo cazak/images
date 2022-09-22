@@ -8,9 +8,10 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-final class FileUploader
+final class FileUploader implements \App\Model\Images\Application\Service\FileUploader
 {
     public function __construct(
+        private readonly ImageSizeNormalizer $imageSizeNormalizer,
         private readonly SluggerInterface $slugger,
         private readonly string $directory,
         private readonly Filesystem $filesystem
@@ -19,6 +20,8 @@ final class FileUploader
 
     public function upload(UploadedFile $file): string
     {
+        $this->imageSizeNormalizer->normalize($file);
+
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
         $safeFilename = $this->slugger->slug($originalFilename);
