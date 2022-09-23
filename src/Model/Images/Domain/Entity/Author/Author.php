@@ -31,7 +31,7 @@ class Author
     private Name $name;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $avatar;
+    private ?string $avatar = null;
 
     public function __construct(Id $id, DateTimeImmutable $date, Name $name, string $nickname)
     {
