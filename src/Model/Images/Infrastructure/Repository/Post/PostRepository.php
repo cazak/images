@@ -19,13 +19,9 @@ final class PostRepository extends ServiceEntityRepository implements PostReposi
         parent::__construct($registry, Post::class);
     }
 
-    public function add(Post $entity, bool $flush = true): void
+    public function add(Post $entity): void
     {
         $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 
     public function remove(Post $entity, bool $flush = true): void

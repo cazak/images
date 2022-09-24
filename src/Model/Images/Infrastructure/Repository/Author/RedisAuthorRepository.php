@@ -20,7 +20,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function subscribe($subscribingAuthorId, $followingAuthorId): void
+    public function subscribe(string $subscribingAuthorId, string $followingAuthorId): void
     {
         // add subscriptions
         $this->redis->sAdd(self::ENTITY_KEY . ':' . $subscribingAuthorId . ':' . self::SUBSCRIBE_KEY, $followingAuthorId);
@@ -32,7 +32,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function unSubscribe($unSubscribingAuthorId, $unFollowingAuthorId): void
+    public function unSubscribe(string $unSubscribingAuthorId, string $unFollowingAuthorId): void
     {
         // remove subscriptions
         $this->redis->sRem(self::ENTITY_KEY . ':' . $unSubscribingAuthorId . ':' . self::SUBSCRIBE_KEY, $unFollowingAuthorId);
@@ -55,7 +55,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function getSubscriptions($authorId): Redis|array
+    public function getSubscriptions(string $authorId): Redis|array
     {
         return $this->redis->sMembers(self::ENTITY_KEY . ':' . $authorId . ':' . self::SUBSCRIBE_KEY);
     }
@@ -63,7 +63,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function getSubscriptionsCount($authorId): Redis|int
+    public function getSubscriptionsCount(string $authorId): Redis|int
     {
         return $this->redis->sCard(self::ENTITY_KEY . ':' . $authorId . ':' . self::SUBSCRIBE_KEY);
     }
@@ -71,7 +71,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function getFollowers($authorId): Redis|array
+    public function getFollowers(string $authorId): Redis|array
     {
         return $this->redis->sMembers(self::ENTITY_KEY . ':' . $authorId . ':' . self::FOLLOW_KEY);
     }
@@ -79,7 +79,7 @@ final class RedisAuthorRepository
     /**
      * @throws RedisException
      */
-    public function getFollowersCount($authorId): Redis|int
+    public function getFollowersCount(string $authorId): Redis|int
     {
         return $this->redis->sCard(self::ENTITY_KEY . ':' . $authorId . ':' . self::FOLLOW_KEY);
     }

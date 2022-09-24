@@ -6,7 +6,7 @@ use App\Model\Images\Domain\Entity\Post\Post;
 
 interface PostRepository
 {
-    public function add(Post $entity, bool $flush = true): void;
+    public function add(Post $entity): void;
 
     public function remove(Post $entity, bool $flush = true): void;
 

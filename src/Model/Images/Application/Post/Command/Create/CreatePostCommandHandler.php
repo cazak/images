@@ -8,6 +8,7 @@ use App\Model\Images\Domain\Factory\Post\PostFactory;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Infrastructure\Service\FileUploader;
+use App\Model\Shared\Infrastructure\Database\Flusher;
 
 final class CreatePostCommandHandler
 {
@@ -16,6 +17,7 @@ final class CreatePostCommandHandler
         private readonly AuthorRepository $authorRepository,
         private readonly FileUploader $fileUploader,
         private readonly PostFactory $factory,
+        private readonly Flusher $flusher,
     ) {
     }
 
@@ -28,6 +30,8 @@ final class CreatePostCommandHandler
         $post = $this->factory->create($author, $file, $command->description);
 
         $this->postRepository->add($post);
+
+        $this->flusher->flush($post);
 
         return $post->getId()->getValue();
     }

@@ -52,6 +52,14 @@ final class AuthorRepository extends ServiceEntityRepository implements AuthorRe
         return $author;
     }
 
+    /**
+     * @return Author[]
+     */
+    public function findAllByIds(array $ids): array
+    {
+        return $this->findBy(['id' => $ids]);
+    }
+
     public function findByEmail(string $email): ?Author
     {
         return $this->findOneBy(['email' => $email]);

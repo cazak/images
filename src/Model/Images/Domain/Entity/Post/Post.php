@@ -6,14 +6,18 @@ namespace App\Model\Images\Domain\Entity\Post;
 
 use App\Model\Images\Domain\Entity\Author\Author;
 use App\Model\Images\Infrastructure\Repository\Post\PostRepository;
+use App\Model\Shared\Domain\Entity\AggregateRoot;
+use App\Model\Shared\Domain\Entity\EventsTrait;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: '`images_posts`')]
-class Post
+class Post implements AggregateRoot
 {
+    use EventsTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: 'uuid_id')]
     private Id $id;
@@ -37,6 +41,19 @@ class Post
         $this->avatar = $avatar;
         $this->description = $description;
         $this->date = $date;
+
+        $this->recordEvent(
+            new Event\PostCreated(
+                $author->getId(),
+                $author->getName()->getName(),
+                $author->getName()->getSurname(),
+                $author->getNickname(),
+                $this->id,
+                $this->avatar,
+                $this->description,
+                $this->date
+            )
+        );
     }
 
     public function getId(): Id

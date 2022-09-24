@@ -9,6 +9,7 @@ parameters:
 
     author_image_directory: 'uploads/author'
     post_image_directory: 'uploads/post'
+    feed_limit: '30'
 
     image_width: '1024'
     image_height: '768'
@@ -93,6 +94,13 @@ services:
     App\Twig\Extension\Images\Post\StoragePathExtension:
         arguments:
             $uploader: '@images_post_file_uploader'
+
+    App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler:
+        arguments:
+            $limit: '%feed_limit%'
+
+    App\Model\Shared\Domain\Event\Dispatcher\EventDispatcher:
+        class: App\Model\Shared\Infrastructure\Event\Dispatcher\MessengerEventDispatcher
 
 #    App\Model\User\Test\Unit\Domain\Factory\FactoryTest:
 #        arguments:

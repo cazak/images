@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Feed{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-12">
+            {% for item in feed %}
+                <p>Author: {{ item.author_nickname }}</p>
+                <p><img src="{{ post_path(item.post_avatar) }}" width="200px"></p>
+                <p>{{ item.post_description }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
