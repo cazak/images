@@ -38,7 +38,7 @@ final class RedisPostRepository
     /**
      * @throws RedisException
      */
-    public function isLiked(string $authorId, string $postId): bool
+    public function isLikedBy(string $authorId, string $postId): bool
     {
         return $this->redis->sIsMember(self::ENTITY_KEY . ':' . $postId . ':' . self::LIKE_KEY, $authorId);
     }

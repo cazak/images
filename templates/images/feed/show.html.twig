@@ -9,6 +9,17 @@
                 <p>Author: {{ item.author_nickname }}</p>
                 <p><img src="{{ post_path(item.post_avatar) }}" width="200px"></p>
                 <p>{{ item.post_description }}</p>
+
+                <div class="col-md-12">
+                    Likes: <span class="likes-count">{{ item.likesCount }}</span>
+
+                    <a href="#" class="btn btn-primary button-like {{ item.isLiked ? 'display-none' : '' }}" data-id="{{ item.post_id }}">
+                        Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
+                    </a>
+                    <a href="#" class="btn btn-primary button-unlike {{ item.isLiked ? '' : 'display-none' }}" data-id="{{ item.post_id }}">
+                        Unlike&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
+                    </a>
+                </div>
             {% endfor %}
         </div>
     </div>

@@ -32,7 +32,7 @@ final class QueryHandler
             ->fetchAssociative();
 
         $post['likesCount'] = $this->redisPostRepository->getLikesCount($query->postId);
-        $post['isLiked'] = $this->redisPostRepository->isLiked($query->authorId, $query->postId);
+        $post['isLiked'] = $this->redisPostRepository->isLikedBy($query->authorId, $query->postId);
 
         return DTO::fromPost($post);
     }
