@@ -1,0 +1,11 @@
+<div class="media-block">
+    <a class="media-left" href="#"><img class="img-circle img-sm" alt="Author's avatar" src="{{ author_path(author.avatar) }}"></a>
+    <p>{{ comment.date|date }} {% if comment.updateDate %} {{ 'updated' }} {% endif %}</p>
+    <div class="media-body">
+        <div class="mar-btm">
+            <a href="#" class="btn-link text-semibold media-heading box-inline">{{ author.nickname }}</a>
+        </div>
+        <p>{{ comment.text }}</p>
+        <hr>
+    </div>
+</div>

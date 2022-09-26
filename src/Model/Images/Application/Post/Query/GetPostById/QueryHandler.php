@@ -33,6 +33,7 @@ final class QueryHandler
 
         $post['likesCount'] = $this->redisPostRepository->getLikesCount($query->postId);
         $post['isLiked'] = $this->redisPostRepository->isLikedBy($query->authorId, $query->postId);
+        $post['commentsCount'] = $this->redisPostRepository->getCommentsCount($query->postId);
 
         return DTO::fromPost($post);
     }

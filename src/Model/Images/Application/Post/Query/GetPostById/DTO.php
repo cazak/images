@@ -13,6 +13,7 @@ final class DTO
         public string $nickname,
         public int $likesCount,
         public bool $isLiked,
+        public int $commentsCount,
     ) {
     }
 
@@ -25,6 +26,7 @@ final class DTO
             $post['nickname'],
             $post['likesCount'],
             $post['isLiked'],
+            $post['commentsCount'],
         );
     }
 }

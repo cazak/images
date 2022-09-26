@@ -10,4 +10,5 @@ import './styles/app.css';
 
 import 'bootstrap/dist/js/bootstrap.min';
 
+import './scripts/post-comments';
 import './scripts/post-likes';

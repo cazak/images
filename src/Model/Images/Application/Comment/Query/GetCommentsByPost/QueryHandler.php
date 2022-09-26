@@ -24,6 +24,7 @@ final class QueryHandler
             ->where('c.post_id = :postId')
             ->leftJoin('c', 'images_authors', 'a', 'c.author_id = a.id')
             ->setParameter('postId', $query->postId)
+            ->orderBy('date', 'DESC')
             ->executeQuery()
             ->fetchAllAssociative();
     }
