@@ -73,6 +73,6 @@ final class RedisPostRepository
      */
     public function getCommentsCount(string $postId): int
     {
-        return (int) $this->redis->get(self::ENTITY_KEY . ':' . $postId . ':' . self::COMMENT_KEY);
+        return (int)$this->redis->get(self::ENTITY_KEY . ':' . $postId . ':' . self::COMMENT_KEY);
     }
 }

@@ -21,10 +21,10 @@ final class CreateCommentAction extends AbstractController
     #[Route('/comment/create', name: 'app_comment_create', methods: ['POST'])]
     public function create(
         Request $request,
-       CreateCommentCommandHandler $handler,
-       CommentRepository $commentRepository,
-       AuthorRepository $authorRepository,
-       RedisPostRepository $redisPostRepository,
+        CreateCommentCommandHandler $handler,
+        CommentRepository $commentRepository,
+        AuthorRepository $authorRepository,
+        RedisPostRepository $redisPostRepository,
     ): Response {
         if ($request->isXmlHttpRequest()) {
             $command = new CreateCommentCommand();
@@ -43,6 +43,7 @@ final class CreateCommentAction extends AbstractController
                     'html' => $this->render('images/comment/comment.html.twig', [
                         'comment' => $commentRepository->get($id),
                         'author' => $authorRepository->get($this->getUser()->getId()->getValue()),
+                        'postId' => $request->query->get('postId'),
                     ])->getContent(),
                 ]);
             }

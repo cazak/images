@@ -19,7 +19,7 @@ final class QueryHandler
     public function fetch(Query $query): array
     {
         return $this->connection->createQueryBuilder()
-            ->select(['c.text', 'c.date', 'c.update_date', 'a.nickname', 'a.avatar'])
+            ->select(['c.id AS id', 'c.text', 'c.date', 'c.update_date', 'a.nickname', 'a.avatar', 'a.id AS author_id'])
             ->from('images_comments', 'c')
             ->where('c.post_id = :postId')
             ->leftJoin('c', 'images_authors', 'a', 'c.author_id = a.id')
