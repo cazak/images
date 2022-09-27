@@ -44,6 +44,7 @@ final class QueryHandler
         foreach ($feedItems as &$feedItem) {
             $feedItem['likesCount'] = $this->redisPostRepository->getLikesCount($feedItem['post_id']);
             $feedItem['isLiked'] = $this->redisPostRepository->isLikedBy($query->readerId, $feedItem['post_id']);
+            $feedItem['commentsCount'] = $this->redisPostRepository->getCommentsCount($feedItem['post_id']);
         }
 
         return $feedItems;
