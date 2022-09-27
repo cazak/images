@@ -1,0 +1,8 @@
+<form class="dropdown-item comment-update-form" action="{{ path('app_comment_update') }}" method="post">
+    <input class="text-comment" type="text" name="text">
+    <input type="hidden" name="author_id" value="{{ author.id.value }}">
+    <input type="hidden" name="comment_id" value="{{ comment.id.value }}">
+
+    <button class="btn">Update</button>
+</form>
+<button class="comment-update-reset">Reset</button>

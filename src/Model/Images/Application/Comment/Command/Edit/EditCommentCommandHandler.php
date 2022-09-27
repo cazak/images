@@ -16,12 +16,14 @@ final class EditCommentCommandHandler
     ) {
     }
 
-    public function handle(EditCommentCommand $command): void
+    public function handle(EditCommentCommand $command): string
     {
         $comment = $this->repository->get($command->id);
 
         $comment->edit(new DateTimeImmutable(), $command->text);
 
         $this->flusher->flush();
+
+        return $comment->getId()->getValue();
     }
 }

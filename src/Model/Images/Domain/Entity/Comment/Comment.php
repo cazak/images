@@ -19,10 +19,10 @@ class Comment
     #[ORM\Column(type: 'uuid_id')]
     private Id $id;
 
-    #[ORM\Column(type: 'date_immutable')]
+    #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $date;
 
-    #[ORM\Column(type: 'date_immutable', nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?DateTimeImmutable $updateDate = null;
 
     #[ORM\ManyToOne(targetEntity: Post::class)]
