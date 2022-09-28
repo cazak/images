@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -13,19 +12,71 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% block alert %}
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
+    <body class="home page">
+        <div class="wrapper">
+            <header>
+                <div class="header-top">
+                    <div class="container">
+                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4 brand-logo">
+                            <h1>
+                                <a href="{{ path('app_feed') }}">
+                                    <img src="/img/logo.png" alt="">
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="col-md-4 col-sm-4 navicons-topbar">
+                            <ul>
+                                <li class="blog-search">
+                                    <a href="#" title="Search"><i class="fa fa-search"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger">
-                    {{ message }}
+                <div class="header-main-nav">
+                    <div class="container">
+                        <div class="main-nav-wrapper">
+                            <nav class="main-menu">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="{{ path('app_feed') }}">Newsfeed</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('app_my_profile') }}">My page</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('app_logout') }}">Logout <i class="fa fa-sign-out"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
-        {% endblock %}
-        {% block body %}{% endblock %}
+            </header>
+            <div class="container full">
+                {% block alert %}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+                {% block body %}{% endblock %}
+            </div>
+            <div class="push"></div>
+        </div>
+        <footer>
+            <div class="footer">
+                <div class="back-to-top-page">
+                    <a class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+                </div>
+                <p class="text">Images | 2022</p>
+            </div>
+        </footer>
     </body>
 </html>

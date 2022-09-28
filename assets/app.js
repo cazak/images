@@ -9,6 +9,7 @@
 import './styles/app.css';
 
 import 'bootstrap/dist/js/bootstrap.min';
+import 'font-awesome/css/font-awesome.css';
 
 import './scripts/scripts';
 import './scripts/post-comments';

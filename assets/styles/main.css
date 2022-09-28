@@ -127,7 +127,7 @@ header .header-top .brand-logo h1 span {
 }
 
 .header-main-nav .main-nav-wrapper .main-menu ul li.active {
-     background-color: #eee;
+    background-color: #eee;
 }
 
 .header-main-nav .main-nav-wrapper .main-menu ul li a {
@@ -208,6 +208,10 @@ header .header-top .brand-logo h1 span {
     font-family: 'Ubuntu', sans-serif;
     font-size: 13px;
     text-decoration: none;
+}
+.blog-posts .post .post-bottom .post-likes a.display-none
+{
+    display: none;
 }
 
 .blog-posts .post .post-bottom .post-comments, .post-report {
@@ -485,12 +489,32 @@ footer .footer p.text {
 }
 /** profile **/
 
-/** footer **/
+.header-main-nav .main-nav-wrapper .main-menu ul li, .nav li > form > button.logout {
+    display: inline-block;
+    color: #000;
+}
+.nav li:hover {
+    background-color: #eee;
+}
+.nav li > form > button.logout {
+    position: relative;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 21px 22px;
+    cursor: pointer;
+}
+
 .wrapper {
     min-height: 100%;
+    height: auto !important;
     height: 100%;
-    margin: 0 auto -155px;
+    margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
 }
-.footer, .push {
-    height: 155px;
+footer, .push {
+    height: 80px; /* .push must be the same height as .footer */
 }
