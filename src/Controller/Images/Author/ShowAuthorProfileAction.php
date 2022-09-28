@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
-use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
-use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Application\Author\Query\ShowAuthorProfile\Query;
 use App\Model\Images\Application\Author\Query\ShowAuthorProfile\QueryHandler;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Service\ErrorHandler;
 use Exception;

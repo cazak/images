@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId;
 
-use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Application\Author\Query\GetFollowers\GetFollowers;
 use App\Model\Images\Application\Author\Query\GetSubscriptions\GetSubscriptions;
+use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorRepository;
 use App\Model\Shared\Exceptions\EntityNotFoundException;
 use App\Model\Shared\Service\UuidValidator;

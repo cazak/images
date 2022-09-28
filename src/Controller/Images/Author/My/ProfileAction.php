@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author\My;
 
-use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
-use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
-use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommand;
-use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarForm;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\Query;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\QueryHandler;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
 use App\Model\User\Domain\Entity\User;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;

@@ -26,8 +26,8 @@ $(document).ready(function () {
 
     function commentUpdate() {
         var button = $(this);
-        var commentText = $(this).closest('.media-block').find('.comment-text');
-        var commentUpdated = $(this).closest('.media-block').find('.comment-is-updated');
+        var commentText = $(this).closest('.comment-info').find('.comment-text');
+        var commentUpdated = $(this).closest('.comment-info').find('.comment-is-updated');
         var commentFormDiv = $(this).siblings('.for-comment-update');
 
         var params = {
@@ -57,7 +57,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 if (response.success) {
                                     $(commentText).html(response.text);
-                                    $(commentUpdated).html('updated');
+                                    $(commentUpdated).html(' updated');
                                     $(commentFormDiv).html('');
                                 } else if (response.errors) {
                                     console.log(response.errors);

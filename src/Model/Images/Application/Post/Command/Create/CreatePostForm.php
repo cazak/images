@@ -16,7 +16,9 @@ final class CreatePostForm extends AbstractType
     {
         $builder
             ->add('avatar', FileType::class)
-            ->add('description', TextareaType::class);
+            ->add('description', TextareaType::class, [
+                'attr' => ['rows' => 6, 'placeholder' => 'Text'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -46,47 +46,68 @@
                             </div>
                         </div>
                     </article>
+
+                    <div class="col-sm-12 col-xs-12">
+                        <h4><span class="comment-likes-count likes-count">{{ post.commentsCount }}</span> comments</h4>
+                        <div class="comments-post">
+
+                            <div class="single-item-title"></div>
+                            <div class="row">
+                                <ul class="comment-list">
+                                    {% for comment in comments %}
+                                    <!-- comment item -->
+                                    <li class="comment">
+                                        <div class="comment-user-image">
+                                            <img class="img-sm" src="{{ author_path(comment.avatar) }}">
+                                        </div>
+                                        <div class="comment-info">
+                                            <h4 class="author"><a href="{{ path('app_authors_show', {'nicknameOrId': comment.nickname}) }}">{{ comment.nickname }}</a>
+                                                ({{ comment.date|date }})<span class="comment-is-updated"> {% if comment.update_date %} {{ 'updated' }} {% endif %}</span>
+                                            </h4>
+                                            {% if app.user.id == comment.author_id %}
+                                                <form action="{{ path('app_comment_remove', {'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                                    <input type="hidden" name="token" value="{{ csrf_token('comment-delete') }}" />
+                                                    <input type="hidden" name="post_id" value="{{ post.id }}" />
+                                                    <input type="hidden" name="author_id" value="{{ comment.author_id }}" />
+                                                    <button type="submit" class="btn btn-danger" style="padding: 0">Delete</button>
+                                                </form>
+                                                <div class="for-comment-update">
+
+                                                </div>
+                                                <button data-comment_id="{{ comment.id }}" data-author_id="{{ comment.author_id }}" type="button" class="btn btn-success comment-update" style="padding: 0">Update</button>
+                                            {% endif %}
+                                            <p class="comment-text">{{ comment.text }}</p>
+                                        </div>
+                                    </li>
+                                    <!-- comment item -->
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- comments-post -->
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="comment-respond">
+                            <h4>Leave a Reply</h4>
+                            {{ form_start(form, {
+                                'attr': {
+                                    'id': 'form-create',
+                                    'data-id': post.id
+                                }
+                            }) }}
+                            <p class="comment-form-comment">
+                                {{ form_row(form.text) }}
+                            </p>
+                            <p class="form-submit">
+                                <button type="submit" class="btn btn-secondary">Send</button>
+                            </p>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-        {{ form_start(form, {
-            'attr': {
-                'id': 'form-create',
-                'data-id': post.id
-            }
-            }) }}
-        {{ form_row(form.text) }}
-        <button class="btn btn-lg btn-primary" type="submit">
-            Left a comment
-        </button>
-        {{ form_end(form) }}
-        <div class="comment-list">
-            {% for comment in comments %}
-            <div class="media-block">
-                <a class="media-left" href="#"><img class="img-circle img-sm" alt="Author's avatar" src="{{ author_path(comment.avatar) }}"></a>
-                <p>{{ comment.date|date }} <span class="comment-is-updated">{% if comment.update_date %} {{ 'updated' }} {% endif %}</span></p>
-                <div class="media-body">
-                    <div class="mar-btm">
-                        <a href="{{ path('app_authors_show', {'nicknameOrId': comment.nickname}) }}" class="btn-link text-semibold media-heading box-inline">{{ comment.nickname }}</a>
-                        {% if app.user.id == comment.author_id %}
-                            <form class="dropdown-item" action="{{ path('app_comment_remove', {'id': comment.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                <input type="hidden" name="token" value="{{ csrf_token('comment-delete') }}" />
-                                <input type="hidden" name="post_id" value="{{ post.id }}" />
-                                <input type="hidden" name="author_id" value="{{ comment.author_id }}" />
-                                <button type="submit" class="btn" style="padding: 0">Delete</button>
-                            </form>
-                            <div class="for-comment-update">
-
-                            </div>
-                            <button data-comment_id="{{ comment.id }}" data-author_id="{{ comment.author_id }}" type="submit" class="btn comment-update" style="padding: 0">Update</button>
-                        {% endif %}
-                    </div>
-                    <p class="comment-text">{{ comment.text }}</p>
-                    <hr>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
 {% endblock %}
