@@ -1,0 +1,61 @@
+<!-- Modal subscriptions -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Subscriptions</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {% for subscription in author.subscriptions %}
+                        <div class="col-md-12">
+                            <a href="{{ path('app_authors_show', {'nicknameOrId': subscription.nickname}) }}">
+                                {% if subscription.id == current.id %}
+                                    You
+                                {% else %}
+                                    {{ subscription.nickname }}
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal subscriptions -->
+
+<!-- Modal followers -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Followers</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {% for follower in author.followers %}
+                        <div class="col-md-12">
+                            <a href="{{ path('app_authors_show', {'nicknameOrId': follower.nickname}) }}">
+                                {% if follower.id == current.id %}
+                                    You
+                                {% else %}
+                                    {{ follower.nickname }}
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal followers -->

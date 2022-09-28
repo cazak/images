@@ -1,44 +1,57 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <div class="col-12">
-            {% if author.isSubscribed == false %}
-                <p><a href="{{ path('app_subscribe', {'id': author.author.id}) }}">Subscribe</a></p>
-            {% else %}
-                <p><a href="{{ path('app_unsubscribe', {'id': author.author.id}) }}">Unsubscribe</a></p>
-            {% endif %}
-            {% if author.author.avatar %}
-                <p>Avatar: <img src="{{ author_path(author.author.avatar) }}" width="100px;"></p>
-            {% endif %}
-            <p>ID: {{ author.author.id }}</p>
-            <p>Name: {{ author.author.name }}</p>
-            <div>Name: {{ author.author.surname }}</div>
-            <p>Nickname: {{ author.author.nickname }}</p>
-            <h3>Subscriptions {{ author.author.subscriptionsCount }}</h3>
-            {% for subscription in author.author.subscriptions %}
-                {% if subscription.nickname == currentAuthor.nickname %}
-                    <p><a href="{{ path('app_my_profile') }}">You</a></p>
-                {% else %}
-                    <p>name: {{ subscription.name }}</p>
-                    <p>Nickname: {{ subscription.nickname }}</p>
-                {% endif %}
-                <hr>
-            {% endfor %}
-            <h3>Followers {{ author.author.followersCount }}</h3>
-            {% for follower in author.author.followers %}
-                {% if follower.nickname == currentAuthor.nickname %}
-                    <p><a href="{{ path('app_my_profile') }}">You</a></p>
-                {% else %}
-                    <p>name: {{ follower.name }}</p>
-                    <p>Nickname: {{ follower.nickname }}</p>
-                {% endif %}
-                <hr>
-            {% endfor %}
-            <h3>Friends, who are also subscribed to this author:</h3>
-            {% for mutualFriends in author.mutualFriends %}
-                <p>Name: {{ mutualFriends.name }}</p>
-                <p>Nickname: {{ mutualFriends.nickname }}</p>
-            {% endfor %}
+    <div class="page-posts no-padding">
+        <div class="row">
+            <div class="page page-post col-sm-12 col-xs-12 post-82">
+                <div class="blog-posts blog-posts-large">
+                    <div class="row">
+                        <article class="profile col-sm-12 col-xs-12">
+                            <div class="profile-title">
+                                <img src="{{ author_path(author.author.avatar) }}" class="author-image" />
+                                <div class="author-name">{{ author.author.name }} {{ author.author.surname }}</div>
+                                {% if author.isSubscribed == false %}
+                                    <a href="{{ path('app_subscribe', {'id': author.author.id}) }}" class="btn btn-default">Subscribe</a>
+                                {% else %}
+                                    <a href="{{ path('app_unsubscribe', {'id': author.author.id}) }}" class="btn btn-default">Unsubscribe</a>
+                                {% endif %}
+                            </div>
+                            <div class="profile-description">
+                                <p>Lorem ipsum dolor sit amet, iisque bonorum consequat an vis, ea dico sonet dolorum eam,
+                                    oblique lucilius consequat mel ei.</p>
+                                <p>Friends, who are also subscribed to this author:
+                                    {% for mutualFriends in author.mutualFriends %}
+                                        <a href="{{ path('app_authors_show', {'nicknameOrId': mutualFriends.nickname}) }}">{{ mutualFriends.nickname }}</a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <div class="profile-bottom">
+                                <div class="profile-post-count">
+                                    <span>{{ author.author.postsCount }} posts</span>
+                                </div>
+                                <div class="profile-followers">
+                                    <a href="#" data-toggle="modal" data-target="#myModal2">{{ author.author.followersCount }} followers</a>
+                                </div>
+                                <div class="profile-following">
+                                    <a href="#" data-toggle="modal" data-target="#myModal1">{{ author.author.subscriptionsCount }} following</a>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="row profile-posts">
+                                {% for post in posts %}
+                                    <div class="col-md-4 profile-post">
+                                        <a href="{{ path('app_show_post', {'id': post.id}) }}"><img src="{{ post_path(post.avatar) }}" class="author-image" /></a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    {{ include('images/author/_modal-friends.html.twig', {
+        'current': currentAuthor,
+        'author': author.author
+    }) }}
 {% endblock %}

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author\My;
 
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommand;
 use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarForm;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\Query;
@@ -17,8 +19,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class ProfileAction extends AbstractController
 {
-    public function __construct(private readonly QueryHandler $queryHandler, private readonly ErrorHandler $errorHandler)
-    {
+    public function __construct(
+        private readonly QueryHandler $queryHandler,
+        private readonly PostQueryHandler $postQueryHandler,
+        private readonly ErrorHandler $errorHandler
+    ) {
     }
 
     #[Route('/my/profile', name: 'app_my_profile')]
@@ -27,16 +32,12 @@ final class ProfileAction extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         try {
-            $user = $this->getUser();
-
-            $command = new ChangeAvatarCommand();
-            $form = $this->createForm(ChangeAvatarForm::class, $command);
-
             /* @var User $user */
+            $user = $this->getUser();
 
             return $this->render('images/author/my/profile.html.twig', [
                 'author' => $this->queryHandler->fetch(new Query($user->getId()->getValue())),
-                'form' => $form->createView(),
+                'posts' => $this->postQueryHandler->fetch(new PostQuery($user->getId()->getValue())),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

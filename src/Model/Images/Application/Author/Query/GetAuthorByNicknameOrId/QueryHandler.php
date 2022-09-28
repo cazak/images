@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId;
 
+use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Application\Author\Query\GetFollowers\GetFollowers;
 use App\Model\Images\Application\Author\Query\GetSubscriptions\GetSubscriptions;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorRepository;
@@ -19,6 +20,7 @@ final class QueryHandler
         private readonly Connection $connection,
         private readonly UuidValidator $uuidValidator,
         private readonly RedisAuthorRepository $authorRepository,
+        private readonly RedisAuthorPostRepository $redisAuthorPostRepository,
         private readonly GetSubscriptions $getSubscriptions,
         private readonly GetFollowers $getFollowers,
     ) {
@@ -37,6 +39,7 @@ final class QueryHandler
         $row['followers'] = $this->getFollowers->fetch($row['id']);
         $row['followersCount'] = (int)$this->authorRepository->getFollowersCount($row['id']);
         $row['subscriptionsCount'] = (int)$this->authorRepository->getSubscriptionsCount($row['id']);
+        $row['postsCount'] = $this->redisAuthorPostRepository->getPostsCount($row['id']);
 
         if (false !== $row) {
             return DTO::fromAuthor($row);

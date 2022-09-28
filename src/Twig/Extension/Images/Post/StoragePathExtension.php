@@ -21,8 +21,12 @@ final class StoragePathExtension extends AbstractExtension
         ];
     }
 
-    public function path(string $avatar): string
+    public function path(?string $avatar = null): string
     {
+        if (!$avatar) {
+            return '';
+        }
+
         return $this->uploader->getPath($avatar);
     }
 }

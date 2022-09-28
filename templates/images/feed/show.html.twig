@@ -3,25 +3,55 @@
 {% block title %}Feed{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="col-12">
-            {% for item in feed %}
-                <p><a href="{{ path('app_authors_show', {'nicknameOrId': item.author_nickname}) }}">Author: {{ item.author_nickname }}</a></p>
-                <p><img src="{{ post_path(item.post_avatar) }}" width="200px"></p>
-                <p>{{ item.post_description }}</p>
+<div class="page-posts no-padding">
+    <div class="row">
+        <div class="page page-post col-sm-12 col-xs-12">
+            <div class="blog-posts blog-posts-large">
+                <div class="row">
+                    {% for item in feed %}
+                        <article class="post col-sm-12 col-xs-12">
+                            <div class="post-meta">
+                                <div class="post-title">
+                                    <img src="{{ author_path(item.author_avatar) }}" class="author-image" alt="Author's avatar"/>
+                                    <div class="author-name"><a href="{{ path('app_authors_show', {'nicknameOrId': item.author_nickname}) }}">{{ item.author_nickname }}</a></div>
+                                </div>
+                            </div>
+                            <div class="post-type-image">
+                                <a href="#">
+                                    <img src="{{ post_path(item.post_avatar) }}" alt="Post's avatar">
+                                </a>
+                            </div>
+                            <div class="post-description">
+                                <p>{{ item.post_description }}</p>
+                            </div>
+                            <div class="post-bottom">
+                                <div class="post-likes">
+                                    <a href="#" class="btn btn-default button-like {{ item.isLiked ? 'display-none' : '' }}" data-id="{{ item.post_id }}">
+                                        Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
+                                    </a>
+                                    <a href="#" class="btn btn-default button-unlike {{ item.isLiked ? '' : 'display-none' }}" data-id="{{ item.post_id }}">
+                                        Unlike&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
+                                    </a>
+                                    &nbsp;
+                                    <i class="fa fa-lg fa-heart-o"></i>
+                                    <span class="likes-count">{{ item.likesCount }}</span>
+                                </div>
+                                <div class="post-comments">
+                                    <a href="#"><span class="likes-count">{{ item.commentsCount }}</span> Comments</a>
 
-                <div class="col-md-12">
-                    <p>Comments: <span class="likes-count">{{ item.commentsCount }}</span></p>
-                    Likes: <span class="likes-count">{{ item.likesCount }}</span>
-
-                    <a href="#" class="btn btn-primary button-like {{ item.isLiked ? 'display-none' : '' }}" data-id="{{ item.post_id }}">
-                        Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
-                    </a>
-                    <a href="#" class="btn btn-primary button-unlike {{ item.isLiked ? '' : 'display-none' }}" data-id="{{ item.post_id }}">
-                        Unlike&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
-                    </a>
+                                </div>
+                                <div class="post-date">
+                                    <span>{{ item.post_date|date }}</span>
+                                </div>
+                                <div class="post-report">
+                                    <a href="#">Report post</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}

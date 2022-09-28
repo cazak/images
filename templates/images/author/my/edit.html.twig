@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit profile{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        {{ form_start(form, {'action': path('app_change_avatar'), 'method': 'POST'}) }}
+        {{ form_row(form.avatar) }}
+        <button type="submit" class="btn btn-primary">Change</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
+use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Application\Author\Query\ShowAuthorProfile\Query;
 use App\Model\Images\Application\Author\Query\ShowAuthorProfile\QueryHandler;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
@@ -17,6 +19,7 @@ final class ShowAuthorProfileAction extends AbstractController
 {
     public function __construct(
         private readonly QueryHandler $queryHandler,
+        private readonly PostQueryHandler $postQueryHandler,
         private readonly ErrorHandler $errorHandler,
         private readonly AuthorRepository $authorRepository,
     ) {
@@ -35,6 +38,7 @@ final class ShowAuthorProfileAction extends AbstractController
 
             return $this->render('images/author/show.html.twig', [
                 'author' => $author,
+                'posts' => $this->postQueryHandler->fetch(new PostQuery($author->author->id)),
                 'currentAuthor' => $currentAuthor,
             ]);
         } catch (Exception $exception) {

@@ -3,32 +3,54 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="col-12">
-            {{ form_start(form, {'action': path('app_change_avatar'), 'method': 'POST'}) }}
-            {{ form_row(form.avatar) }}
-            <button type="submit" class="btn">Change</button>
-            {{ form_end(form) }}
-            {% if author.avatar %}
-                <p><a href="{{ path('app_remove_avatar') }}">Delete avatar</a></p>
-                <p>Avatar: <img src="{{ author_path(author.avatar) }}" width="100px;"></p>
-            {% endif %}
-            <p>ID: {{ author.id }}</p>
-            <p>Name: {{ author.name }}</p>
-            <p>Name: {{ author.surname }}</p>
-            <p>Nickname: {{ author.nickname }}</p>
-            <h3>Subscriptions {{ author.subscriptionsCount }}</h3>
-            {% for subscription in author.subscriptions %}
-                <p>name: {{ subscription.name }}</p>
-                <p>Nickname: {{ subscription.nickname }}</p>
-                <hr>
-            {% endfor %}
-            <h3>Followers {{ author.followersCount }}</h3>
-            {% for follower in author.followers %}
-                <p>Nickname: {{ follower.nickname }}</p>
-                <p>name: {{ follower.name }}</p>
-                <hr>
-            {% endfor %}
+    <div class="page-posts no-padding">
+        <div class="row">
+            <div class="page page-post col-sm-12 col-xs-12 post-82">
+                <div class="blog-posts blog-posts-large">
+                    <div class="row">
+                        <article class="profile col-sm-12 col-xs-12">
+                            <div class="profile-title">
+                                <img src="{{ author_path(author.avatar) }}" class="author-image" />
+                                <div class="author-name">{{ author.name }} {{ author.surname }}</div>
+                                {% if author.avatar %}
+                                    <a href="{{ path('app_remove_avatar') }}" class="btn btn-default">Delete avatar</a>
+                                {% endif %}
+                                <a href="{{ path('app_profile_edit') }}" class="btn btn-default">Edit profile</a>
+                                <a href="{{ path('app_post_create') }}" class="btn btn-default">Create post</a>
+                            </div>
+
+                            <div class="profile-description">
+                                <p>Lorem ipsum dolor sit amet, iisque bonorum consequat an vis, ea dico sonet dolorum eam,
+                                    oblique lucilius consequat mel ei.</p>
+                            </div>
+                            <div class="profile-bottom">
+                                <div class="profile-post-count">
+                                    <span>{{ author.postsCount }} posts</span>
+                                </div>
+                                <div class="profile-followers">
+                                    <a href="#" data-toggle="modal" data-target="#myModal2">{{ author.followersCount }} followers</a>
+                                </div>
+                                <div class="profile-following">
+                                    <a href="#" data-toggle="modal" data-target="#myModal1">{{ author.subscriptionsCount }} following</a>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="row profile-posts">
+                                {% for post in posts %}
+                                <div class="col-md-4 profile-post">
+                                    <a href="{{ path('app_show_post', {'id': post.id}) }}"><img src="{{ post_path(post.avatar) }}" class="author-image" /></a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    {{ include('images/author/_modal-friends.html.twig', {
+        'current': author,
+        'author': author
+    }) }}
 {% endblock %}

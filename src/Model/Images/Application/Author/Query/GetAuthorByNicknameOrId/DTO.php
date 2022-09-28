@@ -16,6 +16,7 @@ final class DTO
         public int $subscriptionsCount,
         public array $followers,
         public int $followersCount,
+        public int $postsCount,
     ) {
     }
 
@@ -31,6 +32,7 @@ final class DTO
             $author['subscriptionsCount'],
             $author['followers'],
             $author['followersCount'],
+            $author['postsCount'],
         );
     }
 }
