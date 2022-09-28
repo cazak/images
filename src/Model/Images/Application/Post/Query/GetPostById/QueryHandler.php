@@ -24,7 +24,7 @@ final class QueryHandler
     {
         $post = $this->connection->createQueryBuilder()
             ->from('images_posts', 'p')
-            ->select(['p.id AS id', 'p.avatar AS avatar', 'p.description AS description', 'a.nickname AS nickname'])
+            ->select(['p.id AS id', 'p.date AS date', 'p.avatar AS avatar', 'p.description AS description', 'a.nickname AS nickname', 'a.avatar AS author_avatar'])
             ->innerJoin('p', 'images_authors', 'a', 'p.author_id = a.id')
             ->where('p.id = :id')
             ->setParameter('id', $query->postId)

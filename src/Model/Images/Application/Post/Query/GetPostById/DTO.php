@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Post\Query\GetPostById;
 
+use DateTimeImmutable;
+
 final class DTO
 {
     public function __construct(
         public string $id,
+        public string $date,
         public string $avatar,
+        public string $author_avatar,
         public string $description,
         public string $nickname,
         public int $likesCount,
@@ -21,7 +25,9 @@ final class DTO
     {
         return new self(
             $post['id'],
+            $post['date'],
             $post['avatar'],
+            $post['author_avatar'],
             $post['description'],
             $post['nickname'],
             $post['likesCount'],
