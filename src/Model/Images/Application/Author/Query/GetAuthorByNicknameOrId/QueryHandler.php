@@ -56,14 +56,14 @@ final class QueryHandler
         if ($this->uuidValidator->validate($query->nicknameOrId)) {
             $result = $this->connection->createQueryBuilder()
                 ->from('images_authors')
-                ->select(['nickname', 'id', 'name', 'surname', 'avatar'])
+                ->select(['nickname', 'id', 'name', 'surname', 'avatar', 'about'])
                 ->where('id = :id')
                 ->setParameter('id', $query->nicknameOrId)
                 ->executeQuery();
         } else {
             $result = $this->connection->createQueryBuilder()
                 ->from('images_authors')
-                ->select(['nickname', 'id', 'name', 'surname', 'avatar'])
+                ->select(['nickname', 'id', 'name', 'surname', 'avatar', 'about'])
                 ->where('nickname = :nickname')
                 ->setParameter('nickname', $query->nicknameOrId)
                 ->executeQuery();

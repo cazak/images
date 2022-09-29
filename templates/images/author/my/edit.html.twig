@@ -8,5 +8,13 @@
         <button type="submit" class="btn btn-primary">Change</button>
         {{ form_end(form) }}
     </div>
+    <br>
+    <div class="col-12">
+        {{ form_start(aboutForm, {'action': path('app_edit_about'), 'method': 'POST'}) }}
+        {{ form_row(aboutForm.about) }}
+        <button type="submit" class="btn btn-primary">Edit</button>
+        {{ form_end(aboutForm) }}
+    </div>
+    <br>
 </div>
 {% endblock %}

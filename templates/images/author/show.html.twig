@@ -7,17 +7,21 @@
                     <div class="row">
                         <article class="profile col-sm-12 col-xs-12">
                             <div class="profile-title">
-                                <img src="{{ author_path(author.author.avatar) }}" class="author-image" />
+                                <img src="{{ author_path(author.author.avatar) }}" class="author-image"/>
                                 <div class="author-name">{{ author.author.name }} {{ author.author.surname }}</div>
                                 {% if author.isSubscribed == false %}
-                                    <a href="{{ path('app_subscribe', {'id': author.author.id}) }}" class="btn btn-default">Subscribe</a>
+                                    <a href="{{ path('app_subscribe', {'id': author.author.id}) }}"
+                                       class="btn btn-default">Subscribe</a>
                                 {% else %}
-                                    <a href="{{ path('app_unsubscribe', {'id': author.author.id}) }}" class="btn btn-default">Unsubscribe</a>
+                                    <a href="{{ path('app_unsubscribe', {'id': author.author.id}) }}"
+                                       class="btn btn-default">Unsubscribe</a>
                                 {% endif %}
                             </div>
                             <div class="profile-description">
-                                <p>Lorem ipsum dolor sit amet, iisque bonorum consequat an vis, ea dico sonet dolorum eam,
-                                    oblique lucilius consequat mel ei.</p>
+                                {% if author.author.about %}
+                                    <p style="padding-bottom: 5px;">{{ author.author.about }}</p>
+                                {% endif %}
+                                <hr>
                                 <p>Friends, who are also subscribed to this author:
                                     {% for mutualFriends in author.mutualFriends %}
                                         <a href="{{ path('app_authors_show', {'nicknameOrId': mutualFriends.nickname}) }}">{{ mutualFriends.nickname }}</a>
@@ -29,10 +33,12 @@
                                     <span>{{ author.author.postsCount }} posts</span>
                                 </div>
                                 <div class="profile-followers">
-                                    <a href="#" data-toggle="modal" data-target="#myModal2">{{ author.author.followersCount }} followers</a>
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#myModal2">{{ author.author.followersCount }} followers</a>
                                 </div>
                                 <div class="profile-following">
-                                    <a href="#" data-toggle="modal" data-target="#myModal1">{{ author.author.subscriptionsCount }} following</a>
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#myModal1">{{ author.author.subscriptionsCount }} following</a>
                                 </div>
                             </div>
                         </article>
@@ -40,7 +46,8 @@
                             <div class="row profile-posts">
                                 {% for post in posts %}
                                     <div class="col-md-4 profile-post">
-                                        <a href="{{ path('app_show_post', {'id': post.id}) }}"><img src="{{ post_path(post.avatar) }}" class="author-image" /></a>
+                                        <a href="{{ path('app_show_post', {'id': post.id}) }}"><img
+                                                src="{{ post_path(post.avatar) }}" class="author-image"/></a>
                                     </div>
                                 {% endfor %}
                             </div>

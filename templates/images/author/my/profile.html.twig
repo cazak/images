@@ -18,10 +18,8 @@
                                 <a href="{{ path('app_profile_edit') }}" class="btn btn-default">Edit profile</a>
                                 <a href="{{ path('app_post_create') }}" class="btn btn-default">Create post</a>
                             </div>
-
                             <div class="profile-description">
-                                <p>Lorem ipsum dolor sit amet, iisque bonorum consequat an vis, ea dico sonet dolorum eam,
-                                    oblique lucilius consequat mel ei.</p>
+                                <p>{% if author.about %}{{ author.about }}{% endif %}</p>
                             </div>
                             <div class="profile-bottom">
                                 <div class="profile-post-count">

@@ -33,6 +33,9 @@ class Author
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $avatar = null;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $about = null;
+
     public function __construct(Id $id, DateTimeImmutable $date, Name $name, string $nickname)
     {
         $this->id = $id;
@@ -111,6 +114,18 @@ class Author
     public function getAvatar(): ?string
     {
         return $this->avatar;
+    }
+
+    public function setAbout(?string $about): self
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    public function getAbout(): ?string
+    {
+        return $this->about;
     }
 
     public function getDate(): DateTimeImmutable
