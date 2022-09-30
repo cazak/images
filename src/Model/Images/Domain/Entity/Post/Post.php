@@ -11,6 +11,7 @@ use App\Model\Shared\Domain\Entity\EventsTrait;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use DomainException;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: '`images_posts`')]
@@ -53,6 +54,17 @@ class Post implements AggregateRoot
                 $this->description,
                 $this->date
             )
+        );
+    }
+
+    public function delete(Author $author)
+    {
+        if (!$this->getAuthor()->getId()->isEqual($author->getId())) {
+            throw new DomainException('Only the author can delete a post.');
+        }
+
+        $this->recordEvent(
+            new Event\PostDeleted($this->id, $this->author->getId())
         );
     }
 

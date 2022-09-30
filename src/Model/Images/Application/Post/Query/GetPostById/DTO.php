@@ -8,6 +8,7 @@ final class DTO
 {
     public function __construct(
         public string $id,
+        public string $author_id,
         public string $date,
         public string $avatar,
         public string $author_avatar,
@@ -23,6 +24,7 @@ final class DTO
     {
         return new self(
             $post['id'],
+            $post['author_id'],
             $post['date'],
             $post['avatar'],
             $post['author_avatar'],

@@ -8,7 +8,9 @@ interface CommentRepository
 {
     public function add(Comment $entity): void;
 
-    public function remove(Comment $entity, bool $flush = true): void;
+    public function remove(Comment $entity): void;
 
     public function get(string $id): Comment;
+
+    public function findAllByPost(string $id): array;
 }

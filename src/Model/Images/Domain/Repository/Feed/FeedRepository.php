@@ -8,7 +8,9 @@ interface FeedRepository
 {
     public function add(Feed $entity): void;
 
-    public function remove(Feed $entity, bool $flush = true): void;
+    public function remove(Feed $entity): void;
 
     public function get(string $id): Feed;
+
+    public function findAllByPost(string $id): array;
 }

@@ -16,10 +16,10 @@ final class Flusher
 
     public function flush(AggregateRoot ...$roots): void
     {
-        $this->entityManager->flush();
-
         foreach ($roots as $root) {
             $this->dispatcher->dispatch($root->releaseEvents());
         }
+
+        $this->entityManager->flush();
     }
 }

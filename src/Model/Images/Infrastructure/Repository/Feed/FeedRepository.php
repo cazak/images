@@ -22,13 +22,9 @@ final class FeedRepository extends ServiceEntityRepository implements FeedReposi
         $this->getEntityManager()->persist($entity);
     }
 
-    public function remove(Feed $entity, bool $flush = true): void
+    public function remove(Feed $entity): void
     {
         $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 
     /**
@@ -43,5 +39,13 @@ final class FeedRepository extends ServiceEntityRepository implements FeedReposi
         }
 
         return $author;
+    }
+
+    /**
+     * @return Feed[]
+     */
+    public function findAllByPost(string $id): array
+    {
+        return $this->findBy(['post' => $id]);
     }
 }

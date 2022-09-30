@@ -22,13 +22,9 @@ final class CommentRepository extends ServiceEntityRepository implements Comment
         $this->getEntityManager()->persist($entity);
     }
 
-    public function remove(Comment $entity, bool $flush = true): void
+    public function remove(Comment $entity): void
     {
         $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 
     /**
@@ -43,5 +39,13 @@ final class CommentRepository extends ServiceEntityRepository implements Comment
         }
 
         return $author;
+    }
+
+    /**
+     * @return Comment[]
+     */
+    public function findAllByPost(string $id): array
+    {
+        return $this->findBy(['post' => $id]);
     }
 }

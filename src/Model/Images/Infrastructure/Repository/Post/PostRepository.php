@@ -24,13 +24,9 @@ final class PostRepository extends ServiceEntityRepository implements PostReposi
         $this->getEntityManager()->persist($entity);
     }
 
-    public function remove(Post $entity, bool $flush = true): void
+    public function remove(Post $entity): void
     {
         $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 
     /**

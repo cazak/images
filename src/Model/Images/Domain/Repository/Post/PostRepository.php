@@ -8,7 +8,7 @@ interface PostRepository
 {
     public function add(Post $entity): void;
 
-    public function remove(Post $entity, bool $flush = true): void;
+    public function remove(Post $entity): void;
 
     public function get(string $id): Post;
 

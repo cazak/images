@@ -41,9 +41,19 @@
                             <div class="post-date">
                                 <span>{{ post.date|date }}</span>
                             </div>
-                            <div class="post-report">
-                                <a href="#">Report post</a>
-                            </div>
+                            {% if post.author_id == app.user.id.value %}
+                                <div class="post-report">
+                                    <form action="{{ path('app_post_delete', {'id': post.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
+                                        <input type="hidden" name="token" value="{{ csrf_token('delete-post') }}" />
+                                        <input type="hidden" name="author_id" value="{{ post.author_id }}" />
+                                        <button type="submit" class="btn btn-link" style="padding: 0">Delete post</button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <div class="post-report">
+                                    <a href="#">Report post</a>
+                                </div>
+                            {% endif %}
                         </div>
                     </article>
 
