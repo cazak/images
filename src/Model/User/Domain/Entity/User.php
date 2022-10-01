@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Model\User\Domain\Entity;
 
+use App\Model\Shared\Domain\Entity\AggregateRoot;
+use App\Model\Shared\Domain\Entity\EventsTrait;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\User\Infrastructure\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use DomainException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,8 +18,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user_users`')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, AggregateRoot
 {
+    use EventsTrait;
+
     public const STATUS_WAIT = 1;
     public const STATUS_ACTIVE = 2;
 
@@ -68,6 +73,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->status = self::STATUS_ACTIVE;
 
         return $this;
+    }
+
+    public function changeName(Name $name): void
+    {
+        if ($this->name->isEqual($name)) {
+            throw new DomainException('Name is already same.');
+        }
+
+        $this->name = $name;
+
+        $this->recordEvent(new Event\UserNameUpdatedEvent(
+            $this->id,
+            $this->name
+        ));
     }
 
     public function getId(): Id

@@ -25,6 +25,12 @@ final class Name
         $this->surname = $surname;
     }
 
+    public function isEqual(self $other): bool
+    {
+        return $this->getName() === $other->getName() &&
+            $this->getSurname() === $other->getSurname();
+    }
+
     public function getName(): string
     {
         return $this->name;
