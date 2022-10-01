@@ -45,6 +45,11 @@ class Author
         $this->status = Status::active();
     }
 
+    public function rename(Name $name): void
+    {
+        $this->name = $name;
+    }
+
     public function activate(): void
     {
         if ($this->status->isActive()) {

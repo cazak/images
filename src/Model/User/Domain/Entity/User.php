@@ -83,7 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Aggrega
 
         $this->name = $name;
 
-        $this->recordEvent(new Event\UserNameUpdatedEvent(
+        $this->recordEvent(new Event\UserRenamed(
             $this->id,
             $this->name
         ));
