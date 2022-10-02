@@ -96,8 +96,10 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "check": [
-            "vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "cs": [
+            "vendor/bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes"
+        ],
+        "deptrac":  [
             "vendor/bin/deptrac analyse --config-file=deptrac-layers.yaml"
         ],
         "test": [
