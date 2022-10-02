@@ -23,10 +23,10 @@ final class RedisAuthorRepository
     public function subscribe(string $subscribingAuthorId, string $followingAuthorId): void
     {
         // add subscriptions
-        $this->redis->sAdd(self::ENTITY_KEY . ':' . $subscribingAuthorId . ':' . self::SUBSCRIBE_KEY, $followingAuthorId);
+        $this->redis->sAdd(self::ENTITY_KEY.':'.$subscribingAuthorId.':'.self::SUBSCRIBE_KEY, $followingAuthorId);
 
         // add followers
-        $this->redis->sAdd(self::ENTITY_KEY . ':' . $followingAuthorId . ':' . self::FOLLOW_KEY, $subscribingAuthorId);
+        $this->redis->sAdd(self::ENTITY_KEY.':'.$followingAuthorId.':'.self::FOLLOW_KEY, $subscribingAuthorId);
     }
 
     /**
@@ -35,10 +35,10 @@ final class RedisAuthorRepository
     public function unSubscribe(string $unSubscribingAuthorId, string $unFollowingAuthorId): void
     {
         // remove subscriptions
-        $this->redis->sRem(self::ENTITY_KEY . ':' . $unSubscribingAuthorId . ':' . self::SUBSCRIBE_KEY, $unFollowingAuthorId);
+        $this->redis->sRem(self::ENTITY_KEY.':'.$unSubscribingAuthorId.':'.self::SUBSCRIBE_KEY, $unFollowingAuthorId);
 
         // remove followers
-        $this->redis->sRem(self::ENTITY_KEY . ':' . $unFollowingAuthorId . ':' . self::FOLLOW_KEY, $unSubscribingAuthorId);
+        $this->redis->sRem(self::ENTITY_KEY.':'.$unFollowingAuthorId.':'.self::FOLLOW_KEY, $unSubscribingAuthorId);
     }
 
     /**
@@ -47,8 +47,8 @@ final class RedisAuthorRepository
     public function getMutualFriends(string $currentAuthorId, string $forAuthorId): bool|array|Redis
     {
         return $this->redis->sInter(
-            self::ENTITY_KEY . ':' . $currentAuthorId . ':' . self::SUBSCRIBE_KEY,
-            self::ENTITY_KEY . ':' . $forAuthorId . ':' . self::FOLLOW_KEY
+            self::ENTITY_KEY.':'.$currentAuthorId.':'.self::SUBSCRIBE_KEY,
+            self::ENTITY_KEY.':'.$forAuthorId.':'.self::FOLLOW_KEY
         );
     }
 
@@ -57,7 +57,7 @@ final class RedisAuthorRepository
      */
     public function getSubscriptions(string $authorId): Redis|array
     {
-        return $this->redis->sMembers(self::ENTITY_KEY . ':' . $authorId . ':' . self::SUBSCRIBE_KEY);
+        return $this->redis->sMembers(self::ENTITY_KEY.':'.$authorId.':'.self::SUBSCRIBE_KEY);
     }
 
     /**
@@ -65,7 +65,7 @@ final class RedisAuthorRepository
      */
     public function getSubscriptionsCount(string $authorId): Redis|int
     {
-        return $this->redis->sCard(self::ENTITY_KEY . ':' . $authorId . ':' . self::SUBSCRIBE_KEY);
+        return $this->redis->sCard(self::ENTITY_KEY.':'.$authorId.':'.self::SUBSCRIBE_KEY);
     }
 
     /**
@@ -73,7 +73,7 @@ final class RedisAuthorRepository
      */
     public function getFollowers(string $authorId): Redis|array
     {
-        return $this->redis->sMembers(self::ENTITY_KEY . ':' . $authorId . ':' . self::FOLLOW_KEY);
+        return $this->redis->sMembers(self::ENTITY_KEY.':'.$authorId.':'.self::FOLLOW_KEY);
     }
 
     /**
@@ -81,7 +81,7 @@ final class RedisAuthorRepository
      */
     public function getFollowersCount(string $authorId): Redis|int
     {
-        return $this->redis->sCard(self::ENTITY_KEY . ':' . $authorId . ':' . self::FOLLOW_KEY);
+        return $this->redis->sCard(self::ENTITY_KEY.':'.$authorId.':'.self::FOLLOW_KEY);
     }
 
     /**
@@ -89,6 +89,6 @@ final class RedisAuthorRepository
      */
     public function isSubscribed(string $currentAuthorId, string $forAuthorId): bool
     {
-        return $this->redis->sIsMember(self::ENTITY_KEY . ':' . $currentAuthorId . ':' . self::SUBSCRIBE_KEY, $forAuthorId);
+        return $this->redis->sIsMember(self::ENTITY_KEY.':'.$currentAuthorId.':'.self::SUBSCRIBE_KEY, $forAuthorId);
     }
 }

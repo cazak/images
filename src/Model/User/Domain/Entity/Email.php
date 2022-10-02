@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\User\Domain\Entity;
 
+use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
-class Email
+final class Email
 {
     private string $value;
 
@@ -14,7 +15,7 @@ class Email
     {
         Assert::notEmpty($value);
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('Incorrect email.');
+            throw new InvalidArgumentException('Incorrect email.');
         }
         $this->value = mb_strtolower($value);
     }

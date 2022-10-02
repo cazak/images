@@ -7,6 +7,7 @@ namespace App\Model\Images\Application\Post\Query\GetPostById;
 use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use RedisException;
 
 final class QueryHandler
 {
@@ -18,7 +19,7 @@ final class QueryHandler
 
     /**
      * @throws Exception
-     * @throws \RedisException
+     * @throws RedisException
      */
     public function fetch(Query $query): DTO
     {

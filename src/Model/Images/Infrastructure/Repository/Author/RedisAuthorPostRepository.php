@@ -21,7 +21,7 @@ final class RedisAuthorPostRepository
      */
     public function increasePosts(string $authorId): void
     {
-        $this->redis->incr(self::ENTITY_KEY . ':' . $authorId . ':' . self::POST_KEY);
+        $this->redis->incr(self::ENTITY_KEY.':'.$authorId.':'.self::POST_KEY);
     }
 
     /**
@@ -29,7 +29,7 @@ final class RedisAuthorPostRepository
      */
     public function reducePosts(string $authorId): void
     {
-        $this->redis->decr(self::ENTITY_KEY . ':' . $authorId . ':' . self::POST_KEY);
+        $this->redis->decr(self::ENTITY_KEY.':'.$authorId.':'.self::POST_KEY);
     }
 
     /**
@@ -37,6 +37,6 @@ final class RedisAuthorPostRepository
      */
     public function getPostsCount(string $authorId): int
     {
-        return (int)$this->redis->get(self::ENTITY_KEY . ':' . $authorId . ':' . self::POST_KEY);
+        return (int) $this->redis->get(self::ENTITY_KEY.':'.$authorId.':'.self::POST_KEY);
     }
 }

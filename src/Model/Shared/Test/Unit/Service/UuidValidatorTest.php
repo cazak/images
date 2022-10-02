@@ -8,12 +8,15 @@ use App\Model\Shared\Service\UuidValidator;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @internal
+ */
 final class UuidValidatorTest extends KernelTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
-        $this->validator = static::getContainer()->get(UuidValidator::class);
+        $this->validator = self::getContainer()->get(UuidValidator::class);
     }
 
     public function test_success(): void

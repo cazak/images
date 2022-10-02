@@ -20,7 +20,7 @@ final class ImageSizeNormalizer implements \App\Model\Images\Application\Service
     {
         $image = $this->imageManager->make($uploadedFile->getRealPath());
 
-        $image->resize($this->width, $this->height, function ($constraint) {
+        $image->resize($this->width, $this->height, static function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save();

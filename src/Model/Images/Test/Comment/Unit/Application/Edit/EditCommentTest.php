@@ -8,6 +8,9 @@ use App\Model\Images\Test\Comment\Builder\CommentBuilder;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class EditCommentTest extends TestCase
 {
     public function test_success(): void

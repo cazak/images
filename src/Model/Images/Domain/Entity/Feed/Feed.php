@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: '`images_feeds`')]
-class Feed
+final class Feed
 {
     use FeedAnemic;
 

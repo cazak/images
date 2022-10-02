@@ -7,7 +7,7 @@ namespace App\Model\Shared\Domain\Entity\ValueObject;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class Id
+final class Id
 {
     private string $value;
 

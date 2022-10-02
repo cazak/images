@@ -11,6 +11,9 @@ use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class PostFactoryTest extends TestCase
 {
     public function test_success(): void

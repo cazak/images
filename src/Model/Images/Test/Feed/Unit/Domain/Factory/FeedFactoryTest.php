@@ -10,6 +10,9 @@ use App\Model\Images\Test\Post\Builder\PostBuilder;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class FeedFactoryTest extends TestCase
 {
     public function test_success(): void

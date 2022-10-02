@@ -11,12 +11,15 @@ use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @internal
+ */
 final class AuthorFactoryTest extends KernelTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = static::getContainer()->get(AuthorFactory::class);
+        $this->factory = self::getContainer()->get(AuthorFactory::class);
     }
 
     public function test_success(): void

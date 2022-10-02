@@ -25,23 +25,23 @@ final class FileUploader implements \App\Model\Images\Application\Service\FileUp
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
         $safeFilename = $this->slugger->slug($originalFilename);
-        $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+        $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         $file->move(
-            $this->directory . '/' . date('Y-m-d'),
+            $this->directory.'/'.date('Y-m-d'),
             $newFilename
         );
 
-        return date('Y-m-d') . '/' . $newFilename;
+        return date('Y-m-d').'/'.$newFilename;
     }
 
     public function remove(string $file): void
     {
-        $this->filesystem->remove($this->directory . '/' . $file);
+        $this->filesystem->remove($this->directory.'/'.$file);
     }
 
     public function getPath(string $avatar): string
     {
-        return '/' . $this->directory . '/' . $avatar;
+        return '/'.$this->directory.'/'.$avatar;
     }
 }

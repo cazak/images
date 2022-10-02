@@ -23,8 +23,8 @@ final class RedisPostRepository
      */
     public function like(string $authorId, string $postId): void
     {
-        $this->redis->sAdd(self::ENTITY_KEY . ':' . $postId . ':' . self::LIKE_KEY, $authorId);
-        $this->redis->sAdd(self::ACTOR_KEY . ':' . $authorId . ':' . self::LIKE_KEY, $postId);
+        $this->redis->sAdd(self::ENTITY_KEY.':'.$postId.':'.self::LIKE_KEY, $authorId);
+        $this->redis->sAdd(self::ACTOR_KEY.':'.$authorId.':'.self::LIKE_KEY, $postId);
     }
 
     /**
@@ -32,8 +32,8 @@ final class RedisPostRepository
      */
     public function unlike(string $authorId, string $postId): void
     {
-        $this->redis->sRem(self::ENTITY_KEY . ':' . $postId . ':' . self::LIKE_KEY, $authorId);
-        $this->redis->sRem(self::ACTOR_KEY . ':' . $authorId . ':' . self::LIKE_KEY, $postId);
+        $this->redis->sRem(self::ENTITY_KEY.':'.$postId.':'.self::LIKE_KEY, $authorId);
+        $this->redis->sRem(self::ACTOR_KEY.':'.$authorId.':'.self::LIKE_KEY, $postId);
     }
 
     /**
@@ -41,7 +41,7 @@ final class RedisPostRepository
      */
     public function isLikedBy(string $authorId, string $postId): bool
     {
-        return $this->redis->sIsMember(self::ENTITY_KEY . ':' . $postId . ':' . self::LIKE_KEY, $authorId);
+        return $this->redis->sIsMember(self::ENTITY_KEY.':'.$postId.':'.self::LIKE_KEY, $authorId);
     }
 
     /**
@@ -49,7 +49,7 @@ final class RedisPostRepository
      */
     public function getLikesCount(string $postId): Redis|int
     {
-        return $this->redis->sCard(self::ENTITY_KEY . ':' . $postId . ':' . self::LIKE_KEY);
+        return $this->redis->sCard(self::ENTITY_KEY.':'.$postId.':'.self::LIKE_KEY);
     }
 
     /**
@@ -57,7 +57,7 @@ final class RedisPostRepository
      */
     public function increaseComments(string $postId): void
     {
-        $this->redis->incr(self::ENTITY_KEY . ':' . $postId . ':' . self::COMMENT_KEY);
+        $this->redis->incr(self::ENTITY_KEY.':'.$postId.':'.self::COMMENT_KEY);
     }
 
     /**
@@ -65,7 +65,7 @@ final class RedisPostRepository
      */
     public function reduceComments(string $postId): void
     {
-        $this->redis->decr(self::ENTITY_KEY . ':' . $postId . ':' . self::COMMENT_KEY);
+        $this->redis->decr(self::ENTITY_KEY.':'.$postId.':'.self::COMMENT_KEY);
     }
 
     /**
@@ -73,6 +73,6 @@ final class RedisPostRepository
      */
     public function getCommentsCount(string $postId): int
     {
-        return (int)$this->redis->get(self::ENTITY_KEY . ':' . $postId . ':' . self::COMMENT_KEY);
+        return (int) $this->redis->get(self::ENTITY_KEY.':'.$postId.':'.self::COMMENT_KEY);
     }
 }

@@ -37,6 +37,6 @@ final class AuthorName
 
     public function getFullName(): string
     {
-        return $this->name . ' ' . $this->surname;
+        return $this->name.' '.$this->surname;
     }
 }

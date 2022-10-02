@@ -11,13 +11,16 @@ use App\Model\User\Domain\Factory\UserFactory;
 use App\Model\User\Domain\Service\UserPasswordHasher;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @internal
+ */
 final class FactoryTest extends KernelTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = static::getContainer()->get(UserFactory::class);
-        $this->passwordHasher = static::getContainer()->get(UserPasswordHasher::class);
+        $this->factory = self::getContainer()->get(UserFactory::class);
+        $this->passwordHasher = self::getContainer()->get(UserPasswordHasher::class);
     }
 
     public function test_success(): void

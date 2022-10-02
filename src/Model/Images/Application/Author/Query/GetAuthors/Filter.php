@@ -29,7 +29,7 @@ final class Filter
     public function getSort(): string
     {
         if (!in_array($this->sort, ['id', 'name', 'nickname', 'status'], true)) {
-            throw new UnexpectedValueException('Cannot sort by ' . $this->sort);
+            throw new UnexpectedValueException('Cannot sort by '.$this->sort);
         }
 
         return $this->sort;

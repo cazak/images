@@ -6,6 +6,7 @@ namespace App\Model\User\Application\Command\Signup\Confirm;
 
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository;
+use DomainException;
 
 final class ConfirmUserCommandHandler
 {
@@ -19,7 +20,7 @@ final class ConfirmUserCommandHandler
         $user = $this->repository->findByConfirmToken($command->token);
 
         if (!$user) {
-            throw new \DomainException('User is not registered.');
+            throw new DomainException('User is not registered.');
         }
         $user->confirmSignUp();
 

@@ -12,7 +12,7 @@ use DomainException;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 #[ORM\Table(name: '`images_authors`')]
-class Author
+final class Author
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid_id')]

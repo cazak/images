@@ -37,7 +37,7 @@ final class UpdateCommentAction extends AbstractController
             if (count($errors) > 0) {
                 return new JsonResponse([
                     'success' => false,
-                    'errors' => (string)$errors,
+                    'errors' => (string) $errors,
                 ]);
             }
 

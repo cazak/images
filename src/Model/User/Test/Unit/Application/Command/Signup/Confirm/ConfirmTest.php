@@ -8,12 +8,15 @@ use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @internal
+ */
 final class ConfirmTest extends KernelTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->factory = static::getContainer()->get(UserFactory::class);
+        $this->factory = self::getContainer()->get(UserFactory::class);
     }
 
     public function test_success(): void

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name: 'images_comments')]
 #[ORM\Index(columns: ['date'])]
-class Comment
+final class Comment
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid_id')]

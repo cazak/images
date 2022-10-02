@@ -7,6 +7,7 @@ namespace App\Model\User\Application\Command\Signup\Request;
 use App\Model\User\Application\Service\SignupSender;
 use App\Model\User\Domain\Factory\UserFactory;
 use App\Model\User\Domain\Repository\UserRepository;
+use DomainException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 final class CreateUserCommandHandler
@@ -24,7 +25,7 @@ final class CreateUserCommandHandler
     public function handle(CreateUserCommand $command): void
     {
         if ($this->repository->findByEmail($command->email)) {
-            throw new \DomainException('This email is already in use.');
+            throw new DomainException('This email is already in use.');
         }
 
         $user = $this->factory->registerUser($command->name, $command->surname, $command->email, $command->password);

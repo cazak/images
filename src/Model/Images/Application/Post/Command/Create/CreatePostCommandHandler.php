@@ -10,6 +10,7 @@ use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Infrastructure\Service\FileUploader;
 use App\Model\Shared\Infrastructure\Database\Flusher;
+use RedisException;
 
 final class CreatePostCommandHandler
 {
@@ -24,7 +25,7 @@ final class CreatePostCommandHandler
     }
 
     /**
-     * @throws \RedisException
+     * @throws RedisException
      */
     public function handle(CreatePostCommand $command): string
     {
