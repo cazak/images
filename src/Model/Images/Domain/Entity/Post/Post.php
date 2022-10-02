@@ -15,7 +15,7 @@ use DomainException;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: '`images_posts`')]
-final class Post implements AggregateRoot
+class Post implements AggregateRoot
 {
     use EventsTrait;
 
