@@ -24,6 +24,8 @@ final class QueryHandler
      */
     public function fetch(Query $query): array
     {
+        $offset = ($query->page - 1) * $this->limit;
+
         $feedItems = $this->connection->createQueryBuilder()
             ->select([
                 'author_nickname',
@@ -37,7 +39,7 @@ final class QueryHandler
             ->where('reader_id = :id')
             ->setParameter('id', $query->readerId)
             ->orderBy('post_date', 'DESC')
-            ->setFirstResult($query->page)
+            ->setFirstResult($offset)
             ->setMaxResults($this->limit)
             ->executeQuery()
             ->fetchAllAssociative();
