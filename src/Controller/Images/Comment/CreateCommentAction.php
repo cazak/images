@@ -38,7 +38,7 @@ final class CreateCommentAction extends AbstractController
                 $id = $handler->handle($command);
 
                 return new JsonResponse([
-                    'success' => 'true',
+                    'success' => true,
                     'commentsCount' => $redisPostRepository->getCommentsCount($command->postId),
                     'html' => $this->render('images/comment/comment.html.twig', [
                         'comment' => $commentRepository->get($id),
@@ -49,13 +49,13 @@ final class CreateCommentAction extends AbstractController
             }
 
             return new JsonResponse([
-                'success' => 'false',
+                'success' => false,
                 'errors' => $form->getErrors(),
             ]);
         }
 
         return new JsonResponse([
-            'success' => 'false',
+            'success' => false,
         ]);
     }
 }

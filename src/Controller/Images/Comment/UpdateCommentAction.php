@@ -50,7 +50,7 @@ final class UpdateCommentAction extends AbstractController
         }
 
         return new JsonResponse([
-            'success' => 'false',
+            'success' => false,
         ]);
     }
 

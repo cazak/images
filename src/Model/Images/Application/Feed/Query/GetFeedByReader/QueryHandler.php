@@ -37,7 +37,7 @@ final class QueryHandler
             ->where('reader_id = :id')
             ->setParameter('id', $query->readerId)
             ->orderBy('post_date', 'DESC')
-            ->setFirstResult(0)
+            ->setFirstResult($query->page)
             ->setMaxResults($this->limit)
             ->executeQuery()
             ->fetchAllAssociative();
@@ -49,5 +49,20 @@ final class QueryHandler
         }
 
         return $feedItems;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getFeedMaxPage(string $id): int
+    {
+        $count = $this->connection->createQueryBuilder()
+            ->select('COUNT(id) AS count')
+            ->from('images_feeds')
+            ->where('reader_id = :id')
+            ->setParameter('id', $id)
+            ->executeQuery()->fetchOne();
+
+        return (int) ceil($count / $this->limit);
     }
 }

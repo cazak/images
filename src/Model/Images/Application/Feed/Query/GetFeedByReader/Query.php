@@ -6,7 +6,7 @@ namespace App\Model\Images\Application\Feed\Query\GetFeedByReader;
 
 final class Query
 {
-    public function __construct(public readonly string $readerId)
+    public function __construct(public readonly string $readerId, public readonly int $page)
     {
     }
 }

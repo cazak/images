@@ -9,7 +9,7 @@ parameters:
 
     author_image_directory: 'uploads/author'
     post_image_directory: 'uploads/post'
-    feed_limit: '30'
+    feed_limit: 1
 
     image_width: '1024'
     image_height: '768'

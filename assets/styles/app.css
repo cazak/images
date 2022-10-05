@@ -5,3 +5,9 @@
     width: 46px;
     height: 46px;
 }
+
+#showmore-trigger {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

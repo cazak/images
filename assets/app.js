@@ -14,3 +14,4 @@ import 'font-awesome/css/font-awesome.css';
 import './scripts/scripts';
 import './scripts/post-comments';
 import './scripts/post-likes';
+import './scripts/feed';

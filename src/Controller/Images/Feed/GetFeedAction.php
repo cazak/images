@@ -18,12 +18,13 @@ final class GetFeedAction extends AbstractController
     {
     }
 
-    #[Route('/feed', name: 'app_feed')]
+    #[Route('/feed', name: 'app_feed', methods: ['GET'])]
     public function show(): Response
     {
         try {
             return $this->render('images/feed/show.html.twig', [
-                'feed' => $this->queryHandler->fetch(new Query($this->getUser()->getId()->getValue())),
+                'feed' => $this->queryHandler->fetch(new Query($this->getUser()->getId()->getValue(), 1)),
+                'maxPage' => $this->queryHandler->getFeedMaxPage($this->getUser()->getId()->getValue()),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);
