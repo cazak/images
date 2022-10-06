@@ -6,7 +6,7 @@ namespace App\Model\Images\Infrastructure\Repository\Author;
 
 use App\Model\Images\Domain\Entity\Author\Author;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository as AuthorRepositoryInterface;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\NonUniqueResultException;

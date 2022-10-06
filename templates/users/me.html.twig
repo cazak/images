@@ -2,9 +2,9 @@
 {% block body %}
     <div class="row">
         <div class="col-12">
+            <a href="{{ path('app_change_name') }}">Edit name</a>
             {% if author %}
                 <a href="{{ path('app_my_profile') }}">Show profile</a>
-                <a href="{{ path('app_change_name') }}">Edit name</a>
             {% else %}
                 <a href="{{ path('app_author_create') }}">Create Profile</a>
             {% endif %}

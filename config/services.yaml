@@ -87,11 +87,11 @@ services:
         arguments:
             $fileUploader: '@images_post_file_uploader'
 
-    App\Twig\Extension\Images\Author\StoragePathExtension:
+    App\Model\Images\Infrastructure\Twig\Extension\Author\StoragePathExtension:
         arguments:
             $uploader: '@images_author_file_uploader'
 
-    App\Twig\Extension\Images\Post\StoragePathExtension:
+    App\Model\Images\Infrastructure\Twig\Extension\Post\StoragePathExtension:
         arguments:
             $uploader: '@images_post_file_uploader'
 

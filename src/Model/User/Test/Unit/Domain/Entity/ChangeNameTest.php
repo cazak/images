@@ -8,6 +8,9 @@ use App\Model\User\Domain\Entity\Name;
 use App\Model\User\Test\Builder\UserBuilder;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class ChangeNameTest extends TestCase
 {
     public function test_success(): void

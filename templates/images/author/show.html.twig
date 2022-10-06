@@ -7,7 +7,7 @@
                     <div class="row">
                         <article class="profile col-sm-12 col-xs-12">
                             <div class="profile-title">
-                                <img src="{{ author_path(author.author.avatar) }}" class="author-image"/>
+                                <img src="{{ author_path(author.author.avatar) }}" class="author-image" alt=""/>
                                 <div class="author-name">{{ author.author.name }} {{ author.author.surname }}</div>
                                 {% if author.isSubscribed == false %}
                                     <a href="{{ path('app_subscribe', {'id': author.author.id}) }}"
@@ -47,7 +47,7 @@
                                 {% for post in posts %}
                                     <div class="col-md-4 profile-post">
                                         <a href="{{ path('app_show_post', {'id': post.id}) }}"><img
-                                                src="{{ post_path(post.avatar) }}" class="author-image"/></a>
+                                                src="{{ post_path(post.avatar) }}" class="author-image" alt=""/></a>
                                     </div>
                                 {% endfor %}
                             </div>

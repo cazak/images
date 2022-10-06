@@ -6,7 +6,7 @@ namespace App\Model\Images\Infrastructure\Repository\Feed;
 
 use App\Model\Images\Domain\Entity\Feed\Feed;
 use App\Model\Images\Domain\Repository\Feed\FeedRepository as FeedRepositoryInterface;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

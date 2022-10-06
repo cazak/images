@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Twig\Extension\Images\Author;
+namespace App\Model\Images\Infrastructure\Twig\Extension\Post;
 
 use App\Model\Images\Infrastructure\Service\FileUploader;
 use Twig\Extension\AbstractExtension;
@@ -17,14 +17,14 @@ final class StoragePathExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('author_path', [$this, 'path']),
+            new TwigFunction('post_path', [$this, 'path']),
         ];
     }
 
     public function path(?string $avatar = null): string
     {
         if (!$avatar) {
-            return '/img/default-user-avatar.jpg';
+            return '';
         }
 
         return $this->uploader->getPath($avatar);

@@ -10,10 +10,10 @@
                     <div class="row">
                         <article class="profile col-sm-12 col-xs-12">
                             <div class="profile-title">
-                                <img src="{{ author_path(author.avatar) }}" class="author-image" />
+                                <img src="{{ author_path(author.avatar) }}" class="author-image" alt=""/>
                                 <div class="author-name">{{ author.name }} {{ author.surname }}</div>
                                 {% if author.avatar %}
-                                    <a href="{{ path('app_remove_avatar') }}" class="btn btn-default">Delete avatar</a>
+                                    <a href="{{ path('app_remove_avatar') }}" class="btn btn-default" onclick="return confirm('Are you sure?')">Delete avatar</a>
                                 {% endif %}
                                 <a href="{{ path('app_profile_edit') }}" class="btn btn-default">Edit profile</a>
                                 <a href="{{ path('app_post_create') }}" class="btn btn-default">Create post</a>
@@ -37,7 +37,7 @@
                             <div class="row profile-posts">
                                 {% for post in posts %}
                                 <div class="col-md-4 profile-post">
-                                    <a href="{{ path('app_show_post', {'id': post.id}) }}"><img src="{{ post_path(post.avatar) }}" class="author-image" /></a>
+                                    <a href="{{ path('app_show_post', {'id': post.id}) }}"><img src="{{ post_path(post.avatar) }}" class="author-image" alt=""/></a>
                                 </div>
                                 {% endfor %}
                             </div>

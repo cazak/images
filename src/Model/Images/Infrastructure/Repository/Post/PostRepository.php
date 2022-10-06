@@ -6,7 +6,7 @@ namespace App\Model\Images\Infrastructure\Repository\Post;
 
 use App\Model\Images\Domain\Entity\Post\Post;
 use App\Model\Images\Domain\Repository\Post\PostRepository as PostRepositoryInterface;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;

@@ -6,7 +6,7 @@ namespace App\Model\Images\Infrastructure\Repository\Comment;
 
 use App\Model\Images\Domain\Entity\Comment\Comment;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository as CommentRepositoryInterface;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

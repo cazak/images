@@ -8,7 +8,7 @@ use App\Model\Images\Application\Author\Query\GetFollowers\GetFollowers;
 use App\Model\Images\Application\Author\Query\GetSubscriptions\GetSubscriptions;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorRepository;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use App\Model\Shared\Service\UuidValidator;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;

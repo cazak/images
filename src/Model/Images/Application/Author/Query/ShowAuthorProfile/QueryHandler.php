@@ -8,7 +8,7 @@ use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\Query as A
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\QueryHandler as AuthorQueryHandler;
 use App\Model\Images\Application\Author\Query\GetMutualFriends\GetMutualFriends;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorRepository;
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\DBAL\Exception;
 use RedisException;
 

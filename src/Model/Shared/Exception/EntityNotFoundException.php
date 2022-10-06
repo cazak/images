@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Shared\Exceptions;
+namespace App\Model\Shared\Exception;
 
 use Exception;
 

@@ -6,10 +6,10 @@ namespace App\Model\User\Test\Builder;
 
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\Shared\Infrastructure\Service\Assert;
+use App\Model\User\Application\Service\ConfirmTokenGenerator;
 use App\Model\User\Domain\Entity\Email;
 use App\Model\User\Domain\Entity\Name;
 use App\Model\User\Domain\Entity\User;
-use App\Model\User\Application\Service\ConfirmTokenGenerator;
 use DateTimeImmutable;
 
 final class UserBuilder
@@ -80,6 +80,7 @@ final class UserBuilder
         }
 
         $user->setRole($this->role);
+
         return $user;
     }
 }

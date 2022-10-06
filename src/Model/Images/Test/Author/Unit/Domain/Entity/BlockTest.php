@@ -7,6 +7,9 @@ namespace App\Model\Images\Test\Author\Unit\Domain\Entity;
 use App\Model\Images\Test\Author\Builder\AuthorBuilder;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class BlockTest extends TestCase
 {
     public function test_success(): void

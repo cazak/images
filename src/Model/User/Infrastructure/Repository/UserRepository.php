@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\User\Infrastructure\Repository;
 
-use App\Model\Shared\Exceptions\EntityNotFoundException;
+use App\Model\Shared\Exception\EntityNotFoundException;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository as UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
