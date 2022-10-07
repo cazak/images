@@ -28,7 +28,7 @@ final class CreateCommentAction extends AbstractController
     ): Response {
         if ($request->isXmlHttpRequest()) {
             $command = new CreateCommentCommand();
-            $command->authorId = $this->getUser()->getId()->getValue();
+            $command->authorId = $this->getUser()->getId();
             $command->postId = $request->query->get('postId');
             $form = $this->createForm(CreateCommentForm::class, $command);
 
@@ -42,7 +42,7 @@ final class CreateCommentAction extends AbstractController
                     'commentsCount' => $redisPostRepository->getCommentsCount($command->postId),
                     'html' => $this->render('images/comment/comment.html.twig', [
                         'comment' => $commentRepository->get($id),
-                        'author' => $authorRepository->get($this->getUser()->getId()->getValue()),
+                        'author' => $authorRepository->get($this->getUser()->getId()),
                         'postId' => $request->query->get('postId'),
                     ])->getContent(),
                 ]);

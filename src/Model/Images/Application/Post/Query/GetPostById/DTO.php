@@ -11,7 +11,7 @@ final class DTO
         public string $author_id,
         public string $date,
         public string $avatar,
-        public string $author_avatar,
+        public ?string $author_avatar,
         public string $description,
         public string $nickname,
         public int $likesCount,

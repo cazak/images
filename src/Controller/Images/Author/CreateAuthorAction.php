@@ -8,7 +8,7 @@ use App\Model\Images\Application\Author\Command\Create\CreateAuthorCommand;
 use App\Model\Images\Application\Author\Command\Create\CreateAuthorCommandHandler;
 use App\Model\Images\Application\Author\Command\Create\CreateAuthorForm;
 use App\Model\Images\Application\Author\Command\Exceptions\NicknameIsAlreadyInUse;
-use App\Model\User\Domain\Entity\User;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,13 +24,13 @@ final class CreateAuthorAction extends AbstractController
     #[Route('/author/create', name: 'app_author_create')]
     public function create(Request $request, CreateAuthorCommandHandler $handler): Response
     {
-        /** @var User $user */
+        /** @var UserIdentity $user */
         $user = $this->getUser();
 
-        $command = new CreateAuthorCommand($user->getId()->getValue());
+        $command = new CreateAuthorCommand($user->getId());
 
-        $command->name = $user->getName()->getName();
-        $command->surname = $user->getName()->getSurname();
+        $command->name = $user->getName();
+        $command->surname = $user->getSurname();
 
         $form = $this->createForm(CreateAuthorForm::class, $command);
 

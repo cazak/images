@@ -18,7 +18,7 @@ final class AboutAction extends AbstractController
     public function edit(Request $request, EditAboutCommandHandler $handler): Response
     {
         $command = new EditAboutCommand();
-        $command->id = $this->getUser()->getId()->getValue();
+        $command->id = $this->getUser()->getId();
 
         $form = $this->createForm(EditAboutForm::class, $command);
 

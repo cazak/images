@@ -17,7 +17,7 @@ final class ChangeNameAction extends AbstractController
     #[Route('/edit/name', name: 'app_change_name')]
     public function change(Request $request, UpdateNameCommandHandler $handler): Response
     {
-        $command = new UpdateNameCommand($this->getUser()->getId()->getValue());
+        $command = new UpdateNameCommand($this->getUser()->getId());
         $form = $this->createForm(UpdateNameForm::class, $command);
 
         $form->handleRequest($request);

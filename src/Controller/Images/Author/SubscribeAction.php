@@ -9,7 +9,7 @@ use App\Model\Images\Application\Author\Command\Subscribe\SubscribeCommandHandle
 use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommand;
 use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommandHandler;
 use App\Model\Shared\Service\UuidValidator;
-use App\Model\User\Domain\Entity\User;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,9 +27,9 @@ final class SubscribeAction extends AbstractController
     {
         $this->checkUuid($id);
 
-        /** @var User $user */
+        /** @var UserIdentity $user */
         $user = $this->getUser();
-        $command = new SubscribeCommand($user->getId()->getValue(), $id);
+        $command = new SubscribeCommand($user->getId(), $id);
         try {
             $handler->handle($command);
         } catch (RedisException $e) {
@@ -44,9 +44,9 @@ final class SubscribeAction extends AbstractController
     {
         $this->checkUuid($id);
 
-        /** @var User $user */
+        /** @var UserIdentity $user */
         $user = $this->getUser();
-        $command = new UnSubscribeCommand($user->getId()->getValue(), $id);
+        $command = new UnSubscribeCommand($user->getId(), $id);
         try {
             $handler->handle($command);
         } catch (RedisException $e) {

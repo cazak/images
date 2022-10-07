@@ -20,12 +20,12 @@ final class DeletePostAction extends AbstractController
         if (!$this->isCsrfTokenValid('delete-post', $request->request->get('token'))) {
             $this->createNotFoundException();
         }
-        if ($this->getUser()->getId()->getValue() !== $request->request->get('author_id')) {
+        if ($this->getUser()->getId() !== $request->request->get('author_id')) {
             $this->createNotFoundException();
         }
         $command = new RemovePostCommand();
         $command->postId = $post->getId()->getValue();
-        $command->authorId = $this->getUser()->getId()->getValue();
+        $command->authorId = $this->getUser()->getId();
 
         $handler->handle($command);
         $this->addFlash('success', 'Post deleted.');

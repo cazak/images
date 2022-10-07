@@ -26,7 +26,7 @@ final class PostLikeAction extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             try {
-                $command = new LikePostCommand($this->getUser()->getId()->getValue(), $request->get('postId'));
+                $command = new LikePostCommand($this->getUser()->getId(), $request->get('postId'));
                 $likesCount = $handler->handle($command);
             } catch (RedisException $e) {
                 $this->errorHandler->handle($e);
@@ -45,7 +45,7 @@ final class PostLikeAction extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             try {
-                $command = new UnlikePostCommand($this->getUser()->getId()->getValue(), $request->get('postId'));
+                $command = new UnlikePostCommand($this->getUser()->getId(), $request->get('postId'));
                 $likesCount = $handler->handle($command);
             } catch (RedisException $e) {
                 $this->errorHandler->handle($e);

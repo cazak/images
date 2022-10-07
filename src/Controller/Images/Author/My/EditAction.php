@@ -21,7 +21,7 @@ final class EditAction extends AbstractController
         $form = $this->createForm(ChangeAvatarForm::class, $command);
 
         $aboutCommand = new EditAboutCommand();
-        $aboutCommand->id = $this->getUser()->getId()->getValue();
+        $aboutCommand->id = $this->getUser()->getId();
 
         $aboutForm = $this->createForm(EditAboutForm::class, $aboutCommand);
 

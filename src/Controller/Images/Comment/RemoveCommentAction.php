@@ -26,7 +26,7 @@ final class RemoveCommentAction extends AbstractController
         if (!$this->isCsrfTokenValid('delete-comment', $request->request->get('token'))) {
             $this->createNotFoundException();
         }
-        if ($this->getUser()->getId()->getValue() !== $request->request->get('author_id')) {
+        if ($this->getUser()->getId() !== $request->request->get('author_id')) {
             $this->createNotFoundException();
         }
         $command = new RemoveCommentCommand();

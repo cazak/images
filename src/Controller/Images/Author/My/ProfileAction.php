@@ -8,7 +8,7 @@ use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\Query;
 use App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId\QueryHandler;
 use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
-use App\Model\User\Domain\Entity\User;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,12 +30,12 @@ final class ProfileAction extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         try {
-            /* @var User $user */
+            /* @var UserIdentity $user */
             $user = $this->getUser();
 
             return $this->render('images/author/my/profile.html.twig', [
-                'author' => $this->queryHandler->fetch(new Query($user->getId()->getValue())),
-                'posts' => $this->postQueryHandler->fetch(new PostQuery($user->getId()->getValue())),
+                'author' => $this->queryHandler->fetch(new Query($user->getId())),
+                'posts' => $this->postQueryHandler->fetch(new PostQuery($user->getId())),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

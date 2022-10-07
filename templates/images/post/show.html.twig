@@ -41,7 +41,7 @@
                             <div class="post-date">
                                 <span>{{ post.date|date }}</span>
                             </div>
-                            {% if post.author_id == app.user.id.value %}
+                            {% if post.author_id == app.user.id %}
                                 <div class="post-report">
                                     <form action="{{ path('app_post_delete', {'id': post.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
                                         <input type="hidden" name="token" value="{{ csrf_token('delete-post') }}" />
@@ -68,7 +68,7 @@
                                     <!-- comment item -->
                                     <li class="comment">
                                         <div class="comment-user-image">
-                                            <img class="img-sm" src="{{ author_path(comment.avatar) }}">
+                                            <img class="img-sm" src="{{ author_path(comment.avatar) }}" alt="">
                                         </div>
                                         <div class="comment-info">
                                             <h4 class="author"><a href="{{ path('app_authors_show', {'nicknameOrId': comment.nickname}) }}">{{ comment.nickname }}</a>

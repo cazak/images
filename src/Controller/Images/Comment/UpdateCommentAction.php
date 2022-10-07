@@ -25,7 +25,7 @@ final class UpdateCommentAction extends AbstractController
         ValidatorInterface $validator,
     ): Response {
         if ($request->isXmlHttpRequest()) {
-            if ($this->getUser()->getId()->getValue() !== $request->request->get('author_id')) {
+            if ($this->getUser()->getId() !== $request->request->get('author_id')) {
                 $this->createNotFoundException();
             }
             $command = new EditCommentCommand();

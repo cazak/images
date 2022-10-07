@@ -29,7 +29,7 @@ final class ShowAuthorProfileAction extends AbstractController
     public function show(string $nicknameOrId): Response
     {
         try {
-            $currentAuthor = $this->authorRepository->get($this->getUser()->getId()->getValue());
+            $currentAuthor = $this->authorRepository->get($this->getUser()->getId());
             $author = $this->queryHandler->fetch(new Query($nicknameOrId, $currentAuthor->getId()->getValue()));
 
             if ($currentAuthor->getId()->getValue() === $author->author->id) {

@@ -7,7 +7,7 @@ namespace App\Controller\Images\Post;
 use App\Model\Images\Application\Post\Command\Create\CreatePostCommand;
 use App\Model\Images\Application\Post\Command\Create\CreatePostCommandHandler;
 use App\Model\Images\Application\Post\Command\Create\CreatePostForm;
-use App\Model\User\Domain\Entity\User;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,10 +24,10 @@ final class CreatePostAction extends AbstractController
     #[Route('/post/create', name: 'app_post_create')]
     public function create(Request $request, CreatePostCommandHandler $handler): Response
     {
-        /** @var User $user */
+        /** @var UserIdentity $user */
         $user = $this->getUser();
 
-        $command = new CreatePostCommand($user->getId()->getValue());
+        $command = new CreatePostCommand($user->getId());
 
         $form = $this->createForm(CreatePostForm::class, $command);
 

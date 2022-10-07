@@ -23,8 +23,8 @@ final class GetFeedAction extends AbstractController
     {
         try {
             return $this->render('images/feed/show.html.twig', [
-                'feed' => $this->queryHandler->fetch(new Query($this->getUser()->getId()->getValue(), 1)),
-                'maxPage' => $this->queryHandler->getFeedMaxPage($this->getUser()->getId()->getValue()),
+                'feed' => $this->queryHandler->fetch(new Query($this->getUser()->getId(), 1)),
+                'maxPage' => $this->queryHandler->getFeedMaxPage($this->getUser()->getId()),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

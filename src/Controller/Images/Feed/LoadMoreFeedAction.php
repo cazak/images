@@ -29,7 +29,7 @@ final class LoadMoreFeedAction extends AbstractController
                     'success' => true,
                     'html' => $this->render('images/feed/_feeds.html.twig', [
                         'feed' => $this->queryHandler->fetch(
-                            new Query($this->getUser()->getId()->getValue(), (int) $request->query->get('page'))
+                            new Query($this->getUser()->getId(), (int) $request->query->get('page'))
                         ),
                     ])->getContent(),
                 ]);

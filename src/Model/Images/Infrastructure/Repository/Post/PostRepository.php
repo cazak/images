@@ -34,13 +34,13 @@ final class PostRepository extends ServiceEntityRepository implements PostReposi
      */
     public function get(string $id): Post
     {
-        $author = $this->findOneBy(['id' => $id]);
+        $post = $this->findOneBy(['id' => $id]);
 
-        if (!$author) {
+        if (!$post) {
             throw new EntityNotFoundException();
         }
 
-        return $author;
+        return $post;
     }
 
     /**
