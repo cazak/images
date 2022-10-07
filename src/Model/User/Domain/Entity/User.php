@@ -12,13 +12,11 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use DomainException;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user_users`')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, AggregateRoot
+class User implements AggregateRoot
 {
     use EventsTrait;
 
@@ -45,13 +43,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Aggrega
     private ?string $confirmToken;
 
     #[ORM\Column(type: 'integer')]
-    private ?int $status;
+    private int $status;
 
-    #[ORM\Column(type: 'user_user_email', nullable: true)]
+    #[ORM\Column(type: 'user_user_email')]
     private Email $email;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $role = null;
+    private string $role;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified;
@@ -106,7 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Aggrega
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return $this->status;
     }
@@ -130,7 +128,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Aggrega
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRole(): string
     {
         return $this->role;
     }
@@ -181,19 +179,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Aggrega
         $this->password = $password;
 
         return $this;
-    }
-
-    public function getRoles(): array
-    {
-        return [$this->role];
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function getUserIdentifier(): string
-    {
-        return $this->email->getValue();
     }
 }

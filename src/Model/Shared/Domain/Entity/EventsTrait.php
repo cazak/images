@@ -13,9 +13,6 @@ trait EventsTrait
 
     public function releaseEvents(): array
     {
-        $events = $this->recordedEvents;
-        $this->recordedEvents = [];
-
-        return $events;
+        return $this->recordedEvents + $this->recordedEvents = [];
     }
 }
