@@ -10,6 +10,7 @@ use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Infrastructure\Service\FileUploader;
 use App\Model\Shared\Infrastructure\Database\Flusher;
+use App\Model\Shared\Infrastructure\Event\EventStarter;
 use RedisException;
 
 final class CreatePostCommandHandler
@@ -21,6 +22,7 @@ final class CreatePostCommandHandler
         private readonly FileUploader $fileUploader,
         private readonly PostFactory $factory,
         private readonly Flusher $flusher,
+        private readonly EventStarter $eventStarter,
     ) {
     }
 
@@ -37,7 +39,9 @@ final class CreatePostCommandHandler
 
         $this->postRepository->add($post);
 
-        $this->flusher->flush($post);
+        $this->flusher->flush();
+
+        $this->eventStarter->release($post);
 
         $this->redisAuthorPostRepository->increasePosts($author->getId()->getValue());
 

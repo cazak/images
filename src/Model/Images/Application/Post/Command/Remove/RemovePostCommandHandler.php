@@ -7,6 +7,7 @@ namespace App\Model\Images\Application\Post\Command\Remove;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Shared\Infrastructure\Database\Flusher;
+use App\Model\Shared\Infrastructure\Event\EventStarter;
 
 final class RemovePostCommandHandler
 {
@@ -14,6 +15,7 @@ final class RemovePostCommandHandler
         private readonly AuthorRepository $authorRepository,
         private readonly PostRepository $postRepository,
         private readonly Flusher $flusher,
+        private readonly EventStarter $eventStarter,
     ) {
     }
 
@@ -24,7 +26,8 @@ final class RemovePostCommandHandler
 
         $post->delete($author);
 
+        $this->eventStarter->release($post);
         $this->postRepository->remove($post);
-        $this->flusher->flush($post);
+        $this->flusher->flush();
     }
 }

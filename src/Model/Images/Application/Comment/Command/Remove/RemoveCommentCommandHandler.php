@@ -7,12 +7,14 @@ namespace App\Model\Images\Application\Comment\Command\Remove;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
+use App\Model\Shared\Infrastructure\Database\Flusher;
 use RedisException;
 
 final class RemoveCommentCommandHandler
 {
     public function __construct(
         private readonly CommentRepository $commentRepository,
+        private readonly Flusher $flusher,
         private readonly PostRepository $postRepository,
         private readonly RedisPostRepository $redisPostRepository,
     ) {
@@ -27,6 +29,8 @@ final class RemoveCommentCommandHandler
         $post = $this->postRepository->get($command->postId);
 
         $this->commentRepository->remove($comment);
+
+        $this->flusher->flush();
 
         $this->redisPostRepository->reduceComments($post->getId()->getValue());
     }

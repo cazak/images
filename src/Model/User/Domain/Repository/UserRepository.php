@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Model\User\Domain\Repository;
 
 use App\Model\User\Domain\Entity\User;
-use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
-interface UserRepository extends UserLoaderInterface
+interface UserRepository
 {
     public function add(User $entity, bool $flush = true): void;
 

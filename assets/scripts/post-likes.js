@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.feed-list').on('click', '.button-like', function() {
+    $('body').on('click', '.button-like', function() {
         var button = $(this);
         var params = {
             'postId': $(this).attr('data-id'),
@@ -16,7 +16,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.feed-list').on('click', '.button-unlike', function() {
+    $('body').on('click', '.button-unlike', function() {
         var button = $(this);
         var params = {
             'postId': $(this).attr('data-id'),

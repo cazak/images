@@ -6,13 +6,14 @@ namespace App\Model\User\Infrastructure\Repository;
 
 use App\Model\Shared\Exception\EntityNotFoundException;
 use App\Model\User\Domain\Entity\User;
+use App\Model\User\Domain\Repository\UserRepository as UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class UserRepository extends ServiceEntityRepository
+final class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

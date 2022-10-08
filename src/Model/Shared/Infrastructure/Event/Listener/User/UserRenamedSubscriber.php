@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Shared\Infrastructure\EventListener\User;
+namespace App\Model\Shared\Infrastructure\Event\Listener\User;
 
 use App\Model\Images\Domain\Entity\Author\Name;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;

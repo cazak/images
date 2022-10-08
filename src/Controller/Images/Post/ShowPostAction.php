@@ -30,13 +30,13 @@ final class ShowPostAction extends AbstractController
     {
         try {
             $command = new CreateCommentCommand();
-            $command->authorId = $this->getUser()->getId()->getValue();
+            $command->authorId = $this->getUser()->getId();
             $form = $this->createForm(CreateCommentForm::class, $command);
 
-            $post = $this->queryHandler->fetch(new Query($id, $this->getUser()->getId()->getValue()));
+            $post = $this->queryHandler->fetch(new Query($id, $this->getUser()->getId()));
 
             return $this->render('images/post/show.html.twig', [
-                'post' => $this->queryHandler->fetch(new Query($id, $this->getUser()->getId()->getValue())),
+                'post' => $this->queryHandler->fetch(new Query($id, $this->getUser()->getId())),
                 'comments' => $this->commentQueryHandler->fetch(new CommentQuery($post->id)),
                 'form' => $form->createView(),
             ]);
