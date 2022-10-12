@@ -44,6 +44,14 @@ final class PostRepository extends ServiceEntityRepository implements PostReposi
     }
 
     /**
+     * @return Post[]
+     */
+    public function findAllByAuthor(string $authorId): array
+    {
+        return $this->findBy(['author' => $authorId]);
+    }
+
+    /**
      * @throws NonUniqueResultException
      * @throws NoResultException
      */

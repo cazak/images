@@ -31,7 +31,7 @@ function scrollMore(){
         }
 
         $target.attr('data-page', page);
-        if (page == $target.attr('data-max')) {
+        if (page >= $target.attr('data-max')) {
             $target.remove();
             end = true;
         }

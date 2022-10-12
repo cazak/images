@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Model\Images\Domain\Entity\Author;
 
 use App\Model\Images\Infrastructure\Repository\Author\AuthorRepository;
+use App\Model\Shared\Domain\Entity\AggregateRoot;
+use App\Model\Shared\Domain\Entity\EventsTrait;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,8 +14,10 @@ use DomainException;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 #[ORM\Table(name: '`images_authors`')]
-class Author
+class Author implements AggregateRoot
 {
+    use EventsTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: 'uuid_id')]
     private Id $id;
@@ -109,11 +113,11 @@ class Author
         return $this;
     }
 
-    public function setAvatar(?string $avatar): self
+    public function changeAvatar(?string $avatar)
     {
         $this->avatar = $avatar;
 
-        return $this;
+        $this->recordEvent(new Event\AuthorAvatarChanged($this->id, $this->avatar));
     }
 
     public function getAvatar(): ?string

@@ -12,5 +12,10 @@ interface PostRepository
 
     public function get(string $id): Post;
 
+    /**
+     * @return Post[]
+     */
+    public function findAllByAuthor(string $authorId): array;
+
     public function hasById(string $id): bool;
 }

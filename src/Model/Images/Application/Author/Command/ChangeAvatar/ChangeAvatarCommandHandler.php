@@ -6,11 +6,15 @@ namespace App\Model\Images\Application\Author\Command\ChangeAvatar;
 
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Infrastructure\Service\FileUploader;
+use App\Model\Shared\Infrastructure\Event\EventStarter;
 
 final class ChangeAvatarCommandHandler
 {
-    public function __construct(private readonly AuthorRepository $repository, private readonly FileUploader $fileUploader)
-    {
+    public function __construct(
+        private readonly AuthorRepository $repository,
+        private readonly FileUploader $fileUploader,
+        private readonly EventStarter $eventStarter,
+    ) {
     }
 
     public function handle(ChangeAvatarCommand $command): void
@@ -26,8 +30,10 @@ final class ChangeAvatarCommandHandler
             $file = $this->fileUploader->upload($command->avatar);
         }
 
-        $author->setAvatar($file);
+        $author->changeAvatar($file);
 
         $this->repository->add($author);
+
+        $this->eventStarter->release($author);
     }
 }

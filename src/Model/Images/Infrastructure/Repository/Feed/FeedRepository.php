@@ -48,4 +48,12 @@ final class FeedRepository extends ServiceEntityRepository implements FeedReposi
     {
         return $this->findBy(['post' => $id]);
     }
+
+    /**
+     * @return Feed[]
+     */
+    public function findAllByAuthor(string $id): array
+    {
+        return $this->findBy(['author' => $id]);
+    }
 }

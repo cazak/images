@@ -12,5 +12,13 @@ interface FeedRepository
 
     public function get(string $id): Feed;
 
+    /**
+     * @return Feed[]
+     */
     public function findAllByPost(string $id): array;
+
+    /**
+     * @return Feed[]
+     */
+    public function findAllByAuthor(string $id): array;
 }
