@@ -1,0 +1,40 @@
+<article class="post col-sm-12 col-xs-12">
+    <div class="post-meta">
+        <div class="post-title">
+            <img src="{{ author_path(author_avatar) }}" class="author-image" alt=""/>
+            <div class="author-name"><a href="{{ path('app_authors_show', {'nicknameOrId': author_nickname}) }}">{{ author_nickname }}</a></div>
+        </div>
+    </div>
+    <div class="post-type-image">
+        <a href="{{ path('app_show_post', {'id': post_id}) }}">
+            <img src="{{ post_path(post_avatar) }}" alt="Post's avatar">
+        </a>
+    </div>
+    <div class="post-description">
+        <p>{{ post_description }}</p>
+    </div>
+    <div class="post-bottom">
+        <div class="post-likes">
+            <a href="#" class="btn btn-default button-like {{ isLiked ? 'display-none' : '' }}" data-id="{{ post_id }}">
+                {{ 'Like'|trans }}&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
+            </a>
+            <a href="#" class="btn btn-default button-unlike {{ isLiked ? '' : 'display-none' }}" data-id="{{ post_id }}">
+                {{ 'Unlike'|trans }}&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
+            </a>
+            &nbsp;
+            <i class="fa fa-lg fa-heart-o"></i>
+            <span class="likes-count">{{ likesCount }}</span>
+        </div>
+        <div class="post-comments">
+            <a href="{{ path('app_show_post', {'id': post_id}) }}">{{ 'Comments'|trans }}: <span class="comment-likes-count likes-count">{{ commentsCount }}</span>
+            </a>
+
+        </div>
+        <div class="post-date">
+            <span>{{ post_date|date }}</span>
+        </div>
+        <div class="post-report">
+            <a href="#">{{ 'Report post'|trans }}</a>
+        </div>
+    </div>
+</article>

@@ -8,57 +8,20 @@
         <div class="page page-post col-sm-12 col-xs-12">
             <div class="blog-posts blog-posts-large">
                 <div class="row">
-                    <article class="post col-sm-12 col-xs-12">
-                        <div class="post-meta">
-                            <div class="post-title">
-                                <img src="{{ author_path(post.author_avatar) }}" class="author-image" alt="Author's avatar"/>
-                                <div class="author-name"><a href="{{ path('app_authors_show', {'nicknameOrId': post.nickname}) }}">{{ post.nickname }}</a></div>
-                            </div>
-                        </div>
-                        <div class="post-type-image">
-                            <a href="#">
-                                <img src="{{ post_path(post.avatar) }}" alt="Post's avatar">
-                            </a>
-                        </div>
-                        <div class="post-description">
-                            <p>{{ post.description }}</p>
-                        </div>
-                        <div class="post-bottom">
-                            <div class="post-likes">
-                                <a href="#" class="btn btn-default button-like {{ post.isLiked ? 'display-none' : '' }}" data-id="{{ post.id }}">
-                                    Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
-                                </a>
-                                <a href="#" class="btn btn-default button-unlike {{ post.isLiked ? '' : 'display-none' }}" data-id="{{ post.id }}">
-                                    Unlike&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down"></span>
-                                </a>
-                                &nbsp;
-                                <i class="fa fa-lg fa-heart-o"></i>
-                                <span class="likes-count">{{ post.likesCount }}</span>
-                            </div>
-                            <div class="post-comments">
-                                <a href="#"><span class="comment-likes-count likes-count">{{ post.commentsCount }}</span> Comments</a>
-                            </div>
-                            <div class="post-date">
-                                <span>{{ post.date|date }}</span>
-                            </div>
-                            {% if post.author_id == app.user.id %}
-                                <div class="post-report">
-                                    <form action="{{ path('app_post_delete', {'id': post.id}) }}" method="post" onsubmit="return confirm('Are you sure?')">
-                                        <input type="hidden" name="token" value="{{ csrf_token('delete-post') }}" />
-                                        <input type="hidden" name="author_id" value="{{ post.author_id }}" />
-                                        <button type="submit" class="btn btn-link" style="padding: 0">Delete post</button>
-                                    </form>
-                                </div>
-                            {% else %}
-                                <div class="post-report">
-                                    <a href="#">Report post</a>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </article>
+                    {{ include('images/_post.html.twig', {
+                        'author_nickname': post.nickname,
+                        'author_avatar': post.author_avatar,
+                        'post_id': post.id,
+                        'post_avatar': post.avatar,
+                        'post_description': post.description,
+                        'post_date': post.date,
+                        'isLiked': post.isLiked,
+                        'likesCount': post.likesCount,
+                        'commentsCount': post.commentsCount,
+                    }) }}
 
                     <div class="col-sm-12 col-xs-12">
-                        <h4><span class="comment-likes-count likes-count">{{ post.commentsCount }}</span> comments</h4>
+                        <h4>{{ 'Comments'|trans }}: <span class="comment-likes-count likes-count">{{ post.commentsCount }}</span></h4>
                         <div class="comments-post">
 
                             <div class="single-item-title"></div>
@@ -99,7 +62,7 @@
                     </div>
                     <div class="col-sm-12 col-xs-12">
                         <div class="comment-respond">
-                            <h4>Leave a Reply</h4>
+                            <h4>{{ 'Leave a Reply'|trans }}</h4>
                             {{ form_start(form, {
                                 'attr': {
                                     'id': 'form-create',

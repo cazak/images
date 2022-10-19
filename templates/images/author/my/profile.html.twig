@@ -13,10 +13,10 @@
                                 <img src="{{ author_path(author.avatar) }}" class="author-image" alt=""/>
                                 <div class="author-name">{{ author.name }} {{ author.surname }}</div>
                                 {% if author.avatar %}
-                                    <a href="{{ path('app_remove_avatar') }}" class="btn btn-default" onclick="return confirm('Are you sure?')">Delete avatar</a>
+                                    <a href="{{ path('app_remove_avatar') }}" class="btn btn-default" onclick="return confirm('Are you sure?')">{{ 'Delete avatar'|trans }}</a>
                                 {% endif %}
-                                <a href="{{ path('app_profile_edit') }}" class="btn btn-default">Edit profile</a>
-                                <a href="{{ path('app_post_create') }}" class="btn btn-default">Create post</a>
+                                <a href="{{ path('app_profile_edit') }}" class="btn btn-default">{{ 'Edit profile'|trans }}</a>
+                                <a href="{{ path('app_post_create') }}" class="btn btn-default">{{ 'Create post'|trans }}</a>
                             </div>
                             <div class="profile-description">
                                 <p>{% if author.about %}{{ author.about }}{% endif %}</p>
