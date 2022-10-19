@@ -6,6 +6,5 @@ return static function (FrameworkConfig $framework) {
     $framework
         ->defaultLocale('%env(DEFAULT_LOCALE)%')
         ->translator()
-        ->defaultPath('%kernel.project_dir%/translations')
-    ;
+        ->defaultPath('%kernel.project_dir%/translations');
 };

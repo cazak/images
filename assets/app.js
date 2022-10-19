@@ -15,3 +15,4 @@ import './scripts/scripts';
 import './scripts/post-comments';
 import './scripts/post-likes';
 import './scripts/feed';
+import './scripts/language';
