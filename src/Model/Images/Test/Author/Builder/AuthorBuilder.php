@@ -52,7 +52,7 @@ final class AuthorBuilder
         $author = new Author($this->id, $this->date, $this->name, $this->nickname);
 
         if ($this->avatar) {
-            $author->setAvatar($this->avatar);
+            $author->changeAvatar($this->avatar);
         }
 
         if ($this->isBlocked) {
