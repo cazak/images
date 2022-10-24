@@ -35,20 +35,21 @@ final class QueryHandler
     {
         $row = $this->getAuthor($query);
 
+        if (false === $row) {
+            throw new EntityNotFoundException();
+        }
+
         $row['subscriptions'] = $this->getSubscriptions->fetch($row['id']);
         $row['followers'] = $this->getFollowers->fetch($row['id']);
         $row['followersCount'] = (int) $this->authorRepository->getFollowersCount($row['id']);
         $row['subscriptionsCount'] = (int) $this->authorRepository->getSubscriptionsCount($row['id']);
         $row['postsCount'] = $this->redisAuthorPostRepository->getPostsCount($row['id']);
 
-        if (false !== $row) {
-            return DTO::fromAuthor($row);
-        }
-
-        throw new EntityNotFoundException();
+        return DTO::fromAuthor($row);
     }
 
     /**
+     * @return array<string, mixed>|false
      * @throws Exception
      */
     private function getAuthor(Query $query): array|bool

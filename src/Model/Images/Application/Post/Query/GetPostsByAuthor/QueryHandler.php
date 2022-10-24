@@ -14,6 +14,7 @@ final class QueryHandler
     }
 
     /**
+     * @return array<int, array<string, string>>
      * @throws Exception
      */
     public function fetch(Query $query): array

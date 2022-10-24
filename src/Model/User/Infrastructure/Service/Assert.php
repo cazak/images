@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert as WebmozartAssert;
 
 final class Assert implements AssertInterface
 {
-    public function notEmpty($value): void
+    public function notEmpty(mixed $value): void
     {
         WebmozartAssert::notEmpty($value);
     }

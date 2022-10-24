@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model\User\Application\Command\Signup\Confirm;
 
-use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Repository\UserRepository;
 use DomainException;
 
@@ -15,7 +14,7 @@ final class ConfirmUserCommandHandler
     ) {
     }
 
-    public function handle(ConfirmUserCommand $command): User
+    public function handle(ConfirmUserCommand $command): void
     {
         $user = $this->repository->findByConfirmToken($command->token);
 
@@ -25,7 +24,5 @@ final class ConfirmUserCommandHandler
         $user->confirmSignUp();
 
         $this->repository->add($user);
-
-        return $user;
     }
 }

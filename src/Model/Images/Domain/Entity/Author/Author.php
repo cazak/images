@@ -113,7 +113,7 @@ class Author implements AggregateRoot
         return $this;
     }
 
-    public function changeAvatar(?string $avatar)
+    public function changeAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
 

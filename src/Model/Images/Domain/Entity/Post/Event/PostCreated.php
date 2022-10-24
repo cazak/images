@@ -12,14 +12,7 @@ final class PostCreated implements Event
 {
     public function __construct(
         public readonly Id $authorId,
-        public readonly string $name,
-        public readonly string $surname,
-        public readonly string $nickname,
-
         public readonly Id $postId,
-        public readonly string $avatar,
-        public readonly string $description,
-        DateTimeImmutable $date
     ) {
     }
 }

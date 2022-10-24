@@ -6,6 +6,10 @@ namespace App\Model\Images\Application\Author\Query\GetAuthorByNicknameOrId;
 
 final class DTO
 {
+    /**
+     * @param array<int, array<string, string>> $subscriptions
+     * @param array<int, array<string, string>> $followers
+     */
     public function __construct(
         public string $id,
         public string $name,
@@ -21,7 +25,10 @@ final class DTO
     ) {
     }
 
-    public static function fromAuthor($author): self
+    /**
+     * @param array<string, mixed> $author
+     */
+    public static function fromAuthor(array $author): self
     {
         return new self(
             $author['id'],

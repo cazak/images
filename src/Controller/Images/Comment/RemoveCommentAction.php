@@ -7,6 +7,7 @@ namespace App\Controller\Images\Comment;
 use App\Model\Images\Application\Comment\Command\Remove\RemoveCommentCommand;
 use App\Model\Images\Application\Comment\Command\Remove\RemoveCommentCommandHandler;
 use App\Model\Images\Domain\Entity\Comment\Comment;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,10 +24,13 @@ final class RemoveCommentAction extends AbstractController
         RemoveCommentCommandHandler $handler,
         ErrorHandler $errorHandler,
     ): Response {
+        /** @var UserIdentity $user */
+        $user = $this->getUser();
+
         if (!$this->isCsrfTokenValid('delete-comment', $request->request->get('token'))) {
             $this->createNotFoundException();
         }
-        if ($this->getUser()->getId() !== $request->request->get('author_id')) {
+        if ($user->getId() !== $request->request->get('author_id')) {
             $this->createNotFoundException();
         }
         $command = new RemoveCommentCommand();

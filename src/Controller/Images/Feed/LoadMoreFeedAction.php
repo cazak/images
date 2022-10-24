@@ -6,6 +6,7 @@ namespace App\Controller\Images\Feed;
 
 use App\Model\Images\Application\Feed\Query\GetFeedByReader\Query;
 use App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,11 +26,14 @@ final class LoadMoreFeedAction extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             try {
+                /** @var UserIdentity $user */
+                $user = $this->getUser();
+
                 return new JsonResponse([
                     'success' => true,
                     'html' => $this->render('images/feed/_feeds.html.twig', [
                         'feed' => $this->queryHandler->fetch(
-                            new Query($this->getUser()->getId(), (int) $request->query->get('page'))
+                            new Query($user->getId(), (int) $request->query->get('page'))
                         ),
                     ])->getContent(),
                 ]);

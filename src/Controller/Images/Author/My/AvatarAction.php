@@ -18,6 +18,7 @@ final class AvatarAction extends AbstractController
     #[Route('/avatar/change', name: 'app_change_avatar')]
     public function avatar(Request $request, ChangeAvatarCommandHandler $handler): Response
     {
+        /** @var UserIdentity $user */
         $user = $this->getUser();
 
         $command = new ChangeAvatarCommand();
@@ -34,7 +35,7 @@ final class AvatarAction extends AbstractController
     }
 
     #[Route('/avatar/remove', name: 'app_remove_avatar')]
-    public function removeAvatar(ChangeAvatarCommandHandler $handler)
+    public function removeAvatar(ChangeAvatarCommandHandler $handler): Response
     {
         /** @var UserIdentity $user */
         $user = $this->getUser();

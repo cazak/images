@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use Exception;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 final class ErrorHandler
 {
@@ -13,7 +13,7 @@ final class ErrorHandler
     {
     }
 
-    public function handle(Exception $exception): void
+    public function handle(Throwable $exception): void
     {
         $this->logger->warning($exception->getMessage(), ['exception' => $exception]);
     }

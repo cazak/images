@@ -6,6 +6,7 @@ namespace App\Controller\Images\Feed;
 
 use App\Model\Images\Application\Feed\Query\GetFeedByReader\Query;
 use App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,9 +23,12 @@ final class GetFeedAction extends AbstractController
     public function show(): Response
     {
         try {
+            /** @var UserIdentity $user */
+            $user = $this->getUser();
+
             return $this->render('images/feed/show.html.twig', [
-                'feed' => $this->queryHandler->fetch(new Query($this->getUser()->getId(), 1)),
-                'maxPage' => $this->queryHandler->getFeedMaxPage($this->getUser()->getId()),
+                'feed' => $this->queryHandler->fetch(new Query($user->getId(), 1)),
+                'maxPage' => $this->queryHandler->getFeedMaxPage($user->getId()),
             ]);
         } catch (Exception $exception) {
             $this->errorHandler->handle($exception);

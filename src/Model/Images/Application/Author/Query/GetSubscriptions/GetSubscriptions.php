@@ -18,6 +18,7 @@ final class GetSubscriptions
     }
 
     /**
+     * @return array<int, array<string, string>>
      * @throws RedisException
      * @throws Exception
      */

@@ -16,11 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 final class FactoryTest extends KernelTestCase
 {
+    private UserFactory $factory;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->factory = self::getContainer()->get(UserFactory::class);
-        $this->passwordHasher = self::getContainer()->get(UserPasswordHasher::class);
     }
 
     public function test_success(): void

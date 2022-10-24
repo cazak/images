@@ -57,10 +57,10 @@ final class RegistrationController extends AbstractController
     {
         try {
             $command = new ConfirmUserCommand($token);
-            $user = $handler->handle($command);
+            $handler->handle($command);
 
             return $userAuthenticator->authenticateUser(
-                $user,
+                $this->getUser(),
                 $authenticator,
                 $request
             );

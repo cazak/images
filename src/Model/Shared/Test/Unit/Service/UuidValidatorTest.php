@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 final class UuidValidatorTest extends KernelTestCase
 {
+    private UuidValidator $validator;
+
     protected function setUp(): void
     {
         parent::setUp();

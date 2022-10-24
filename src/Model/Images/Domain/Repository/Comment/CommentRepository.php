@@ -12,5 +12,8 @@ interface CommentRepository
 
     public function get(string $id): Comment;
 
+    /**
+     * @return Comment[]
+     */
     public function findAllByPost(string $id): array;
 }

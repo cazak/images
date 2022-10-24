@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 final class ConfirmTest extends KernelTestCase
 {
+    private UserFactory $factory;
+
     protected function setUp(): void
     {
         parent::setUp();

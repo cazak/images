@@ -9,6 +9,7 @@ use App\Model\Images\Application\Author\Query\ShowAuthorProfile\QueryHandler;
 use App\Model\Images\Application\Post\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Application\Post\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +30,9 @@ final class ShowAuthorProfileAction extends AbstractController
     public function show(string $nicknameOrId): Response
     {
         try {
-            $currentAuthor = $this->authorRepository->get($this->getUser()->getId());
+            /** @var UserIdentity $user */
+            $user = $this->getUser();
+            $currentAuthor = $this->authorRepository->get($user->getId());
             $author = $this->queryHandler->fetch(new Query($nicknameOrId, $currentAuthor->getId()->getValue()));
 
             if ($currentAuthor->getId()->getValue() === $author->author->id) {

@@ -10,6 +10,7 @@ use App\Model\Images\Application\Comment\Command\Create\CreateCommentForm;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
 use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
+use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,8 +28,10 @@ final class CreateCommentAction extends AbstractController
         RedisPostRepository $redisPostRepository,
     ): Response {
         if ($request->isXmlHttpRequest()) {
+            /** @var UserIdentity $user */
+            $user = $this->getUser();
             $command = new CreateCommentCommand();
-            $command->authorId = $this->getUser()->getId();
+            $command->authorId = $user->getId();
             $command->postId = $request->query->get('postId');
             $form = $this->createForm(CreateCommentForm::class, $command);
 
@@ -42,7 +45,7 @@ final class CreateCommentAction extends AbstractController
                     'commentsCount' => $redisPostRepository->getCommentsCount($command->postId),
                     'html' => $this->render('images/comment/comment.html.twig', [
                         'comment' => $commentRepository->get($id),
-                        'author' => $authorRepository->get($this->getUser()->getId()),
+                        'author' => $authorRepository->get($user->getId()),
                         'postId' => $request->query->get('postId'),
                     ])->getContent(),
                 ]);

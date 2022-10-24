@@ -12,6 +12,10 @@ interface AuthorRepository
 
     public function get(string $id): Author;
 
+    /**
+     * @param array<int, string> $ids
+     * @return Author[]
+     */
     public function findAllByIds(array $ids): array;
 
     public function checkAuthorsExistForSubscribe(string $firstAuthorId, string $secondAuthorId): bool;

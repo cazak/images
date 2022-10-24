@@ -7,6 +7,7 @@ namespace App\Controller\Users;
 use App\Model\User\Application\Command\UpdateName\UpdateNameCommand;
 use App\Model\User\Application\Command\UpdateName\UpdateNameCommandHandler;
 use App\Model\User\Application\Command\UpdateName\UpdateNameForm;
+use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,9 @@ final class ChangeNameAction extends AbstractController
     #[Route('/edit/name', name: 'app_change_name')]
     public function change(Request $request, UpdateNameCommandHandler $handler): Response
     {
-        $command = new UpdateNameCommand($this->getUser()->getId());
+        /** @var UserIdentity $user */
+        $user = $this->getUser();
+        $command = new UpdateNameCommand($user->getId());
         $form = $this->createForm(UpdateNameForm::class, $command);
 
         $form->handleRequest($request);

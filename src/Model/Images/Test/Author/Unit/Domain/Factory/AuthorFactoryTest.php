@@ -16,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 final class AuthorFactoryTest extends KernelTestCase
 {
+    private AuthorFactory $factory;
+
     protected function setUp(): void
     {
         parent::setUp();

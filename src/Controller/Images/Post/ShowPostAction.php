@@ -10,6 +10,7 @@ use App\Model\Images\Application\Comment\Query\GetCommentsByPost\Query as Commen
 use App\Model\Images\Application\Comment\Query\GetCommentsByPost\QueryHandler as CommentQueryHandler;
 use App\Model\Images\Application\Post\Query\GetPostById\Query;
 use App\Model\Images\Application\Post\Query\GetPostById\QueryHandler;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,14 +30,16 @@ final class ShowPostAction extends AbstractController
     public function show(string $id): Response
     {
         try {
+            /** @var UserIdentity $user */
+            $user = $this->getUser();
             $command = new CreateCommentCommand();
-            $command->authorId = $this->getUser()->getId();
+            $command->authorId = $user->getId();
             $form = $this->createForm(CreateCommentForm::class, $command);
 
-            $post = $this->queryHandler->fetch(new Query($id, $this->getUser()->getId()));
+            $post = $this->queryHandler->fetch(new Query($id, $user->getId()));
 
             return $this->render('images/post/show.html.twig', [
-                'post' => $this->queryHandler->fetch(new Query($id, $this->getUser()->getId())),
+                'post' => $this->queryHandler->fetch(new Query($id, $user->getId())),
                 'comments' => $this->commentQueryHandler->fetch(new CommentQuery($post->id)),
                 'form' => $form->createView(),
             ]);

@@ -8,6 +8,7 @@ use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommand;
 use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommandHandler;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
+use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,10 @@ final class UpdateCommentAction extends AbstractController
         ValidatorInterface $validator,
     ): Response {
         if ($request->isXmlHttpRequest()) {
-            if ($this->getUser()->getId() !== $request->request->get('author_id')) {
+            /** @var UserIdentity $user */
+            $user = $this->getUser();
+
+            if ($user->getId() !== $request->request->get('author_id')) {
                 $this->createNotFoundException();
             }
             $command = new EditCommentCommand();
@@ -37,7 +41,7 @@ final class UpdateCommentAction extends AbstractController
             if (count($errors) > 0) {
                 return new JsonResponse([
                     'success' => false,
-                    'errors' => (string) $errors,
+                    'errors' => $errors,
                 ]);
             }
 

@@ -30,7 +30,7 @@ final class ProfileAction extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         try {
-            /* @var UserIdentity $user */
+            /** @var UserIdentity $user */
             $user = $this->getUser();
 
             return $this->render('images/author/my/profile.html.twig', [

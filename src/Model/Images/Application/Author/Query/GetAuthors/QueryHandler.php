@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Model\Images\Application\Author\Query\GetAuthors;
 
 use Doctrine\DBAL\Connection;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 final class QueryHandler
@@ -14,7 +13,7 @@ final class QueryHandler
     {
     }
 
-    public function fetch(Filter $filter): PaginationInterface
+    public function fetch(Filter $filter): mixed
     {
         $qb = $this->connection->createQueryBuilder()
             ->from('images_authors')

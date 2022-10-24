@@ -8,6 +8,7 @@ use App\Model\Images\Application\Post\Command\Like\LikePostCommand;
 use App\Model\Images\Application\Post\Command\Like\LikePostCommandHandler;
 use App\Model\Images\Application\Post\Command\Unlike\UnlikePostCommand;
 use App\Model\Images\Application\Post\Command\Unlike\UnlikePostCommandHandler;
+use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,9 @@ final class PostLikeAction extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             try {
-                $command = new LikePostCommand($this->getUser()->getId(), $request->get('postId'));
+                /** @var UserIdentity $user */
+                $user = $this->getUser();
+                $command = new LikePostCommand($user->getId(), $request->get('postId'));
                 $likesCount = $handler->handle($command);
             } catch (RedisException $e) {
                 $this->errorHandler->handle($e);
@@ -45,7 +48,9 @@ final class PostLikeAction extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             try {
-                $command = new UnlikePostCommand($this->getUser()->getId(), $request->get('postId'));
+                /** @var UserIdentity $user */
+                $user = $this->getUser();
+                $command = new UnlikePostCommand($user->getId(), $request->get('postId'));
                 $likesCount = $handler->handle($command);
             } catch (RedisException $e) {
                 $this->errorHandler->handle($e);

@@ -46,18 +46,12 @@ class Post implements AggregateRoot
         $this->recordEvent(
             new Event\PostCreated(
                 $author->getId(),
-                $author->getName()->getName(),
-                $author->getName()->getSurname(),
-                $author->getNickname(),
                 $this->id,
-                $this->avatar,
-                $this->description,
-                $this->date
             )
         );
     }
 
-    public function delete(Author $author)
+    public function delete(Author $author): void
     {
         if (!$this->getAuthor()->getId()->isEqual($author->getId())) {
             throw new DomainException('Only the author can delete a post.');

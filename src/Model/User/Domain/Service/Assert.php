@@ -6,5 +6,5 @@ namespace App\Model\User\Domain\Service;
 
 interface Assert
 {
-    public function notEmpty($value): void;
+    public function notEmpty(mixed $value): void;
 }
