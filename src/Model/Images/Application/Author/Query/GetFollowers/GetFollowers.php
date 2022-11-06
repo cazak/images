@@ -19,6 +19,7 @@ final class GetFollowers
 
     /**
      * @return array<int, array<string, string>>
+     *
      * @throws RedisException
      * @throws Exception
      */

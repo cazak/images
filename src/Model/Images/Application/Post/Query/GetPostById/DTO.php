@@ -21,7 +21,8 @@ final class DTO
     }
 
     /**
-     * @param array<string, string|int|bool> $post
+     * @param array<string, bool|int|string> $post
+     *
      * @return static
      */
     public static function fromPost(array $post): self

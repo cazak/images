@@ -50,6 +50,7 @@ final class QueryHandler
 
     /**
      * @return array<string, mixed>|false
+     *
      * @throws Exception
      */
     private function getAuthor(Query $query): array|bool

@@ -54,6 +54,7 @@ final class AuthorRepository extends ServiceEntityRepository implements AuthorRe
 
     /**
      * @param array<int, string> $ids
+     *
      * @return Author[]
      */
     public function findAllByIds(array $ids): array

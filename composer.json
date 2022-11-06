@@ -104,6 +104,9 @@
         ],
         "test": [
             "php bin/phpunit"
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan analyse src"
         ]
     },
     "conflict": {

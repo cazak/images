@@ -17,6 +17,7 @@ final class MeAction extends AbstractController
     {
         /** @var UserIdentity $user */
         $user = $this->getUser();
+
         return $this->render('users/me.html.twig', [
             'user' => $this->getUser(),
             'author' => $authorRepository->get($user->getId()),

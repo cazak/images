@@ -14,6 +14,7 @@ interface AuthorRepository
 
     /**
      * @param array<int, string> $ids
+     *
      * @return Author[]
      */
     public function findAllByIds(array $ids): array;

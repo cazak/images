@@ -8,7 +8,6 @@ use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\User\Domain\Entity\Name;
 use App\Model\User\Domain\Entity\User;
 use App\Model\User\Domain\Factory\UserFactory;
-use App\Model\User\Domain\Service\UserPasswordHasher;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

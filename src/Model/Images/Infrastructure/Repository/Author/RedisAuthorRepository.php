@@ -43,6 +43,7 @@ final class RedisAuthorRepository
 
     /**
      * @return array<int, string>
+     *
      * @throws RedisException
      */
     public function getMutualFriends(string $currentAuthorId, string $forAuthorId): bool|array|Redis
@@ -55,6 +56,7 @@ final class RedisAuthorRepository
 
     /**
      * @return array<int, string>
+     *
      * @throws RedisException
      */
     public function getSubscriptions(string $authorId): Redis|array
@@ -72,6 +74,7 @@ final class RedisAuthorRepository
 
     /**
      * @return array<int, string>
+     *
      * @throws RedisException
      */
     public function getFollowers(string $authorId): Redis|array

@@ -19,7 +19,8 @@ final class QueryHandler
     }
 
     /**
-     * @return array<int, array<string, string|int|bool>>
+     * @return array<int, array<string, bool|int|string>>
+     *
      * @throws Exception
      * @throws RedisException
      */

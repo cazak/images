@@ -54,6 +54,7 @@ final class Form extends AbstractType
 
     /**
      * @return array<string, string>
+     *
      * @throws Exception
      */
     private function getAuthorIds(): array

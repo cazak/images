@@ -6,7 +6,6 @@ namespace App\Model\Images\Domain\Entity\Post\Event;
 
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use App\Model\Shared\Domain\Event\Event;
-use DateTimeImmutable;
 
 final class PostCreated implements Event
 {
