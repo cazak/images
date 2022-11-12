@@ -25,8 +25,8 @@ jobs:
               with:
                   args: --diff --dry-run --allow-risky=yes
 
-    linters:
-        name: Linters
+    phpstan:
+        name: Phpstan
         runs-on: ubuntu-latest
         strategy:
             matrix:

@@ -10,7 +10,7 @@ env:
     fail-fast: true
     PHPUNIT_FLAGS: "-v"
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
-    SYMFONY_REQUIRE: ">=6.0"
+    SYMFONY_REQUIRE: ">=6.1"
     SYMFONY_DEPRECATIONS_HELPER: 7
 
 permissions:
@@ -59,10 +59,10 @@ jobs:
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             - name: "Require symfony/flex"
-              run: composer require --no-progress --no-scripts --no-plugins symfony/flex
+              run: composer require --ignore-platform-reqs --no-progress --no-scripts --no-plugins symfony/flex
 
             - name: "Install dependencies"
-              run: composer update --no-interaction --prefer-dist --optimize-autoloader
+              run: composer update --ignore-platform-reqs --no-interaction --prefer-dist --optimize-autoloader
 
             - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
