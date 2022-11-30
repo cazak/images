@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Application\Feed\Query\GetFeedByReader;
+namespace App\Model\Images\Feed\Application\Query\GetFeedByReader;
 
 final class Query
 {

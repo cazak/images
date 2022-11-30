@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Feed;
 
-use App\Model\Images\Application\Feed\Query\GetFeedByReader\Query;
-use App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler;
+use App\Model\Images\Feed\Application\Query\GetFeedByReader\Query;
+use App\Model\Images\Feed\Application\Query\GetFeedByReader\QueryHandler;
 use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Infrastructure\Repository\Feed;
+namespace App\Model\Images\Feed\Infrastructure\Repository;
 
-use App\Model\Images\Domain\Entity\Feed\Feed;
-use App\Model\Images\Domain\Repository\Feed\FeedRepository as FeedRepositoryInterface;
+use App\Model\Images\Feed\Domain\Entity\Feed;
+use App\Model\Images\Feed\Domain\Entity\FeedRepository as FeedRepositoryInterface;
 use App\Model\Shared\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

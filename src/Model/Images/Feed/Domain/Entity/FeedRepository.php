@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Model\Images\Domain\Repository\Feed;
-
-use App\Model\Images\Domain\Entity\Feed\Feed;
+namespace App\Model\Images\Feed\Domain\Entity;
 
 interface FeedRepository
 {

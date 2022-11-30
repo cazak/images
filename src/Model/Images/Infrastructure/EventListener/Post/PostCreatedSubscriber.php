@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Model\Images\Infrastructure\EventListener\Post;
 
 use App\Model\Images\Domain\Entity\Post\Event\PostCreated;
-use App\Model\Images\Domain\Factory\Feed\FeedFactory;
 use App\Model\Images\Domain\Repository\Author\AuthorRepository;
-use App\Model\Images\Domain\Repository\Feed\FeedRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
+use App\Model\Images\Feed\Domain\Entity\FeedRepository;
+use App\Model\Images\Feed\Domain\Factory\FeedFactory;
 use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorRepository;
 use App\Model\Shared\Infrastructure\Database\Flusher;
 use App\Service\ErrorHandler;

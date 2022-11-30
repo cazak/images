@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Domain\Entity\Feed;
+namespace App\Model\Images\Feed\Domain\Entity;
 
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;

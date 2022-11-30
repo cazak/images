@@ -97,7 +97,7 @@ services:
         arguments:
             $uploader: '@images_post_file_uploader'
 
-    App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler:
+    App\Model\Images\Feed\Application\Query\GetFeedByReader\QueryHandler:
         arguments:
             $limit: '%feed_limit%'
 

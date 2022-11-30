@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Images\Domain\Entity\Feed;
+namespace App\Model\Images\Feed\Domain\Entity;
 
 use App\Model\Images\Domain\Entity\Author\Author as AuthorEntity;
 use App\Model\Images\Domain\Entity\Post\Post as PostEntity;
