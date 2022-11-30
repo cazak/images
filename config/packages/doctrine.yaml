@@ -21,6 +21,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/User/Domain/Entity'
                 prefix: 'App\Model\User\Domain\Entity'
                 alias: User
+            App:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/'
+                prefix: 'App\'
+                alias: App
 
 when@test:
     doctrine:
