@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Post\Infrastructure\Twig\Extension;
 
-use App\Model\Images\Infrastructure\Service\FileUploader;
+use App\Model\Images\Shared\Service\FileUploader;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author\My;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Author\Application\Query\GetAuthorByNicknameOrId\Query;
 use App\Model\Images\Author\Application\Query\GetAuthorByNicknameOrId\QueryHandler;
 use App\Model\Images\Post\Application\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Post\Application\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Images\Author\Application\Command\ChangeAvatar;
 
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
-use App\Model\Images\Infrastructure\Service\FileUploader;
+use App\Model\Images\Shared\Service\FileUploader;
 use App\Model\Shared\Infrastructure\Event\EventStarter;
 
 final class ChangeAvatarCommandHandler

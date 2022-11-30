@@ -57,26 +57,26 @@ services:
             $from: '%from%'
             $name: '%name%'
 
-    App\Model\Images\Infrastructure\Service\ImageSizeNormalizer:
+    App\Model\Images\Shared\Service\ImageSizeNormalizer:
         arguments:
             $imageManager: '@image_manager'
             $width: '%image_width%'
             $height: '%image_height%'
 
     images_author_file_uploader:
-        class: App\Model\Images\Infrastructure\Service\FileUploader
+        class: App\Model\Images\Shared\Service\FileUploader
         autowire: false
         arguments:
-            $imageSizeNormalizer: '@App\Model\Images\Infrastructure\Service\ImageSizeNormalizer'
+            $imageSizeNormalizer: '@App\Model\Images\Shared\Service\ImageSizeNormalizer'
             $directory: '%author_image_directory%'
             $slugger: '@slugger'
             $filesystem: '@filesystem'
 
     images_post_file_uploader:
-        class: App\Model\Images\Infrastructure\Service\FileUploader
+        class: App\Model\Images\Shared\Service\FileUploader
         autowire: false
         arguments:
-            $imageSizeNormalizer: '@App\Model\Images\Infrastructure\Service\ImageSizeNormalizer'
+            $imageSizeNormalizer: '@App\Model\Images\Shared\Service\ImageSizeNormalizer'
             $directory: '%post_image_directory%'
             $slugger: '@slugger'
             $filesystem: '@filesystem'

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Infrastructure\EventListener\Post;
+namespace App\Model\Images\Shared\EventListener\Post;
 
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Author\Infrastructure\Repository\RedisAuthorRepository;
@@ -11,8 +11,6 @@ use App\Model\Images\Feed\Domain\Factory\FeedFactory;
 use App\Model\Images\Post\Domain\Entity\Event\PostCreated;
 use App\Model\Images\Post\Domain\Entity\PostRepository;
 use App\Model\Shared\Infrastructure\Database\Flusher;
-use App\Service\ErrorHandler;
-use RedisException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class PostCreatedSubscriber implements EventSubscriberInterface
@@ -23,7 +21,6 @@ final class PostCreatedSubscriber implements EventSubscriberInterface
         private readonly AuthorRepository $authorRepository,
         private readonly PostRepository $postRepository,
         private readonly FeedRepository $feedRepository,
-        private readonly ErrorHandler $errorHandler,
         private readonly Flusher $flusher,
     ) {
     }
@@ -37,20 +34,16 @@ final class PostCreatedSubscriber implements EventSubscriberInterface
 
     public function onPostCreated(PostCreated $event): void
     {
-        try {
-            $author = $this->authorRepository->get($event->authorId->getValue());
-            $post = $this->postRepository->get($event->postId->getValue());
-            $followerIds = $this->redisAuthorRepository->getFollowers($event->authorId->getValue());
-            $followers = $this->authorRepository->findAllByIds($followerIds);
+        $author = $this->authorRepository->get($event->authorId->getValue());
+        $post = $this->postRepository->get($event->postId->getValue());
+        $followerIds = $this->redisAuthorRepository->getFollowers($event->authorId->getValue());
+        $followers = $this->authorRepository->findAllByIds($followerIds);
 
-            foreach ($followers as $follower) {
-                $feed = $this->factory->create($follower, $author, $post);
-                $this->feedRepository->add($feed);
-            }
-
-            $this->flusher->flush();
-        } catch (RedisException $e) {
-            $this->errorHandler->handle($e);
+        foreach ($followers as $follower) {
+            $feed = $this->factory->create($follower, $author, $post);
+            $this->feedRepository->add($feed);
         }
+
+        $this->flusher->flush();
     }
 }

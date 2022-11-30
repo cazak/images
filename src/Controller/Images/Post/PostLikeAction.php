@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Post;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Post\Application\Command\Like\LikePostCommand;
 use App\Model\Images\Post\Application\Command\Like\LikePostCommandHandler;
 use App\Model\Images\Post\Application\Command\Unlike\UnlikePostCommand;
 use App\Model\Images\Post\Application\Command\Unlike\UnlikePostCommandHandler;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
