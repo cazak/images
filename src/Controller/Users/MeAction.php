@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Users;
 
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

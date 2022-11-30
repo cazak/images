@@ -7,7 +7,7 @@ namespace App\Model\Images\Infrastructure\Service;
 use Intervention\Image\ImageManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-final class ImageSizeNormalizer implements \App\Model\Images\Application\Service\ImageSizeNormalizer
+final class ImageSizeNormalizer
 {
     public function __construct(
         private readonly ImageManager $imageManager,

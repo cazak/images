@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Shared\Infrastructure\Event\Listener\User;
 
-use App\Model\Images\Domain\Entity\Author\Name;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\Name;
 use App\Model\Shared\Infrastructure\Database\Flusher;
 use App\Model\User\Domain\Entity\Event\UserRenamed;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

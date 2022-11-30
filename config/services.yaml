@@ -81,23 +81,23 @@ services:
             $slugger: '@slugger'
             $filesystem: '@filesystem'
 
-    App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommandHandler:
+    App\Model\Images\Author\Application\Command\ChangeAvatar\ChangeAvatarCommandHandler:
         arguments:
             $fileUploader: '@images_author_file_uploader'
 
-    App\Model\Images\Application\Post\Command\Create\CreatePostCommandHandler:
+    App\Model\Images\Post\Application\Command\Create\CreatePostCommandHandler:
         arguments:
             $fileUploader: '@images_post_file_uploader'
 
-    App\Model\Images\Infrastructure\Twig\Extension\Author\StoragePathExtension:
+    App\Model\Images\Author\Infrastructure\Twig\Extension\StoragePathExtension:
         arguments:
             $uploader: '@images_author_file_uploader'
 
-    App\Model\Images\Infrastructure\Twig\Extension\Post\StoragePathExtension:
+    App\Model\Images\Post\Infrastructure\Twig\Extension\StoragePathExtension:
         arguments:
             $uploader: '@images_post_file_uploader'
 
-    App\Model\Images\Application\Feed\Query\GetFeedByReader\QueryHandler:
+    App\Model\Images\Feed\Application\Query\GetFeedByReader\QueryHandler:
         arguments:
             $limit: '%feed_limit%'
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Post;
 
-use App\Model\Images\Application\Post\Command\Remove\RemovePostCommand;
-use App\Model\Images\Application\Post\Command\Remove\RemovePostCommandHandler;
-use App\Model\Images\Domain\Entity\Post\Post;
+use App\Model\Images\Post\Application\Command\Remove\RemovePostCommand;
+use App\Model\Images\Post\Application\Command\Remove\RemovePostCommandHandler;
+use App\Model\Images\Post\Domain\Entity\Post;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

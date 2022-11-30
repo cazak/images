@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Comment;
 
-use App\Model\Images\Application\Comment\Command\Create\CreateCommentCommand;
-use App\Model\Images\Application\Comment\Command\Create\CreateCommentCommandHandler;
-use App\Model\Images\Application\Comment\Command\Create\CreateCommentForm;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
-use App\Model\Images\Domain\Repository\Comment\CommentRepository;
-use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
+use App\Model\Images\Comment\Application\Command\Create\CreateCommentCommand;
+use App\Model\Images\Comment\Application\Command\Create\CreateCommentCommandHandler;
+use App\Model\Images\Comment\Application\Command\Create\CreateCommentForm;
+use App\Model\Images\Comment\Domain\Entity\CommentRepository;
+use App\Model\Images\Post\Infrastructure\Repository\RedisPostRepository;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

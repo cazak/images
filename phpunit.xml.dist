@@ -22,7 +22,10 @@
         <testsuite name="unit">
             <directory>src/Model/User/Test</directory>
             <directory>src/Model/Shared/Test</directory>
-            <directory>src/Model/Images/Test</directory>
+            <directory>src/Model/Images/Post/Test</directory>
+            <directory>src/Model/Images/Author/Test</directory>
+            <directory>src/Model/Images/Feed/Test</directory>
+            <directory>src/Model/Images/Comment/Test</directory>
         </testsuite>
     </testsuites>
 

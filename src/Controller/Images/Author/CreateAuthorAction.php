@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
-use App\Model\Images\Application\Author\Command\Create\CreateAuthorCommand;
-use App\Model\Images\Application\Author\Command\Create\CreateAuthorCommandHandler;
-use App\Model\Images\Application\Author\Command\Create\CreateAuthorForm;
-use App\Model\Images\Application\Author\Command\Exceptions\NicknameIsAlreadyInUse;
+use App\Model\Images\Author\Application\Command\Create\CreateAuthorCommand;
+use App\Model\Images\Author\Application\Command\Create\CreateAuthorCommandHandler;
+use App\Model\Images\Author\Application\Command\Create\CreateAuthorForm;
+use App\Model\Images\Author\Application\Command\Exceptions\NicknameIsAlreadyInUse;
 use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

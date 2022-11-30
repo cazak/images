@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author\My;
 
-use App\Model\Images\Application\Author\Command\EditAbout\EditAboutCommand;
-use App\Model\Images\Application\Author\Command\EditAbout\EditAboutCommandHandler;
-use App\Model\Images\Application\Author\Command\EditAbout\EditAboutForm;
+use App\Model\Images\Author\Application\Command\EditAbout\EditAboutCommand;
+use App\Model\Images\Author\Application\Command\EditAbout\EditAboutCommandHandler;
+use App\Model\Images\Author\Application\Command\EditAbout\EditAboutForm;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
