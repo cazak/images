@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Widget\Language;
+namespace App\Locale\Widget\Language;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Environment;
