@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Check;
 
-use App\Service\ErrorHandler;
+use App\Controller\ErrorHandler;
 use Redis;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Feed;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Feed\Application\Query\GetFeedByReader\Query;
 use App\Model\Images\Feed\Application\Query\GetFeedByReader\QueryHandler;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

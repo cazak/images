@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Post;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Post\Application\Command\Create\CreatePostCommand;
 use App\Model\Images\Post\Application\Command\Create\CreatePostCommandHandler;
 use App\Model\Images\Post\Application\Command\Create\CreatePostForm;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

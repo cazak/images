@@ -6,7 +6,7 @@ namespace App\Model\Images\Post\Application\Command\Create;
 
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Author\Infrastructure\Repository\RedisAuthorPostRepository;
-use App\Model\Images\Infrastructure\Service\FileUploader;
+use App\Model\Images\Shared\Service\FileUploader;
 use App\Model\Images\Post\Domain\Entity\PostRepository;
 use App\Model\Images\Post\Domain\Factory\PostFactory;
 use App\Model\Shared\Infrastructure\Database\Flusher;

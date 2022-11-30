@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\Auth;
 
+use App\Controller\ErrorHandler;
 use App\Model\User\Application\Command\Signup\Confirm\ConfirmUserCommand;
 use App\Model\User\Application\Command\Signup\Confirm\ConfirmUserCommandHandler;
 use App\Model\User\Application\Command\Signup\Request\CreateUserCommand;
 use App\Model\User\Application\Command\Signup\Request\CreateUserCommandHandler;
 use App\Model\User\Application\Command\Signup\Request\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
-use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

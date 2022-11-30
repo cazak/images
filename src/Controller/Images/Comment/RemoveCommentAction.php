@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Comment;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Comment\Application\Command\Remove\RemoveCommentCommand;
 use App\Model\Images\Comment\Application\Command\Remove\RemoveCommentCommandHandler;
 use App\Model\Images\Comment\Domain\Entity\Comment;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use RedisException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

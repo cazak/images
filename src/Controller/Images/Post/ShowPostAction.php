@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Post;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Comment\Application\Command\Create\CreateCommentCommand;
 use App\Model\Images\Comment\Application\Command\Create\CreateCommentForm;
 use App\Model\Images\Comment\Application\Query\GetCommentsByPost\Query as CommentQuery;
@@ -11,7 +12,6 @@ use App\Model\Images\Comment\Application\Query\GetCommentsByPost\QueryHandler as
 use App\Model\Images\Post\Application\Query\GetPostById\Query;
 use App\Model\Images\Post\Application\Query\GetPostById\QueryHandler;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

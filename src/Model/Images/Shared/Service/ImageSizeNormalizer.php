@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Infrastructure\Service;
+namespace App\Model\Images\Shared\Service;
 
 use Intervention\Image\ImageManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

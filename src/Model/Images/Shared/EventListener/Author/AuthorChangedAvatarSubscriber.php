@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Images\Infrastructure\EventListener\Author;
+namespace App\Model\Images\Shared\EventListener\Author;
 
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Author\Domain\Entity\Event\AuthorAvatarChanged;

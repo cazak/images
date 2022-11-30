@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
+use App\Controller\ErrorHandler;
 use App\Model\Images\Author\Application\Query\ShowAuthorProfile\Query;
 use App\Model\Images\Author\Application\Query\ShowAuthorProfile\QueryHandler;
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Post\Application\Query\GetPostsByAuthor\Query as PostQuery;
 use App\Model\Images\Post\Application\Query\GetPostsByAuthor\QueryHandler as PostQueryHandler;
 use App\Security\UserIdentity;
-use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
