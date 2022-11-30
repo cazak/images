@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Model\Images\Test\Comment\Builder;
 
 use App\Model\Images\Author\Domain\Entity\Author;
-use App\Model\Images\Domain\Entity\Comment\Comment;
-use App\Model\Images\Domain\Entity\Post\Post;
+use App\Model\Images\Comment\Domain\Entity\Comment;
+use App\Model\Images\Post\Domain\Entity\Post;
 use App\Model\Images\Test\Author\Builder\AuthorBuilder;
 use App\Model\Images\Test\Post\Builder\PostBuilder;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;

@@ -85,7 +85,7 @@ services:
         arguments:
             $fileUploader: '@images_author_file_uploader'
 
-    App\Model\Images\Application\Post\Command\Create\CreatePostCommandHandler:
+    App\Model\Images\Post\Application\Command\Create\CreatePostCommandHandler:
         arguments:
             $fileUploader: '@images_post_file_uploader'
 
@@ -93,7 +93,7 @@ services:
         arguments:
             $uploader: '@images_author_file_uploader'
 
-    App\Model\Images\Infrastructure\Twig\Extension\Post\StoragePathExtension:
+    App\Model\Images\Post\Infrastructure\Twig\Extension\StoragePathExtension:
         arguments:
             $uploader: '@images_post_file_uploader'
 

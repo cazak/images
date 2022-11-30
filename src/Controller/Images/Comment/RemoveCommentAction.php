@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Comment;
 
-use App\Model\Images\Application\Comment\Command\Remove\RemoveCommentCommand;
-use App\Model\Images\Application\Comment\Command\Remove\RemoveCommentCommandHandler;
-use App\Model\Images\Domain\Entity\Comment\Comment;
+use App\Model\Images\Comment\Application\Command\Remove\RemoveCommentCommand;
+use App\Model\Images\Comment\Application\Command\Remove\RemoveCommentCommandHandler;
+use App\Model\Images\Comment\Domain\Entity\Comment;
 use App\Security\UserIdentity;
 use App\Service\ErrorHandler;
 use RedisException;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Comment;
 
-use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommand;
-use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommandHandler;
 use App\Model\Images\Author\Domain\Entity\AuthorRepository;
-use App\Model\Images\Domain\Repository\Comment\CommentRepository;
+use App\Model\Images\Comment\Application\Command\Edit\EditCommentCommand;
+use App\Model\Images\Comment\Application\Command\Edit\EditCommentCommandHandler;
+use App\Model\Images\Comment\Domain\Entity\CommentRepository;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

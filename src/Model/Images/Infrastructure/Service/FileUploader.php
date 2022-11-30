@@ -8,7 +8,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-final class FileUploader implements \App\Model\Images\Application\Service\FileUploader
+final class FileUploader
 {
     public function __construct(
         private readonly ImageSizeNormalizer $imageSizeNormalizer,

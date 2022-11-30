@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Test\Post\Unit\Domain\Factory;
 
-use App\Model\Images\Domain\Entity\Post\Post;
-use App\Model\Images\Domain\Factory\Post\PostFactory;
+use App\Model\Images\Post\Domain\Entity\Post;
+use App\Model\Images\Post\Domain\Factory\PostFactory;
 use App\Model\Images\Test\Author\Builder\AuthorBuilder;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;

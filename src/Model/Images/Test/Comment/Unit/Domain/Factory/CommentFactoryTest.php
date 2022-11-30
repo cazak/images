@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Test\Comment\Unit\Domain\Factory;
 
-use App\Model\Images\Domain\Factory\Comment\CommentFactory;
+use App\Model\Images\Comment\Domain\Factory\CommentFactory;
 use App\Model\Images\Test\Author\Builder\AuthorBuilder;
 use App\Model\Images\Test\Post\Builder\PostBuilder;
 use DateTimeImmutable;

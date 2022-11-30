@@ -21,11 +21,6 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Model/User/Domain/Entity'
                 prefix: 'App\Model\User\Domain\Entity'
                 alias: User
-            Images:
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Model/Images/Domain/Entity'
-                prefix: 'App\Model\Images\Domain\Entity'
-                alias: Images
 
 when@test:
     doctrine:

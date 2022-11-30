@@ -3,7 +3,7 @@
 namespace App\Model\Images\Feed\Domain\Entity;
 
 use App\Model\Images\Author\Domain\Entity\Author as AuthorEntity;
-use App\Model\Images\Domain\Entity\Post\Post as PostEntity;
+use App\Model\Images\Post\Domain\Entity\Post as PostEntity;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Feed\Application\Query\GetFeedByReader;
 
-use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
+use App\Model\Images\Post\Infrastructure\Repository\RedisPostRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use RedisException;

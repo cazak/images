@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Model\Images\Feed\Domain\Factory;
 
 use App\Model\Images\Author\Domain\Entity\Author;
-use App\Model\Images\Domain\Entity\Post\Post;
 use App\Model\Images\Feed\Domain\Entity\Author as AuthorData;
 use App\Model\Images\Feed\Domain\Entity\AuthorName;
 use App\Model\Images\Feed\Domain\Entity\Feed;
 use App\Model\Images\Feed\Domain\Entity\Post as PostData;
+use App\Model\Images\Post\Domain\Entity\Post;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use DomainException;
