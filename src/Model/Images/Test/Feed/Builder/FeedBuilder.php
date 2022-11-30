@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Test\Feed\Builder;
 
-use App\Model\Images\Domain\Entity\Author\Author as AuthorEntity;
+use App\Model\Images\Author\Domain\Entity\Author as AuthorEntity;
 use App\Model\Images\Domain\Entity\Post\Post as PostEntity;
 use App\Model\Images\Feed\Domain\Entity\Author;
 use App\Model\Images\Feed\Domain\Entity\AuthorName;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
-use App\Model\Images\Application\Author\Query\GetAuthors\Filter;
-use App\Model\Images\Application\Author\Query\GetAuthors\Form;
-use App\Model\Images\Application\Author\Query\GetAuthors\QueryHandler;
+use App\Model\Images\Author\Application\Query\GetAuthors\Filter;
+use App\Model\Images\Author\Application\Query\GetAuthors\Form;
+use App\Model\Images\Author\Application\Query\GetAuthors\QueryHandler;
 use App\Service\ErrorHandler;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

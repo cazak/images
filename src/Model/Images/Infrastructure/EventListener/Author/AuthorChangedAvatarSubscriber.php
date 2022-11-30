@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Infrastructure\EventListener\Author;
 
-use App\Model\Images\Domain\Entity\Author\Event\AuthorAvatarChanged;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\Event\AuthorAvatarChanged;
 use App\Model\Images\Feed\Domain\Entity\Author;
 use App\Model\Images\Feed\Domain\Entity\AuthorName;
 use App\Model\Images\Feed\Domain\Entity\FeedRepository;

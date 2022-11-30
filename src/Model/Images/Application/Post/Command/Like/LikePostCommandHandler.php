@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Post\Command\Like;
 
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
 use InvalidArgumentException;

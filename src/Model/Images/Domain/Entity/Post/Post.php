@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Domain\Entity\Post;
 
-use App\Model\Images\Domain\Entity\Author\Author;
+use App\Model\Images\Author\Domain\Entity\Author;
 use App\Model\Images\Infrastructure\Repository\Post\PostRepository;
 use App\Model\Shared\Domain\Entity\AggregateRoot;
 use App\Model\Shared\Domain\Entity\EventsTrait;

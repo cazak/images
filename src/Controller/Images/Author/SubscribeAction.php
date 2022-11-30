@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author;
 
-use App\Model\Images\Application\Author\Command\Subscribe\SubscribeCommand;
-use App\Model\Images\Application\Author\Command\Subscribe\SubscribeCommandHandler;
-use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommand;
-use App\Model\Images\Application\Author\Command\UnSubscribe\UnSubscribeCommandHandler;
+use App\Model\Images\Author\Application\Command\Subscribe\SubscribeCommand;
+use App\Model\Images\Author\Application\Command\Subscribe\SubscribeCommandHandler;
+use App\Model\Images\Author\Application\Command\UnSubscribe\UnSubscribeCommand;
+use App\Model\Images\Author\Application\Command\UnSubscribe\UnSubscribeCommandHandler;
 use App\Model\Shared\Service\UuidValidator;
 use App\Security\UserIdentity;
 use App\Service\ErrorHandler;

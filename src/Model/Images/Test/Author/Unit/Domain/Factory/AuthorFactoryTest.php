@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Test\Author\Unit\Domain\Factory;
 
-use App\Model\Images\Domain\Entity\Author\Author;
-use App\Model\Images\Domain\Factory\Author\AuthorFactory;
+use App\Model\Images\Author\Domain\Entity\Author;
+use App\Model\Images\Author\Domain\Factory\AuthorFactory;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;

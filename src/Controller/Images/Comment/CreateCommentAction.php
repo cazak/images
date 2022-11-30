@@ -7,7 +7,7 @@ namespace App\Controller\Images\Comment;
 use App\Model\Images\Application\Comment\Command\Create\CreateCommentCommand;
 use App\Model\Images\Application\Comment\Command\Create\CreateCommentCommandHandler;
 use App\Model\Images\Application\Comment\Command\Create\CreateCommentForm;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
 use App\Model\Images\Infrastructure\Repository\Post\RedisPostRepository;
 use App\Security\UserIdentity;

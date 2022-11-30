@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Infrastructure\EventListener\Post;
 
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
+use App\Model\Images\Author\Infrastructure\Repository\RedisAuthorPostRepository;
 use App\Model\Images\Domain\Entity\Post\Event\PostDeleted;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
 use App\Model\Images\Feed\Domain\Entity\FeedRepository;
-use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Shared\Infrastructure\Database\Flusher;
 use App\Service\ErrorHandler;
 use RedisException;

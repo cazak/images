@@ -6,7 +6,7 @@ namespace App\Controller\Images\Comment;
 
 use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommand;
 use App\Model\Images\Application\Comment\Command\Edit\EditCommentCommandHandler;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
 use App\Model\Images\Domain\Repository\Comment\CommentRepository;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

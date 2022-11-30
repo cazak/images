@@ -81,7 +81,7 @@ services:
             $slugger: '@slugger'
             $filesystem: '@filesystem'
 
-    App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommandHandler:
+    App\Model\Images\Author\Application\Command\ChangeAvatar\ChangeAvatarCommandHandler:
         arguments:
             $fileUploader: '@images_author_file_uploader'
 
@@ -89,7 +89,7 @@ services:
         arguments:
             $fileUploader: '@images_post_file_uploader'
 
-    App\Model\Images\Infrastructure\Twig\Extension\Author\StoragePathExtension:
+    App\Model\Images\Author\Infrastructure\Twig\Extension\StoragePathExtension:
         arguments:
             $uploader: '@images_author_file_uploader'
 

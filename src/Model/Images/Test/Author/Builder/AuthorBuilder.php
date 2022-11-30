@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Test\Author\Builder;
 
-use App\Model\Images\Domain\Entity\Author\Author;
-use App\Model\Images\Domain\Entity\Author\Name;
+use App\Model\Images\Author\Domain\Entity\Author;
+use App\Model\Images\Author\Domain\Entity\Name;
 use App\Model\Shared\Domain\Entity\ValueObject\Id;
 use DateTimeImmutable;
 

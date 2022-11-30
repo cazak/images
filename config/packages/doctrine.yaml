@@ -9,7 +9,7 @@ doctrine:
         types:
             uuid_id: 'App\Model\Shared\Domain\Entity\ValueObject\IdType'
             user_user_email: 'App\Model\User\Domain\Entity\EmailType'
-            images_author_status: 'App\Model\Images\Domain\Entity\Author\StatusType'
+            images_author_status: 'App\Model\Images\Author\Domain\Entity\StatusType'
 
     orm:
         auto_generate_proxy_classes: true

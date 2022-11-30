@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Images\Author\My;
 
-use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommand;
-use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarCommandHandler;
-use App\Model\Images\Application\Author\Command\ChangeAvatar\ChangeAvatarForm;
+use App\Model\Images\Author\Application\Command\ChangeAvatar\ChangeAvatarCommand;
+use App\Model\Images\Author\Application\Command\ChangeAvatar\ChangeAvatarCommandHandler;
+use App\Model\Images\Author\Application\Command\ChangeAvatar\ChangeAvatarForm;
 use App\Security\UserIdentity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

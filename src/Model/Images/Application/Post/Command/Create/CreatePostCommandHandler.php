@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Application\Post\Command\Create;
 
+use App\Model\Images\Author\Domain\Entity\AuthorRepository;
+use App\Model\Images\Author\Infrastructure\Repository\RedisAuthorPostRepository;
 use App\Model\Images\Domain\Factory\Post\PostFactory;
-use App\Model\Images\Domain\Repository\Author\AuthorRepository;
 use App\Model\Images\Domain\Repository\Post\PostRepository;
-use App\Model\Images\Infrastructure\Repository\Author\RedisAuthorPostRepository;
 use App\Model\Images\Infrastructure\Service\FileUploader;
 use App\Model\Shared\Infrastructure\Database\Flusher;
 use App\Model\Shared\Infrastructure\Event\EventStarter;
