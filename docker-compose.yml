@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+  nginx:
+    build:
+      context: docker/nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/app
+    depends_on:
+      - php-fpm
+    networks:
+      - symfony
+
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./:/app
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "postgresql://symfony:symfony@db:5432/symfony?serverVersion=15"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - symfony
+
+  php-cli:
+    build:
+      context: docker/php-cli
+    volumes:
+      - ./:/app
+      - ~/.composer:/home/app/.composer
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "postgresql://symfony:symfony@db:5432/symfony?serverVersion=15"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - symfony
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      POSTGRES_DB: symfony
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - symfony
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - symfony
+
+volumes:
+  db_data:
+
+networks:
+  symfony:
