@@ -1,4 +1,4 @@
-init: down-clear pull build-pull up app-init
+init: down-clear pull build-pull up app-init front-init
 down: down-clear
 check: lint analyze test
 
@@ -15,6 +15,8 @@ build-pull:
 	docker compose build --pull
 
 app-init: composer-install migrate fixtures-load
+
+front-init: npm-install npm-build
 
 migrate:
 	docker compose run --rm php-cli php bin/console d:m:m --no-interaction
@@ -47,3 +49,9 @@ deptrac:
 
 test:
 	docker compose run --rm php-cli composer test
+
+npm-install:
+	docker compose run --rm php-cli npm install
+
+npm-build:
+	docker compose run --rm php-cli npm run build
