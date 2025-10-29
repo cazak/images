@@ -33,7 +33,7 @@ composer-autoload:
 composer-validate:
 	docker compose run --rm php-cli composer validate
 
-analyze: phpstan deptrac
+analyze: phpstan
 
 lint:
 	docker compose run --rm php-cli ./vendor/bin/php-cs-fixer fix --dry-run --allow-risky=yes --diff
@@ -43,9 +43,6 @@ cs-fix:
 
 phpstan:
 	docker compose run --rm php-cli composer phpstan
-
-deptrac:
-	docker compose run --rm php-cli composer deptrac
 
 test:
 	docker compose run --rm php-cli composer test

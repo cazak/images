@@ -37,13 +37,16 @@ final class PostCreatedSubscriber implements EventSubscriberInterface
         $author = $this->authorRepository->get($event->authorId->getValue());
         $post = $this->postRepository->get($event->postId->getValue());
         $followerIds = $this->redisAuthorRepository->getFollowers($event->authorId->getValue());
-        $followers = $this->authorRepository->findAllByIds($followerIds);
 
-        foreach ($followers as $follower) {
-            $feed = $this->factory->create($follower, $author, $post);
-            $this->feedRepository->add($feed);
+        if ($followerIds) {
+            $followers = $this->authorRepository->findAllByIds($followerIds);
+
+            foreach ($followers as $follower) {
+                $feed = $this->factory->create($follower, $author, $post);
+                $this->feedRepository->add($feed);
+            }
+
+            $this->flusher->flush();
         }
-
-        $this->flusher->flush();
     }
 }

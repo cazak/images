@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Images\Author\Domain\Entity;
 
+use App\Model\Images\Author\Domain\Entity\Event\AuthorAvatarChanged;
 use App\Model\Images\Author\Infrastructure\Repository\AuthorRepository;
 use App\Model\Shared\Domain\Entity\AggregateRoot;
 use App\Model\Shared\Domain\Entity\EventsTrait;
@@ -117,7 +118,7 @@ class Author implements AggregateRoot
     {
         $this->avatar = $avatar;
 
-        $this->recordEvent(new \App\Model\Images\Author\Domain\Entity\Event\AuthorAvatarChanged($this->id, $this->avatar));
+        $this->recordEvent(new AuthorAvatarChanged($this->id, $this->avatar));
     }
 
     public function getAvatar(): ?string

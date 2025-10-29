@@ -11,7 +11,7 @@ final class AuthorAvatarChanged implements Event
 {
     public function __construct(
         public readonly Id $id,
-        public readonly string $avatar,
+        public readonly ?string $avatar,
     ) {
     }
 }
